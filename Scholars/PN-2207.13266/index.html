@@ -1,0 +1,1256 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.8">
+    
+    
+      
+        <title>Sparse Deep Neural Network for Nonlinear Partial Differential Equations - Nanxi Gu</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.815d1a91.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../paper.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sparse-deep-neural-network-for-nonlinear-partial-differential-equations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Nanxi Gu" class="md-header__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nanxi Gu
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sparse Deep Neural Network for Nonlinear Partial Differential Equations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nanxi Gu" class="md-nav__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Nanxi Gu
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        首页
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Models/" class="md-nav__link">
+        模型
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        学者
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#abstarct" class="md-nav__link">
+    Abstarct
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-sparse-dnn-model-for-solving-partial-differential-equations" class="md-nav__link">
+    A Sparse DNN Model for Solving Partial Differential Equations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-adaptive-approximation-by-the-sdnn-model" class="md-nav__link">
+    Function Adaptive Approximation by the SDNN Model
+  </a>
+  
+    <nav class="md-nav" aria-label="Function Adaptive Approximation by the SDNN Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intrinsic-adaptivity-of-the-sdnn-model" class="md-nav__link">
+    Intrinsic Adaptivity of the SDNN Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#an-example-of-adaptive-function-approximation-by-the-sdnn-model" class="md-nav__link">
+    An Example of Adaptive Function Approximation by the SDNN Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reconstruction-of-a-black-hole" class="md-nav__link">
+    Reconstruction of A Black Hole
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#numerical-solutions-of-partial-differential-equations" class="md-nav__link">
+    Numerical Solutions of Partial Differential Equations
+  </a>
+  
+    <nav class="md-nav" aria-label="Numerical Solutions of Partial Differential Equations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-burgers-equation" class="md-nav__link">
+    The Burgers Equation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-schrodinger-equation" class="md-nav__link">
+    The Schrödinger Equation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="sparse-deep-neural-network-for-nonlinear-partial-differential-equations">Sparse Deep Neural Network for Nonlinear Partial Differential Equations</h1>
+<p>作者: 许跃生, Zeng Taishan
+链接: arXiv:2207.13266v1
+时间: 2022-07-27
+标签: Sparse Approximation, 深度学习, 非线性偏微分方程, Sparse Regularization, Adaptive Approximation</p>
+<p>目录
+[Toc]</p>
+<style>
+    author{
+        color: red;
+    }
+</style>
+
+<h2 id="abstarct">Abstarct</h2>
+<blockquote>
+<p>More competent learning models are demanded for data processing due to increasingly greater amounts of data available in applications. Data that we encounter often have certain embedded sparsity structures. That is, if they are represented in an appropriate basis, their energies can concentrate on a small number of basis functions. This paper is devoted to a numerical study of adaptive approximation of solutions of nonlinear partial differential equations whose solutions may have singularities, by deep neural networks (DNNs) with a sparse regularization with multiple parameters. Noting that DNNs have an intrinsic multi-scale structure which is favorable for adaptive representation of functions, by employing a penalty with multiple parameters, we develop DNNs with a multi-scale sparse regularization (<strong>SDNN</strong>) for effectively representing functions having certain singularities. We then apply the proposed <strong>SDNN</strong> to numerical solutions of the Burgers equation and the Schrödinger equation. Numerical examples confirm that solutions generated by the proposed <strong>SDNN</strong> are sparse and accurate.</p>
+</blockquote>
+<p>由于实际应用中可用的数据越来越多, 因此需要更有能力的学习模型来进行数据处理. 我们遇到的数据通常具有某种嵌入式稀疏结构. 也就是说, 如果用适当的基函数表示它们, 它们的能量就可以集中在少量的基函数上. 本文利用具有多参数稀疏正则化的深度神经网络, 对解具有奇异性的非线性偏微分方程解的自适应逼近进行了数值研究. 注意到深度神经网络具有内在的多尺度结构, 有利于函数的自适应表示, 通过使用多参数惩罚, 我们建立了具有多尺度稀疏正则化的深度神经网络 (SDNN) 来有效地表示具有某些奇异性的函数. 然后我们将所提出的 <strong>SDNN</strong> 应用于求解 Burgers 方程和 Schrödinger 方程的数值解. 数值算例表明, 我们所提出的 <strong>SDNN</strong> 生成的解是稀疏且准确的.</p>
+<h2 id="introduction">Introduction</h2>
+<blockquote>
+<p>The goal of this paper is to develop a sparse regularization deep neural network model for numerical solutions of nonlinear partial differential equations whose solutions may have singularities. We will mainly focus on designing a sparse regularization model by employing multiple parameters to balance sparsity of different layers and the overall accuracy. The proposed ideas are tested in this paper numerically to confirm our intuition and more in-depth theoretical studies will be followed in a future paper.</p>
+</blockquote>
+<p>本文的目的是建立一个稀疏正则化深度神经网络模型, 用于求解那些可能具有奇异性的解的非线性偏微分方程的数值解. 我们将着重于设计一个稀疏正则化模型, 采用多个参数来平衡不同层的稀疏性和整体精度. 为了验证我们的直觉, 本文对所提出的观点进行了数值实验, 并将在今后的论文中进行更深入的理论研究.</p>
+<blockquote>
+<p>Artificial intelligence especially deep neural networks (DNN) has received great attention in many research fields. From the approximation theory point of view, a neural network is built by functional composition to approximate a continuous function with arbitrary accuracy. Deep neural networks are proven to have better approximation by practice and theory due to their relatively large number of hidden layers. Deep neural network has achieved state-of-the-art performance in a wide range of applications, including speech recognition<sup id="fnref:12"><a class="footnote-ref" href="#fn:12">11</a></sup>, computer vision<sup id="fnref:31"><a class="footnote-ref" href="#fn:31">28</a></sup>, natural language processing<sup id="fnref:16"><a class="footnote-ref" href="#fn:16">14</a></sup>, and finance<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">8</a></sup>. For an overview of deep learning the readers are referred to monograph<sup id="fnref:23"><a class="footnote-ref" href="#fn:23">20</a></sup>. Recently, there was great interest in applying deep neural networks to the field of scientific computing, such as discovering the differential equations from observed data<sup id="fnref:37"><a class="footnote-ref" href="#fn:37">34</a></sup>, solving the partial differential equation (PDE) <sup id="fnref:24"><a class="footnote-ref" href="#fn:24">21</a></sup> <sup id="fnref:32"><a class="footnote-ref" href="#fn:32">29</a></sup> <sup id="fnref:33"><a class="footnote-ref" href="#fn:33">30</a></sup> <sup id="fnref6:38"><a class="footnote-ref" href="#fn:38">35</a></sup>, and problem aroused in physics<sup id="fnref:18"><a class="footnote-ref" href="#fn:18">16</a></sup>. Mathematical understanding of deep neural networks received much attention in the applied mathematics community. A universal approximation theory of neural network for Borel measurable function on compact domain is established in<sup id="fnref2:10"><a class="footnote-ref" href="#fn:10">9</a></sup>. Some recent research studies the expressivity of deep neural networks for different function spaces<sup id="fnref:17"><a class="footnote-ref" href="#fn:17">15</a></sup>, for example, Sobolev spaces, Barron functions, and Hölder spaces. There are close connections between deep neural network and traditional approximation methods, such as splines <sup id="fnref:14"><a class="footnote-ref" href="#fn:14">13</a></sup> <sup id="fnref:40"><a class="footnote-ref" href="#fn:40">37</a></sup>, compressed sensing<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, and finite elements <sup id="fnref:25"><a class="footnote-ref" href="#fn:25">22</a></sup> <sup id="fnref:29"><a class="footnote-ref" href="#fn:29">26</a></sup>. Convergence of deep neural networks and deep convolutional neural networks are studied in <sup id="fnref2:43"><a class="footnote-ref" href="#fn:43">40</a></sup> and <sup id="fnref2:44"><a class="footnote-ref" href="#fn:44">41</a></sup> respectively. Some work aims at understanding the training process of DNN. For instance, in paper<sup id="fnref2:11"><a class="footnote-ref" href="#fn:11">10</a></sup>, the training process of DNN is interpreted as learning adaptive basis from data.</p>
+</blockquote>
+<p>人工智能, 特别是深度神经网络已经在许多领域得到了广泛的关注. 从逼近理论的角度来看, 神经网络是通过函数组合来逼近任意精度的连续函数. 深度神经网络由于其相对较大的隐层数, 在理论和实践上都被证明具有较好的逼近性能. 深度神经网络在语音识别, 计算机视觉, 自然语言处理 (BERT) 和金融等广泛应用中取得了最先进的性能. 对于深度学习的概述, 读者可以参考专著 <strong>Deep Learning</strong>. 最近, 将深度神经网络应用于科学计算领域引起了极大的兴趣, 例如从观测数据中发现微分方程, 求解偏微分方程, 以及物理学中出现的相关问题. 深度神经网络的数学理解在应用数学界备受关注. 文献 <sup id="fnref:10"><a class="footnote-ref" href="#fn:10">9</a></sup> 中建立了一个用于紧致域上 Borel 可测函数的神经网络模型的通用逼近理论. 最近的一些工作研究了深度神经网络对不同函数空间的表达能力, 例如 Sobolev 空间, Barron 函数和 Hölder 空间. 深度神经网络与传统逼近方法有着密切的联系, 例如样条函数, 压缩感知和有限元. 文献<sup id="fnref:43"><a class="footnote-ref" href="#fn:43">40</a></sup> 和<sup id="fnref:44"><a class="footnote-ref" href="#fn:44">41</a></sup> 中分别研究了深度神经网络和深度卷积神经网络的收敛性. 一些工作试图理解深度神经网络的训练过程. 例如, 文献<sup id="fnref:11"><a class="footnote-ref" href="#fn:11">10</a></sup> 中将深度神经网络的训练过程被解释为从数据中学习自适应基.</p>
+<blockquote>
+<p>Traditionally, deep neural networks are dense and over-parameterized. A dense network model requires more memory and other computational resources during training and inference of the model. Increasingly greater amounts of data and related model sizes demand the availability of more competent learning models. Compared to dense models, sparse deep neural networks require less memory, less computing time and have better interpretability. Hence, sparse deep neural network models are desirable. On the other hand, animal brains are found to have hierarchical and sparse structures<sup id="fnref:22"><a class="footnote-ref" href="#fn:22">19</a></sup>. The connectivity of an animal brain becomes sparser as the size of the brain grows larger. Therefore, it is not only necessary but also natural to design sparse networks. In fact, it was pointed out in <sup id="fnref2:27"><a class="footnote-ref" href="#fn:27">24</a></sup> that the future of deep learning relies on sparsity. Further more, over-parameterized and dense models tend to lead to overfitting and weakening the ability to generalize over unseen examples. Sparse models can improve accuracy of approximation. Sparse regularization is a popular way to learn the sparse solutions<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">5</a></sup> <sup id="fnref:41"><a class="footnote-ref" href="#fn:41">38</a></sup> <sup id="fnref:42"><a class="footnote-ref" href="#fn:42">39</a></sup> <sup id="fnref2:45"><a class="footnote-ref" href="#fn:45">42</a></sup>. The readers are referred to <sup id="fnref2:28"><a class="footnote-ref" href="#fn:28">25</a></sup> for an overview of sparse deep learning.</p>
+</blockquote>
+<p>一般来说, 深度神经网络密集且过参数化. 在模型的训练和推理过程中, 密集网络模型需要更多的内存和其他计算资源. 越来越多的数据和相关模型的大小要求提供更有能力的学习模型. 与密集模型相比, 稀疏深度神经网络具有内存更少, 计算时间更短, 可解释性更好等优点. 因此, 稀疏深度神经网络模型是可取的. 另一方面, 动物的大脑被发现具有层次和稀疏结构. 动物大脑的连接性随着大脑尺寸的增大而变得稀疏. 因此设计稀疏网络不仅是必要的, 而且是自然的. 事实上, 在文献 <sup id="fnref:27"><a class="footnote-ref" href="#fn:27">24</a></sup> 中指出, 深度学习的未来依赖于稀疏性. 此外, 过参数化和密集模型往往导致过拟合和削弱在未知样本上泛化的能力. 稀疏模型可以提高逼近精度. 稀疏正则化是学习稀疏解的一种流行方法. 读者可参考 <sup id="fnref:28"><a class="footnote-ref" href="#fn:28">25</a></sup> 以了解稀疏深度学习.</p>
+<blockquote>
+<p>Although much progress has been made in theoretical research of deep learning, it remains a challenging issue to construct an effective neural network approximation for general function spaces using as few neuron connections or neurons as possible. Most of existing network structures are specific for a particular class of functions. In this paper, we aim to propose a multi-scale sparse regularized neural network to approximate the function effectively. A neural network with multiple hidden layers can be viewed as a multi-scale transformation from simple features to complex features. The layer-by-layer composite of functions can be seen as a generalization of wavelet transforms <sup id="fnref:8"><a class="footnote-ref" href="#fn:8">7</a></sup> <sup id="fnref:13"><a class="footnote-ref" href="#fn:13">12</a></sup> <sup id="fnref:36"><a class="footnote-ref" href="#fn:36">33</a></sup>. For neurons in different layers, corresponding to different transformation scales, the corresponding features have different levels of importance. Imposing different regularization parameters for different scales was proved to be an effective way to deal with multi-scale regularization problems <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">3</a></sup> <sup id="fnref:7"><a class="footnote-ref" href="#fn:7">6</a></sup> <sup id="fnref:35"><a class="footnote-ref" href="#fn:35">32</a></sup>. Inspired by multi-scale analysis, we propose a sparse regularization network model by applying different sparse regularization penalties to the neuron connections in different layers. During the training process, the neural network adaptively learns matrix weights from given data. By sparse optimization, many weight connections are automatically zero. The remaining neural networks composed of non-zero weights form the sparse deep neural network that we desire.</p>
+</blockquote>
+<p>尽管深度学习的理论研究已经取得了很大的进展, 但是如何利用尽可能少的神经元连接或神经元来构造一个有效的用于一般函数空间的神经网络近似仍然是一个具有挑战性的问题. 大多数现有的网络结构都是特定于某一类函数的. 本文提出一种多尺度稀疏正则化神经网络来有效地逼近函数. 具有多个隐藏层的神经网络可以看作是由简单特征向复杂特征的多尺度变换. 函数的逐层复合可以看作是小波变换的一种推广. 对于不同层的神经元, 对应于不同的变换尺度, 相应的特征具有不同级别的重要性. 针对不同尺度设置不同的正则化参数是处理多尺度正则化问题的一种有效方法. 受多尺度分析的启发, 我们通过对不同层的神经元连接施加不同的稀疏正则化惩罚, 提出了一种稀疏正则化网络模型. 在训练过程中, 神经网络从给定的数据中自适应地学习矩阵权重. 通过稀疏优化, 许多权重连接自动为零. 其余由非零权重组成的神经网络构成我们所需要的稀疏深层神经网络.</p>
+<blockquote>
+<p>This paper is organized in five sections. In Section 2, we describe a multi-parameter regularization model for solving partial differential equations by using deep neural networks. We study in Section 3 the capacity of the proposed multi-parameter regularization in adaptive representing functions having certain singularities. In Section 4, we investigate numerical solutions of nonlinear partial differential equations by using the proposed <strong>SDNN</strong> model. Specifically, we consider two equations: the Burgers equation and the Schrödinger equation since solutions of these two equations exhibit certain types of singularities. Finally, a conclusion is drawn in Section 5.</p>
+</blockquote>
+<p>本文分为五个部分.
+在第二节中, 我们描述了一个用深度神经网络求解偏微分方程的多参数正则化模型.
+在第三节中, 我们研究了所提出的多参数正则化模型在自适应表示具有一定奇性的函数能力.
+在第四节中, 我们使用所提出的 <strong>SDNN</strong> 模型求解非线性偏微分方程的数值解. 具体来说, 我们考虑两个方程: Burgers 方程和 Schrödinger 方程, 因为这两个方程的解显示出某种类型的奇性.
+在第五节中, 得出最后的结论.</p>
+<h2 id="a-sparse-dnn-model-for-solving-partial-differential-equations">A Sparse DNN Model for Solving Partial Differential Equations</h2>
+<blockquote>
+<p>In this section, we propose a sparse DNN model for solving nonlinear partial differential equations (PDEs).</p>
+</blockquote>
+<p>在本节中, 我们提出一个稀疏深度神经网络模型用于求解非线性偏微分方程.</p>
+<blockquote>
+<p>We begin with describing the PDE and its boundary, initial conditions to be considered in this paper. Suppose that <span class="arithmatex">\(\Omega\)</span> is an open domain in <span class="arithmatex">\(\mathbb{R}^d\)</span>. By <span class="arithmatex">\(\Gamma\)</span> we denote the boundary of the domain <span class="arithmatex">\(\Omega\)</span>. Let <span class="arithmatex">\(\mathcal{F}\)</span> denote a nonlinear differential operator, <span class="arithmatex">\(\mathcal{I}\)</span> the initial condition operator, and <span class="arithmatex">\(\mathcal{B}\)</span> the boundary operator. We consider the following boundary/initial value problem of the nonlinear partial differential equation:</p>
+</blockquote>
+<p>首先从描述本文考虑的偏微分方程及其初边值条件开始. 设 <span class="arithmatex">\(\Omega\)</span> 是 <span class="arithmatex">\(\mathbb{R}^d\)</span> 上的一个开集. 用 <span class="arithmatex">\(\Gamma\)</span> 表示定义域 <span class="arithmatex">\(\Omega\)</span> 的边界. 用 <span class="arithmatex">\(\mathcal{F}\)</span> 表示非线性微分算子, <span class="arithmatex">\(\mathcal{I}\)</span> 表示初始条件算子, <span class="arithmatex">\(\mathcal{B}\)</span> 表示边界条件算子. 我们考虑如下非线性偏微分方程的边值问题:</p>
+<p><span id='eq1'></span>
+$$
+\begin{align}
+    \mathcal{F}(u(t,x)) &amp;= 0, &amp;x\in\Omega,\ &amp;t\in [0,T],\tag{1}\
+    \mathcal{I}(u(t,x)) &amp;= 0, &amp;x\in\Omega,\ &amp;t=0,\tag{2}\
+    \mathcal{B}(u(t,x)) &amp;= 0, &amp;x\in\Gamma,\ &amp;t\in [0,T],\tag{3}\
+\end{align}
+$$</p>
+<blockquote>
+<p>where <span class="arithmatex">\(T &gt; 0\)</span>, the data <span class="arithmatex">\(u\)</span> on <span class="arithmatex">\(\Gamma\)</span> and <span class="arithmatex">\(t = 0\)</span> are given and <span class="arithmatex">\(u\)</span> in <span class="arithmatex">\(\Omega\)</span> is the solution to be learned. The formulation <a href="#eq1">(1)</a>-<a href="#eq1">(3)</a> covers a broad range of problems including conservation laws, reaction-diffusion equations, and Navier-Stokes equations.</p>
+</blockquote>
+<p>其中 <span class="arithmatex">\(T&gt;0\)</span>, 在 <span class="arithmatex">\(\Gamma\)</span> 和 <span class="arithmatex">\(t=0\)</span> 处的数据 <span class="arithmatex">\(u\)</span> 给定, 在 <span class="arithmatex">\(\Omega\)</span> 上的 <span class="arithmatex">\(u\)</span> 是需要学习的解. 公式 1-3 涵盖了很大范围的问题如守恒律, 反应扩散方程, Navier-Stokes 方程等.</p>
+<blockquote>
+<p>For example, the one dimensional Burgers equation can be recognized as</p>
+</blockquote>
+<p>例如, 一维 Burgers 方程可以表示为</p>
+<div class="arithmatex">\[
+    \mathcal{F}(u) := \frac{\partial u}{\partial t} + u \frac{\partial u}{\partial x} - \frac{\partial^2 u}{\partial x^2}.
+\]</div>
+<blockquote>
+<p>The goal of this paper is to develop a sparse DNN model for solving problem(1). We will conduct numerical study of the proposed model by applying it to two equations, the Burgers equation and the Schrödinger equation, of practical importance.</p>
+</blockquote>
+<p>本文的目标是建立一个稀疏深度神经网络模型求解问题 <a href="#eq1">(1)</a>. 我们将通过把模型应用到两个具有实际重要性的方程, Burgers 方程和 Schrödinger 方程来对这个模型进行数值研究.</p>
+<blockquote>
+<p>Now, we present the sparse DNN model with multi-parameter regularization. We first recall the the feed forward neural network (FNN). A neural network can be viewed as a composition of functions. A FNN of depth <span class="arithmatex">\(D\)</span> is defined to be a neural network with an input layer, <span class="arithmatex">\(D - 1\)</span> hidden layers, and an output layer. A neural network with more than two hidden layers is usually called a deep neural network (DNN). Suppose that there are <span class="arithmatex">\(d_i\)</span> neurons in the <span class="arithmatex">\(i\)</span>-th hidden layer. Let <span class="arithmatex">\(W_i\in \mathbb{R}^{d_i\times d_{i-1}}\)</span> and <span class="arithmatex">\(b_i\in\mathbb{R}^{d_i}\)</span> denote, respectively, the weight matrix and bias vector of the <span class="arithmatex">\(i\)</span>-th layer. By <span class="arithmatex">\(x_0:= x \in \mathbb{R}^{d_0}\)</span> we denote the input vector and by <span class="arithmatex">\(x_{i-1}\in \mathbb{R}^{d_{i-1}}\)</span> we denote the output vector of the (<span class="arithmatex">\(i - 1\)</span>)-th layer. For the <span class="arithmatex">\(i\)</span>-th hidden layer, we define the affine transform <span class="arithmatex">\(L_i: \mathbb{R}^{d_{i-1}}\mapsto \mathbb{R}^{d_i}\)</span> by</p>
+</blockquote>
+<p>现在我们介绍带有多变量正则化的稀疏深度神经网络模型. 我们首先回忆前馈神经网络 FNN. 一个神经网络可以视为函数的复合. 一个 <span class="arithmatex">\(D\)</span> 层的前馈神经网络是指具有一层输入层, <span class="arithmatex">\(D-1\)</span> 层隐藏层和一层输出层的神经网络. 具有超过两层隐藏层的神经网络通常称为深度神经网络 DNN. 假设第 <span class="arithmatex">\(i\)</span> 层隐藏层中有 <span class="arithmatex">\(d_i\)</span> 个神经网络. 用 <span class="arithmatex">\(W_i,b_i\)</span> 分别表示第 <span class="arithmatex">\(i\)</span> 层的权重矩阵和偏差向量. <span class="arithmatex">\(x_0\)</span> 表示输入向量, <span class="arithmatex">\(x_{i-1}\)</span> 表示第 <span class="arithmatex">\(i-1\)</span> 层的输出向量. 对于第 <span class="arithmatex">\(i\)</span> 层隐藏层, 我们定义仿射变换 <span class="arithmatex">\(L_i\)</span> 如下:</p>
+<div class="arithmatex">\[
+    L_i(x_{i-1}) := W_i x_{i-1}+ b_i, i = 1,2,\cdots,D.
+\]</div>
+<blockquote>
+<p>For an activation function <span class="arithmatex">\(\sigma_i\)</span>, the output vector of the <span class="arithmatex">\(i\)</span>-th hidden layer is defined as</p>
+</blockquote>
+<p>对于激活函数 <span class="arithmatex">\(\sigma_i\)</span>, 第 <span class="arithmatex">\(i\)</span> 层隐藏层的输出向量定义为</p>
+<div class="arithmatex">\[
+    x_i:= \sigma_i(L_i(x_{i-1})).
+\]</div>
+<blockquote>
+<p>Given nonlinear activation functions <span class="arithmatex">\(\sigma_i, i = 1, 2,\cdots, D-1\)</span>, the feed forward neural network <span class="arithmatex">\(N_\Theta(x)\)</span> of depth <span class="arithmatex">\(D\)</span> is defined as</p>
+</blockquote>
+<p>给定 <span class="arithmatex">\(D-1\)</span> 个非线性激活函数 <span class="arithmatex">\(\sigma_i\)</span>, 深度为 <span class="arithmatex">\(D\)</span> 的前馈神经网络 <span class="arithmatex">\(N_\Theta(x)\)</span> 定义为</p>
+<div class="arithmatex">\[
+    N_\Theta(x) := L_D\circ \sigma_{D-1} \circ L_{D-1}\circ \cdots\circ \sigma_1\circ L_1(x),\tag{4}
+\]</div>
+<blockquote>
+<p>where <span class="arithmatex">\(\circ\)</span> denotes the composition operator and <span class="arithmatex">\(\Theta :=\{W_i, b_i\}^D_{i=1}\)</span> is the set of trainable parameters in the network.</p>
+</blockquote>
+<p>其中 <span class="arithmatex">\(\circ\)</span> 表示复合算子, <span class="arithmatex">\(\Theta\)</span> 是网络可训练参数集合.</p>
+<blockquote>
+<p>We first describe the physics-informed neural network (<strong>PINN</strong>) model introduced in<sup id="fnref5:38"><a class="footnote-ref" href="#fn:38">35</a></sup> for solving the partial differential equation <a href="#eq1">(1)</a>. We denote by <span class="arithmatex">\(Loss_{PDE}\)</span> the loss of training data on the partial differential equation <a href="#eq1">(1)</a>. We choose <span class="arithmatex">\(N_f\)</span> collocation points <span class="arithmatex">\((t^i_f, x^i_f)\)</span> by randomly sampling in domain <span class="arithmatex">\(\Omega\)</span> using a sampling method such as Latin hypercube sampling<sup id="fnref:26"><a class="footnote-ref" href="#fn:26">23</a></sup>. We then evaluate <span class="arithmatex">\(\mathcal{F}(\mathcal{N}_\Theta(t^i_f, x^i_f))\)</span> for <span class="arithmatex">\(i = 1, 2,\cdots N_f\)</span> and define</p>
+</blockquote>
+<p>我们首先介绍用于求解偏微分方程 <a href="#eq1">(1)</a> 的物理信息神经网络 PINN. 我们使用某种采样方法如拉丁超立方采样 (LHS) 从定义域 <span class="arithmatex">\(\Omega\)</span> 中随机采样 <span class="arithmatex">\(N_f\)</span> 个配置点, 然后在这些点上计算 <span class="arithmatex">\(\mathcal{F}(\mathcal{N}_\Theta(t^i_f, x^i_f))\)</span> 的值并定义</p>
+<div class="arithmatex">\[
+    Loss_{PDE}:= \frac{1}{N_f} \sum_{i=1}^{N_f} |\mathcal{F}(\mathcal{N}_\Theta(t^i_f, x^i_f))|^2,
+\]</div>
+<blockquote>
+<p>where <span class="arithmatex">\(\mathcal{F}\)</span> is the operator for the partial differential equation <a href="#eq1">(1)</a>.</p>
+</blockquote>
+<p>其中 <span class="arithmatex">\(\mathcal{F}\)</span> 是偏微分方程 <a href="#eq1">(1)</a> 的算子.</p>
+<blockquote>
+<p>We next describe the loss function for the boundary/initial condition. We randomly sample <span class="arithmatex">\(N_0\)</span> points <span class="arithmatex">\(x^i_0\)</span> for the initial condition <a href="#eq1">(2)</a>, <span class="arithmatex">\(N_b\)</span> points <span class="arithmatex">\(\{t^i_b, x^i_b\}\)</span> for the boundary condition <a href="#eq1">(3)</a>. The loss function <span class="arithmatex">\(Loss_0\)</span> related to the initial value condition is given by</p>
+</blockquote>
+<p>然后我们介绍边界条件/初始条件的损失函数. 我们为初始条件随机采样 <span class="arithmatex">\(N_0\)</span> 个点, 为边界条件随机采样 <span class="arithmatex">\(N_b\)</span> 个点. 然后与初值条件相关的损失函数 <span class="arithmatex">\(Loss_0\)</span> 定义如下</p>
+<div class="arithmatex">\[
+    Loss_0 := \frac{1}{N_0} \sum_{i=1}^{N_0} |\mathcal{I}(\mathcal{N}_\Theta(0, x^i_0))|.
+\]</div>
+<blockquote>
+<p>The loss function <span class="arithmatex">\(Loss_b\)</span> pertaining to the boundary value is given as</p>
+</blockquote>
+<p>与边值条件相关的损失函数 <span class="arithmatex">\(Loss_b\)</span> 定义如下</p>
+<div class="arithmatex">\[
+    Loss_b := \frac{1}{N_b} \sum_{i=1}^{N_b}|\mathcal{B}(\mathcal{N}_\Theta(t^i_b, x^i_b))|, x^i_b\in \Gamma.
+\]</div>
+<blockquote>
+<p>Adding the three loss functions <span class="arithmatex">\(Loss_{PDE}\)</span>, <span class="arithmatex">\(Loss_0\)</span>, and <span class="arithmatex">\(Loss_b\)</span> together gives rise to the <strong>PINN</strong> model <span id='eq5'></span></p>
+</blockquote>
+<p>将三个损失函数 <span class="arithmatex">\(Loss_{PDE}\)</span>, <span class="arithmatex">\(Loss_0\)</span>, <span class="arithmatex">\(Loss_b\)</span> 相加就得到了 PINN 模型</p>
+<div class="arithmatex">\[
+\min_\Theta\bigg\{\frac{1}{N_f} \sum_{i=1}^{N_f} |\mathcal{F}(\mathcal{N}_\Theta(t^i_f, x^i_f))|^2 + \frac{1}{N_0} \sum_{i=1}^{N_0} |\mathcal{I}(\mathcal{N}_\Theta(0, x^i_0))| + \frac{1}{N_b} \sum_{i=1}^{N_b}|\mathcal{B}(\mathcal{N}_\Theta(t^i_b, x^i_b))|\bigg\}\tag{5}
+\]</div>
+<blockquote>
+<p>where <span class="arithmatex">\(\Theta:=\{W_i, b_i\}^D_{i=1}\)</span>.</p>
+</blockquote>
+<p>其中 <span class="arithmatex">\(\Theta:=\{W_i, b_i\}^D_{i=1}\)</span>.</p>
+<blockquote>
+<p>The neural network learned from <a href="#eq5">(5)</a> is often dense and may be over-parameterized. Moreover, training data are often contaminated with noise. When noise presents, over-parameterized models may overfit training data samples and result in bad generalization to the unseen samples. The problem of overfitting is often overcome by adding a regularization term:</p>
+</blockquote>
+<p>从上述损失函数学习到的神经网络通常是密集的且可能过参数化. 此外, 训练数据经常被噪声污染. 当噪声出现, 过参数化的模型可能对训练数据过拟合从而在未知样本上泛化得很差. 过拟合问题通常通过添加一个正则化项来克服.</p>
+<div class="arithmatex">\[
+    Loss := Loss_{PDE}+ \beta (Loss_0 + Loss_b) + \text{Regularization}.
+\]</div>
+<blockquote>
+<p>The <span class="arithmatex">\(l_1\)</span>- and <span class="arithmatex">\(l_2\)</span>-norms are popular choices for regularization. Design of the regularization often makes use of prior information of the solution to be learned. It is known <sup id="fnref:5"><a class="footnote-ref" href="#fn:5">4</a></sup> <sup id="fnref:19"><a class="footnote-ref" href="#fn:19">17</a></sup> <sup id="fnref:45"><a class="footnote-ref" href="#fn:45">42</a></sup> that the <span class="arithmatex">\(l_1\)</span>-norm can promote sparsity. Hence, the <span class="arithmatex">\(l_1\)</span>-norm regularization not only has many advantages over the <span class="arithmatex">\(l_2\)</span>-norm regularization, but also leads to sparse models which can be more easily interpreted. Therefore, we choose to use the <span class="arithmatex">\(l_1\)</span>-norm as the regularizer in this study. Furthermore, we observe that DNNs have an intrinsic multiscale structure whose different layers represent different scales of information, which will be validated later by numerical studies.</p>
+</blockquote>
+<p><span class="arithmatex">\(l_1\)</span> 范数和 <span class="arithmatex">\(l_2\)</span> 范数是正则化的常用选择. 正则化的设计通常使用需要学习的解的先验信息. 从先前的工作中直到 <span class="arithmatex">\(l_1\)</span> 范数可以促进稀疏性. 因此 <span class="arithmatex">\(l_1\)</span> 范数正则化不仅比 <span class="arithmatex">\(l_2\)</span> 范数正则化有诸多优点, 还能够导出更易于解释的稀疏模型. 因此我们在本项工作中选择 <span class="arithmatex">\(l_1\)</span> 范数作为正则化项. 此外, 我们观察到深度神经网络有一个内在多尺度结构, 不同层表示信息的不同尺度, 这将在之后的数值算例中得到验证.</p>
+<blockquote>
+<p>In fact, we will demonstrate in the next section that a smooth function or smooth parts of a function can be represented by a DNN with sparse weight matrices. This is because a smooth part of a function contains redundant information, which can be described very well by a few parameters, and only non-smooth parts of a function require more parameters to describe them. In other words, by properly choosing regularization, DNNs can lead to adaptive sparse representations of functions having certain singularities. With this understanding, we construct an adaptive representation of a function, especially for a function having certain singularity by adopting a sparse regularization model. Our idea for the adaptive representation is to impose different sparsity penalties for different layers. Specifically, we propose a multiscale-like sparse regularization using the <span class="arithmatex">\(l_1\)</span>-norm of the weight matrix for each layer with a different parameter for a different layer. The regularization with multiple parameters allows us to represent a function in a multiscale-like neural network which is determined by sparse weight matrices having different sparsity at different layers. Such a regularization added to the loss function will enable us to robustly extract critical information of the solution of the PDE.</p>
+</blockquote>
+<p>实际上, 我们将在下一节说明的是一个光滑函数或函数的光滑部分可以由具有稀疏权重矩阵的深度神经网络来表示. 这是因为函数的光滑部分包含了冗余信息, 能够被少数参数描述得很好, 并且只有函数得非光滑部分需要更多的参数去描述它们. 换句话说, 通过选择合适的正则化, 深度神经网络可以得到带有奇性的函数的自适应稀疏表示. 根据这一认知, 我们通过使用稀疏正则化模型来构造函数, 特别是带有某些奇性的函数的自适应表示. 关于自适应表示的思路是给不同的层世家不同的稀疏度惩罚. 具体来说, 我们提出了一种类多尺度稀疏正则化, 对每一层的权重矩阵的 <span class="arithmatex">\(l_1\)</span> 范数赋予不同的参数 多参数正则化使得我们能够在类多尺度的神经网络中表示一个函数, 该网络由不同层上具有不同稀疏度的稀疏权重矩阵决定. 在损失函数中加入这种正则化, 可以有效地提取偏微分方程解的关键信息.</p>
+<blockquote>
+<p>We now describe the proposed regularization. For layer <span class="arithmatex">\(i\)</span>, we denote by <span class="arithmatex">\(W^{k,j}_i\)</span> the <span class="arithmatex">\((k, j)\)</span>-th entry of matrix <span class="arithmatex">\(W_i\)</span>, the entry in the <span class="arithmatex">\(k\)</span>-th row and the <span class="arithmatex">\(j\)</span>-th column. For this reason, we adopt the <span class="arithmatex">\(l_1\)</span>-norm of matrix <span class="arithmatex">\(W_i\)</span> defined by following formula as our sparse regularization.</p>
+</blockquote>
+<p>我们现在描述所提出的正则化. 对于层 <span class="arithmatex">\(i\)</span>, 我们用 <span class="arithmatex">\(W^{k,j}_i\)</span> 表示矩阵 <span class="arithmatex">\(W_i\)</span> 的第 <span class="arithmatex">\(k\)</span> 行第 <span class="arithmatex">\(j\)</span> 列项. 因此我们可以将矩阵 <span class="arithmatex">\(W_i\)</span> 的 <span class="arithmatex">\(l_1\)</span> 范数作为我们的稀疏正则化.</p>
+<div class="arithmatex">\[
+    \|W_i\|_1:=\sum_{k=1}^{d_i}\sum_{j=1}^{d_{i-1}}|W^{k,j}_i|
+\]</div>
+<blockquote>
+<p>Considering that different layers of the neural network play different roles in approximation of a function, we introduce here a multi-parameter regularization model<span id='eq6'></span></p>
+</blockquote>
+<p>考虑神经网络的不同层在逼近一个函数时扮演不同的角色, 我们引入如下多参数正则化模型</p>
+<div class="arithmatex">\[
+    \text{Regularization} :=\sum_{i=1}^D \alpha_i\|W_i\|_1 \tag{6}
+\]</div>
+<blockquote>
+<p>where <span class="arithmatex">\(\alpha_i\)</span> are nonnegative regularization parameters.</p>
+</blockquote>
+<p>其中 <span class="arithmatex">\(\alpha_i\)</span> 是非负的正则化参数.</p>
+<blockquote>
+<p>The use of different parameters for weight matrices of different layers in the regularization term <a href="#eq6">(6)</a> allows us to penalize the weight matrices at different layers of the neural network differently in order to extract the multiscale representation of the solution to be learned. That is, for a fixed <span class="arithmatex">\(i\)</span>, parameter <span class="arithmatex">\(\alpha_i\)</span> determines the sparsity of weight matrix <span class="arithmatex">\(W_i\)</span>. The larger the parameter <span class="arithmatex">\(\alpha_i\)</span>, the more sparse the weight matrix <span class="arithmatex">\(W_i\)</span> is. The regularized loss function takes the form <span id='eq7'></span></p>
+</blockquote>
+<p>在正则化项 <a href="#eq6">(6)</a> 中对于不同层的权重矩阵使用不同参数使得我们对网络不同层的权重矩阵进行惩罚以提取所需学习的解的多尺度表示. 即对于一个固定的 <span class="arithmatex">\(i\)</span>, 参数 <span class="arithmatex">\(\alpha_i\)</span> 决定了权重矩阵 <span class="arithmatex">\(W_i\)</span> 的稀疏性. <span class="arithmatex">\(\alpha_i\)</span> 越大, 权重矩阵 <span class="arithmatex">\(W_i\)</span> 越稀疏. 正则化损失函数形式如下:</p>
+<div class="arithmatex">\[
+    Loss := Loss_{PDE}+ \beta(Loss_0+ Loss_b) +\sum_{i=1}^D \alpha_i\|W_i\|_1. \tag{7}
+\]</div>
+<blockquote>
+<p>The parameters <span class="arithmatex">\(\Theta:= \{W_i, b_i\}^D_{i=1}\)</span> of the neural network <span class="arithmatex">\(\mathcal{N}_\Theta(t,x)\)</span> are learned by minimizing the loss function <span id='eq8'></span></p>
+</blockquote>
+<p>神经网络 <span class="arithmatex">\(\mathcal{N}_\Theta(t,x)\)</span> 的参数 <span class="arithmatex">\(\Theta\)</span> 通过最小化如下损失函数进行学习.</p>
+<div class="arithmatex">\[
+    \min_\Theta \bigg\{\frac{1}{N_f} \sum_{i=1}^{N_f} |\mathcal{F}(\mathcal{N}_\Theta(t^i_f, x^i_f))|^2 + \beta(Loss_0+Loss_b) + \sum_{i=1}^D \alpha_i\|W_i\|_1\bigg\}.\tag{8}
+\]</div>
+<blockquote>
+<p>Truncating the weights of the layers close to the input layer has an impact on all subsequent layers. In practice, we usually set smaller regularization parameters in layers close to the input and larger regularization parameters in layers close to the output. The resulting neural network will exhibit denser weight matrices near the input layer and sparser weight matrices near the output layer. This network structure reflects the multi-scale nature of neural networks and is automatically learned by sparse regularization.</p>
+</blockquote>
+<p>截断靠近输入层的隐藏层的权重会对后续层产生影响. 实践中我们通常对靠近输入层的隐藏层设置更小的正则化参数, 对靠近输出层的隐藏层设置更大的正则化参数. 得到的神经网络会表现出靠近输入层的权重矩阵更密集, 靠近输出层的权重矩阵更稀疏. 这样的网络结构反映了神经网络的多尺度本质且自动地由稀疏正则化学习到.</p>
+<blockquote>
+<p>Appropriate choices of the regularization parameters are key to achieve good prediction results. We need to balance sparsity and prediction accuracy. Since there are multiple regularization parameters, the regularization parameters are chosen by grid search layer by layer in this paper. In practice, we first choose the regularization parameters close to the output layer, and then gradually choose the regularization coefficients close to the input layer.</p>
+</blockquote>
+<p>正则化参数的适当选择是获得良好预测结果的关键. 我们需要平衡稀疏性和预测精度. 因为有多个正则化参数, 所以本文的正则化参数通过逐层网格搜索得到. 实践中我们首先选择靠近输出层的正则化参数, 然后逐渐选择靠近输入层的正则化系数.</p>
+<blockquote>
+<p>We refer equation <a href="#eq8">(8)</a> as to the sparse DNN (<strong>SDNN</strong>) model for the partial differential equation. Upon solving the minimization problem <a href="#eq8">(8)</a>, we obtain an approximate solution <span class="arithmatex">\(u(t,x) := \mathcal{N}_\Theta(t, x)\)</span> with sparse weight matrices. When the regularization parameters <span class="arithmatex">\(\alpha_i\)</span> are all set to <span class="arithmatex">\(0\)</span>, the <strong>SDNN</strong> model <a href="#eq8">(8)</a> reduces to the <strong>PINN</strong> model introduced in<sup id="fnref4:38"><a class="footnote-ref" href="#fn:38">35</a></sup>. We will compare numerical performance of the proposed <strong>SDNN</strong> model with that of <strong>PINN</strong> model, for both the Burgers equation and the Schrödinger equation.</p>
+</blockquote>
+<p>我们引用方程 <a href="#eq8">(8)</a> 作为用于求解偏微分方程的稀疏深度神经网络 (<strong>SDNN</strong>) 模型. 基于求解最小化问题 <a href="#eq8">(8)</a>, 我们获得了一个带有i学术权重矩阵的近似解 <span class="arithmatex">\(u(t,x) := \mathcal{N}_\Theta(t, x)\)</span>. 当正则化参数 <span class="arithmatex">\(\alpha_i\)</span> 全部设置为 <span class="arithmatex">\(0\)</span>, 那么 <strong>SDNN</strong> 模型将退化为 <strong>PINN</strong> 模型. 我们将在 Burgers 方程和 Schrödinger 方程上比较我们所提出的 <strong>SDNN</strong> 和 <strong>PINN</strong> 的数值表现.</p>
+<h2 id="function-adaptive-approximation-by-the-sdnn-model">Function Adaptive Approximation by the SDNN Model</h2>
+<blockquote>
+<p>We explore in this section the capacity of the proposed multi-parameter regularization in adaptive representing functions that have certain singularities. We will first reveal that a DNN indeed has an intrinsic multiscale-like structure which is desirable for representing non-smooth functions. We demonstrate in our numerical studies that the proposed <strong>SDNN</strong> model can reconstruct neural networks which approximate functions in the same accuracy order with nearly the same order of network complexity, regardless the smoothness of the functions. We include in this section a numerical study of reconstruction of black holes by the proposed <strong>SDNN</strong> model. In this section, we use the rectified linear unit (ReLU) function as an activation function.</p>
+</blockquote>
+<p>本节我们探究所提出的多参数正则化在自适应表示带有某些奇性的函数的能力. 我们首先揭示深度神经网络确实具有内在的多尺度结构, 这种结构对于表示非光滑函数是可取的. 数值研究表明, 所提出的 <strong>SDNN</strong> 模型无论函数的光滑度如何, 都能以近似相同的网络复杂度阶数重构出精度相同的函数. 在这一节中还包括一个使用所提出的 <strong>SDNN</strong> 模型重建黑洞的数值研究. 在本节中, 我们使用整流线性单位函数作为激活函数.</p>
+<div class="arithmatex">\[
+    \text{ReLU}(x) := \max\{0, x\}, x \in \mathbb{R}
+\]</div>
+<blockquote>
+<p>We first describe the data fitting problem. Given training points <span class="arithmatex">\((x_i, y_i), i =1, 2, \cdots, N\)</span>, a non-regularized neural network is determined by minimizing the regression error, that is,<span id='eq9'></span></p>
+</blockquote>
+<p>我们首先描述数据拟合问题. 给定训练样本点 <span class="arithmatex">\((x_i, y_i), i =1, 2, \cdots, N\)</span>, 非正则化神经网络通过最小化如下回归损失确定</p>
+<div class="arithmatex">\[
+    \min_\Theta\frac{1}{N} \sum_{i=1}^N |\mathcal{N}_\Theta(x_i) - y_i|^2.\tag{9}
+\]</div>
+<blockquote>
+<p>The multi-parameter sparse regularization DNN model for the data fitting problem reads<span id='eq10'></span></p>
+</blockquote>
+<p>用于数据拟合问题的多参数稀疏正则化深度神经网络模型则最小化如下损失</p>
+<div class="arithmatex">\[
+    \min_\Theta\bigg\{\frac{1}{N}\sum_{i=1}^N|\mathcal{N}_\Theta(x_i) - y_i|^2+\sum_{i=1}^D \alpha_i \|W_i\|_1\bigg\},\tag{10}
+\]</div>
+<blockquote>
+<p>where <span class="arithmatex">\(\alpha_i\)</span> are nonnegative regularization parameters and <span class="arithmatex">\(W_i\)</span> are weight matrices.</p>
+</blockquote>
+<p>其中 <span class="arithmatex">\(\alpha_i\)</span> 是非负正则化参数, <span class="arithmatex">\(W_i\)</span> 是权重矩阵.</p>
+<blockquote>
+<p>In examples to be presented in this section and the section that follows, the network structure is described by the number of neurons in each layer. Specifically, we use the notation <span class="arithmatex">\([d_0, d_1,\cdots,d_D]\)</span> to describe networks that have one input layer, <span class="arithmatex">\(D - 1\)</span> hidden layers and one output layer, with <span class="arithmatex">\(d_0, d_1,\cdots, d_D\)</span> number of neurons, respectively. The regularization parameters, which will be presented as a vector <span class="arithmatex">\(\alpha:= [\alpha_1, \alpha_2,\cdots, \alpha_D]\)</span>, are chosen so that best results are obtained. We will use the relative <span class="arithmatex">\(L_2\)</span> error to measure approximation accuracy. Suppose that <span class="arithmatex">\(y_i\)</span> is the exact value of function <span class="arithmatex">\(f\)</span> to be approximated at <span class="arithmatex">\(x_i\)</span>, that is, <span class="arithmatex">\(y_i= f(x_i)\)</span>, and suppose that <span class="arithmatex">\(\hat{y}_i:= \mathcal{N}_\Theta (x_i)\)</span> is the output of the neural network approximation of <span class="arithmatex">\(f\)</span>. We let <span class="arithmatex">\(y := [y_1, y_2,\cdots, y_N]\)</span> and <span class="arithmatex">\(\hat{y} := [\hat{y}_1, \hat{y}_2,\cdots, \hat{y}_N]\)</span>, and define the error by <span class="arithmatex">\(\dfrac{\|y-\hat{y}\|_2}{\|y\|_2}\)</span>. Sparsity of the weight matrices is measured by the percentage of zero entries in the weight matrices <span class="arithmatex">\(W_i\)</span>. In our computation, we set a weight matrix entry</p>
+</blockquote>
+<p>在本节和之后章节展示的例子中, 神经网络的结构通过每层神经元的数量进行描述. 具体的, 我们使用 <span class="arithmatex">\([d_0, d_1,\cdots,d_D]\)</span> 来描述具有一层输入层, <span class="arithmatex">\(D-1\)</span> 层隐藏层和一层输出层, 对应神经元数量为 <span class="arithmatex">\(d_0, d_1,\cdots, d_D\)</span> 的神经网络. 正则化参数将表示为一个向量 <span class="arithmatex">\(\alpha:= [\alpha_1, \alpha_2,\cdots, \alpha_D]\)</span>, 将选择出能获得最佳结果的参数. 我们将使用相对 <span class="arithmatex">\(L_2\)</span> 误差来度量逼近精度. 假设 <span class="arithmatex">\(y_i\)</span> 是被逼近函数 <span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\(x_i\)</span> 的精确值, 即 <span class="arithmatex">\(y_i=f(x_i)\)</span>, 设 <span class="arithmatex">\(\hat{y}_i:= \mathcal{N}_\Theta (x_i)\)</span> 是神经网络近似 <span class="arithmatex">\(f\)</span> 的输出. 我们计算 <span class="arithmatex">\(N\)</span> 个点上的 <span class="arithmatex">\(y := [y_1, y_2,\cdots, y_N]\)</span> 以及 <span class="arithmatex">\(\hat{y} := [\hat{y}_1, \hat{y}_2,\cdots, \hat{y}_N]\)</span>, 从而定义误差为 <span class="arithmatex">\(\dfrac{\|y-\hat{y}\|_2}{\|y\|_2}\)</span>. 权重矩阵的稀疏性则通过权重矩阵 <span class="arithmatex">\(W_i\)</span> 里零元素的百分比进行度量. 在我们的计算中, 我们设置一个权重矩阵元素为</p>
+<div class="arithmatex">\[
+    W^{k,j}_i= 0,\quad \text{if}\ |W^{k,j}_i| &lt; \epsilon,
+\]</div>
+<p>where <span class="arithmatex">\(\epsilon\)</span> is small positive number. In our numerical examples, we set <span class="arithmatex">\(\epsilon := 0.001\)</span> by default. For all numerical examples, the non-smooth, non-convex optimization problem <a href="#eq10">(10)</a> is solved by the Adam algorithm, which is an improved version of the stochastic gradient descent algorithm proposed in<sup id="fnref:30"><a class="footnote-ref" href="#fn:30">27</a></sup> for training deep learning models.</p>
+<p>其中 <span class="arithmatex">\(\epsilon\)</span> 是一个较小的整数. 在我们的数值实验中, 我们默认设置 <span class="arithmatex">\(\epsilon=0.001\)</span>. 对于所有的数值例子, 非光滑非凸优化问题 <a href="#eq10">(10)</a> 通过用于训练深度学习模型的随机梯度下降的改进版 Adam 算法进行求解.</p>
+<h3 id="intrinsic-adaptivity-of-the-sdnn-model">Intrinsic Adaptivity of the SDNN Model</h3>
+<blockquote>
+<p>We first investigate whether the <strong>SDNN</strong> model <a href="#eq10">(10)</a> can generate a network that has an intrinsic adaptive representation of a function. That is, a function generated by the model has a multiscale-like structure so that the reconstructed neural networks approximate functions in the same accuracy order with nearly the same order of network complexity, regardless the smoothness of the functions. In particular, when a function is singular a sparse network with higher layers is generated to capture the higher resolution information of the function. The complexity of the network is nearly proportional to the reciprocal of the approximation error regardless whether the function is smooth or not. In this experiment, we consider two examples: (1) one-dimensional functions and (2) two-dimensional functions.</p>
+</blockquote>
+<p>我们首先研究 <strong>SDNN</strong> 模型 <a href="#eq10">(10)</a> 是否能够生成具有函数内在自适应表示的网络. 由该模型生成的函数具有多尺度结构, 使得重构后的神经网络无论函数的光滑度如何, 都能以相同的精度阶逼近函数, 而网络的复杂度阶几乎相同. 特别地, 当一个函数是奇异的, 会产生一个具有更多层的稀疏网络来捕获该函数的更高分辨率的信息. 不管函数是否光滑, 网络复杂度几乎与逼近误差的倒数成正比. 在这个实验中, 我们考虑两个例子: (1) 一维函数 (2) 二维函数.</p>
+<blockquote>
+<p>In our first example, we consider approximation of the quadratic function <span id='eq11'></span></p>
+</blockquote>
+<p>在第一个例子中, 我们使用 <strong>SDNN</strong> 对二次函数和二次分段函数进行近似.</p>
+<div class="arithmatex">\[
+    f(x) := x^2, \tag{11}
+\]</div>
+<blockquote>
+<p>and the piecewise quadratic function <span id='eq12'></span> by <strong>SDNN</strong>.</p>
+</blockquote>
+<div class="arithmatex">\[
+    f(x) =
+    \begin{cases}
+    x^2 + 1, &amp;x \geq 0,\\
+    x^2, &amp;x &lt; 0,
+    \end{cases}\tag{12}
+\]</div>
+<blockquote>
+<p>Note that the function defined by <a href="#eq11">(11)</a> is smooth and the function by <a href="#eq12">(12)</a> has a jump discontinuity at the point <span class="arithmatex">\(0\)</span>. We applied the sparse regularized network having the architecture <span class="arithmatex">\([1, 10, 10, 10, 10, 1]\)</span> to learn these functions. We divide the interval <span class="arithmatex">\([-2, 2]\)</span> by the nodes <span class="arithmatex">\(x_j:= -2 + jh\)</span>, for <span class="arithmatex">\(j := 0, 1,\cdots, 200\)</span>, with <span class="arithmatex">\(h := 1/50\)</span>, and sample the functions <span class="arithmatex">\(f\)</span> at <span class="arithmatex">\(x_j\)</span>. The test set is <span class="arithmatex">\(\{(x_k, f(x_k))\}\)</span>, where <span class="arithmatex">\(x_k:= -2 + kh, h := 1/30, k = 0, 1,\cdots, 120\)</span>. The network is trained by the Adam algorithm with epochs <span class="arithmatex">\(20,000\)</span> and initial learning rate <span class="arithmatex">\(0.001\)</span>. For function <a href="#eq11">(11)</a>, regularization parameters are set to be <span class="arithmatex">\([0, 10^{-4}, 10^{-4}, 10^{-3},10^{-3}]\)</span>. We obtain the prediction error <span class="arithmatex">\(5.94\times10^{-3}\)</span> for the test set. Sparsity of the resulting weight matrices is <span class="arithmatex">\([0.0\%, 87.0\%, 95.0\%, 98.0\%, 90.0\%]\)</span> and the number of nonzero weight matrix entries is <span class="arithmatex">\(31\)</span>. Left of <a href="#fig1">Figure 1</a> shows the reconstructed <strong>SDNN</strong> for the function defined by <a href="#eq11">(11)</a>.</p>
+</blockquote>
+<p>注意由 <a href="#eq11">(11)</a> 定义的函数是光滑的, <a href="#eq12">(12)</a> 定义的函数在点 <span class="arithmatex">\(0\)</span> 处是跳跃间断的. 我们使用网络架构为 <span class="arithmatex">\([1, 10, 10, 10, 10, 1]\)</span> 的稀疏正则化网络来学习这些函数. 我们将区间 <span class="arithmatex">\([-2,2]\)</span> 进行两百等分, 并在这些点上采样 <span class="arithmatex">\(f\)</span>. 测试集则是将区间一百二十等分. 网络通过 Adam 算法训练 <span class="arithmatex">\(20,000\)</span> 个 epochs, 初始学习率为 <span class="arithmatex">\(0.001\)</span>.
+对于函数 <a href="#eq11">(11)</a>, 正则化参数设置为 <span class="arithmatex">\([0, 10^{-4}, 10^{-4}, 10^{-3},10^{-3}]\)</span>. 我们在测试集上获得了 <span class="arithmatex">\(5.94\times10^{-3}\)</span> 的预测误差. 得到的权重矩阵的稀疏性为 <span class="arithmatex">\([0.0\%, 87.0\%, 95.0\%, 98.0\%, 90.0\%]\)</span>, 权重矩阵元素非零数量为 <span class="arithmatex">\(31\)</span>. 图 1 的左图展示了逼近函数 <a href="#eq11">(11)</a> 的 <strong>SDNN</strong> 的重构结果.</p>
+<blockquote>
+<p>For function <a href="#eq12">(12)</a> the regularization parameters are chosen as <span class="arithmatex">\([10^{-5}, 10^{-4}, 10^{-4},10^{-4}, 10^{-3}]\)</span>. We obtain the prediction error <span class="arithmatex">\(5.42\times10^{-3}\)</span> for the test set. Sparsity of the resulting weight matrices is <span class="arithmatex">\([50\%, 93.0\%, 88.0\%, 93.0\%, 90.0\%]\)</span> and the number of nonzero weight matrix entries is 32. The reconstructed function is shown in Right of <a href="#fig1">Figure 1</a>.</p>
+</blockquote>
+<p>对于函数 <a href="#eq12">(12)</a>, 正则化参数设置为 <span class="arithmatex">\([10^{-5}, 10^{-4}, 10^{-4},10^{-4}, 10^{-3}]\)</span>. 我们在测试集上获得了 <span class="arithmatex">\(5.42\times10^{-3}\)</span> 的预测误差. 得到的权重矩阵的稀疏性为 <span class="arithmatex">\([0.0\%, 87.0\%, 95.0\%, 98.0\%, 90.0\%]\)</span>, 权重矩阵元素非零数量为 <span class="arithmatex">\(32\)</span>. 图 1 的右图展示了逼近函数 <a href="#eq11">(12)</a> 的 <strong>SDNN</strong> 的重构结果.</p>
+<p><img alt="图 1" src="2207.13266_fig1.png" />
+<span id='fig1'>Figure 1<span>: Numerical results of <strong>SDNN</strong>: for function <a href="#eq11">(11)</a> (Left); for function <a href="#eq12">(12)</a> (Right)</p>
+<blockquote>
+<p>Numerical results for both functions <a href="#eq11">(11)</a> and <a href="#eq12">(12)</a> are summarized in <a href="#tab1">Table 1</a>. These results demonstrate that even though the function <a href="#eq12">(12)</a> has a jump discontinuity at the point <span class="arithmatex">\(0\)</span>, the proposed <strong>SDNN</strong> model can generate a network with nearly the same number of nonzero weight matrix entries and with the same accuracy as those for the smooth function <a href="#eq11">(11)</a>. This shows that the proposed <strong>SDNN</strong> model has a good adaptive approximation property.</p>
+</blockquote>
+<p>表格 1 总结了 <a href="#eq11">(11)</a> 和 <a href="#eq12">(12)</a> 的数值结果. 这些结果说明了尽管函数 <a href="#eq12">(12)</a> 在 <span class="arithmatex">\(0\)</span> 处跳跃间断, 我们所提出的 <strong>SDNN</strong> 模型能够生成和逼近光滑函数 <a href="#eq11">(11)</a> 时非零权重矩阵元素数量几乎相同且精度相同的网络. 这说明了我们所提出的 <strong>SDNN</strong> 模型有良好的自适应逼近性质.</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>Results for function</th>
+<th><a href="#eq11">(11)</a></th>
+<th><a href="#eq12">(12)</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regularization parameters</td>
+<td><span class="arithmatex">\([0, 10^{-4}, 10^{-4}, 10^{-3}, 10^{-3}]\)</span></td>
+<td><span class="arithmatex">\([10^{-5}, 10^{-4}, 10^{-4}, 10^{-4}, 10^{-3}]\)</span></td>
+</tr>
+<tr>
+<td>Relative <span class="arithmatex">\(L_2\)</span> error</td>
+<td><span class="arithmatex">\(5.94\times10^{-3}\)</span></td>
+<td><span class="arithmatex">\(5.42\times10^{-3}\)</span></td>
+</tr>
+<tr>
+<td>Sparsity of weight matrices</td>
+<td><span class="arithmatex">\([0.0\%, 87.0\%, 95.0\%, 98.0\%, 90.0\%]\)</span></td>
+<td><span class="arithmatex">\([50\%, 93.0\%, 88.0\%, 93.0\%, 90.0\%]\)</span></td>
+</tr>
+<tr>
+<td>No. of nonzero entries</td>
+<td>31</td>
+<td>32</td>
+</tr>
+<tr>
+<td><span id='tab1'>Table 1<span>: Numerical result for quadratic function <a href="#eq11">(11)</a> and piecewise quadratic function <a href="#eq12">(12)</a> with network structure <span class="arithmatex">\([1, 10, 10, 10, 10, 1]\)</span>.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>In our second example, we consider approximation of two-dimensional functions, once again one smooth function and one discontinuous function. We study smooth function <span id='eq13'></span></p>
+</blockquote>
+<p>在第二个实验中, 我们考虑二维函数, 同样是一个光滑函数, 一个是不连续函数. 光滑函数的图像在图 2 左图展示, 分段函数的图像在图 3 左图展示.</p>
+<div class="arithmatex">\[
+    g(x, y) := e^{2x+y^2},\tag{13}
+\]</div>
+<blockquote>
+<p>whose image is illustrated in <a href="#fig2">Figure 2</a> (Left), and piecewise function <span id='eq14'></span></p>
+</blockquote>
+<div class="arithmatex">\[
+    g_d(x, y) =
+    \begin{cases}
+    e^{2x+y^2} + 1, &amp;x \geq 0,\\
+    e^{2x+y^2}, &amp;x &lt; 0,\\
+    \end{cases}\tag{14}
+\]</div>
+<blockquote>
+<p>whose image is illustrated in <a href="#fig3">Figure 3</a> (Left). Note that function <a href="#eq13">(13)</a> is smooth and function <a href="#eq14">(14)</a> has a jump discontinuity along <span class="arithmatex">\(x = 0\)</span>.</p>
+</blockquote>
+<p>注意函数 <a href="#eq13">(13)</a> 是光滑的, 函数 <a href="#eq14">(14)</a> 沿着 <span class="arithmatex">\(x=0\)</span> 有跳跃间断.</p>
+<blockquote>
+<p>For these two functions, the training data set is composed of grid points <span class="arithmatex">\([-1, 1]\times[-1, 1]\)</span> uniformly discretized with step size <span class="arithmatex">\(1/200\)</span> on <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> direction, and the test set is composed of grid points <span class="arithmatex">\([-1, 1]\times[-1, 1]\)</span> uniformly discretized with step size <span class="arithmatex">\(1/300\)</span> on the <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> directions. The network has <span class="arithmatex">\(2\)</span> inputs, <span class="arithmatex">\(4\)</span> hidden layers, and <span class="arithmatex">\(1\)</span> output, with the architecture <span class="arithmatex">\([2, 20, 20, 20, 20, 1]\)</span>. For each hidden layer, there are <span class="arithmatex">\(20\)</span> neurons. The initial learning rate for Adam is set to <span class="arithmatex">\(0.001\)</span>. The batch size is equal to <span class="arithmatex">\(1024\)</span>.</p>
+</blockquote>
+<p>对于这两个函数, 训练数据由对定义域 <span class="arithmatex">\([-1, 1]\times[-1, 1]\)</span> 在 <span class="arithmatex">\(x\)</span> <span class="arithmatex">\(y\)</span> 两个方向步长为 <span class="arithmatex">\(1/200\)</span> 得到的网格点组成, 测试集则进行三百等分. 网络有两个输入, 四层隐藏层和一个输出, 网络结构为 <span class="arithmatex">\([2, 20, 20, 20, 20, 1]\)</span>. 对于每一个隐藏层, 都有二十个神经元. Adam 初始学习率为 0.001. 批量大小取 1024.</p>
+<blockquote>
+<p>For function <a href="#eq13">(13)</a> we set the sparse regularization parameters as <span class="arithmatex">\([0, 10^{-6}, 10^{-4},10^{-4}, 10^{-4}]\)</span>. After <span class="arithmatex">\(10,000\)</span> epochs training, the sparsity of weight matrices is <span class="arithmatex">\([0.0\%, 68.5\%, 95.75\%, 97.75\%, 80.0\%]\)</span> and the number of nonzero weight matrix entries is <span class="arithmatex">\(178\)</span>. The prediction error for the test set is <span class="arithmatex">\(4.38\times10^{-3}\)</span>. For function <a href="#eq14">(14)</a>, the regularization parameters are set to be <span class="arithmatex">\([10^{-4}, 10^{-5}, 10^{-5}, 10^{-4}, 10^{-4}]\)</span>. The sparsity of weight matrices after regularization are <span class="arithmatex">\([60.0\%, 71.75\%, 81.75\%, 97.5\%, 90.0\%]\)</span> and the number of nonzero weight matrix entries is <span class="arithmatex">\(206\)</span>. The prediction error for sparse regularized deep neural network is <span class="arithmatex">\(4.27\times10^{-3}\)</span>, which is even slightly better than that for function <a href="#eq13">(13)</a>. The images of the reconstructed functions are shown respectively in <a href="#fig2">Figures 2</a>, <a href="#fig3">Figure 3</a> (Right). Numerical results for this example are reported in <a href="#tab2">Table 2</a>.</p>
+</blockquote>
+<p>对于函数 <a href="#eq13">(13)</a>, 我们设置稀疏正则化参数为 <span class="arithmatex">\([0, 10^{-6}, 10^{-4},10^{-4}, 10^{-4}]\)</span>. 在 <span class="arithmatex">\(10,000\)</span> 个 epochs 训练后, 权重矩阵的稀疏性为 <span class="arithmatex">\([0.0\%, 68.5\%, 95.75\%, 97.75\%, 80.0\%]\)</span> 且非零权重矩阵元素数量为 <span class="arithmatex">\(178\)</span>. 在测试集上的预测误差为 <span class="arithmatex">\(4.38\times10^{-3}\)</span>.
+对于函数 <a href="#eq14">(14)</a>, 我们设置稀疏正则化参数为 <span class="arithmatex">\([10^{-4}, 10^{-5}, 10^{-5}, 10^{-4}, 10^{-4}]\)</span>. 权重矩阵的稀疏性为 <span class="arithmatex">\([60.0\%, 71.75\%, 81.75\%, 97.5\%, 90.0\%]\)</span> 且非零权重矩阵元素数量为 <span class="arithmatex">\(206\)</span>. 在测试集上的预测误差为 <span class="arithmatex">\(4.27\times10^{-3}\)</span>, 甚至比函数 <a href="#eq13">(13)</a> 的结果还稍微好一点. 重构的函数图像分别在图 2 右图和图 3 右图展示. 表格 2 报告了这个例子的数值结果.</p>
+<p><img alt="图 2" src="2207.13266_fig2.png" />
+<span id='fig2'>Figure 2</span>: Left: image of function <span class="arithmatex">\(e^{2x+y^2}\)</span>. Right: predicted by fully connected neural network.</p>
+<p><img alt="图 3" src="2207.13266_fig3.png" />
+<span id='fig3'>Figure 3</span>: image of piecewise discontinuous function <a href="#eq14">(14)</a>. Right: predicted by sparse regularized neural network.</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>Results for function</th>
+<th><a href="#eq13">(13)</a></th>
+<th><a href="#eq14">(14)</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regularization parameters</td>
+<td><span class="arithmatex">\([0, 10^{-6}, 10^{-4}, 10^{-4}, 10^{-4}]\)</span></td>
+<td><span class="arithmatex">\([10^{-4}, 10^{-5}, 10^{-5}, 10^{-4}, 10^{-4}]\)</span></td>
+</tr>
+<tr>
+<td>Relative <span class="arithmatex">\(L_2\)</span> error</td>
+<td><span class="arithmatex">\(4.38\times10^{-3}\)</span></td>
+<td><span class="arithmatex">\(4.27\times10^{-3}\)</span></td>
+</tr>
+<tr>
+<td>Sparsity of weight matrices</td>
+<td><span class="arithmatex">\([0.0\%, 68.5\%, 95.75\%, 97.75\%, 80.0\%]\)</span></td>
+<td><span class="arithmatex">\([60.0\%, 71.75\%, 81.75\%, 97.5\%, 90.0\%]\)</span></td>
+</tr>
+<tr>
+<td>No. of nonzero entries</td>
+<td>178</td>
+<td>206</td>
+</tr>
+<tr>
+<td><span id='tab2'>Table 2<span>: Numerical result for two dimensional function <a href="#eq13">(13)</a> and <a href="#eq14">(14)</a> with network structure <span class="arithmatex">\([2,20, 20, 20, 20, 1]\)</span>.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The numerical results presented in this subsection indicate that indeed the proposed <strong>SDNN</strong> model has an excellent adaptivity property in the sense that it generates networks with nearly the same number of nonzero weight matrix entries and the same order of approximation accuracy for functions regardless their smoothness.</p>
+</blockquote>
+<p>这一小节展示的数值结果指出所提出的 <strong>SDNN</strong> 模型确实有优秀的自适应性质, 即不管函数光滑性如何, 模型生成的网络具有几乎相同的权重区间非零袁术数量和相同近似精度的阶数.</p>
+<h3 id="an-example-of-adaptive-function-approximation-by-the-sdnn-model">An Example of Adaptive Function Approximation by the SDNN Model</h3>
+<blockquote>
+<p>The second experiment is designed to test the sparsity of the network learned from the <strong>SDNN</strong> model <a href="#eq10">(10)</a> and the model’s generalization ability. Specifically, in this example, we demonstrate that the sparse model <a href="#eq10">(10)</a> leads to a sparse DNN with higher accuracy in comparison to the standard DNN model <a href="#eq9">(9)</a>. We consider the absolute value function</p>
+</blockquote>
+<p>第二个实验旨在测试从 <strong>SDNN</strong> 模型学习到的网络的稀疏性和网络的泛化能力. 具体地, 在这个例子中我们证明了稀疏模型能够导出相比标准深度神经网络具有更高精度的稀疏深度神经网络. 我们考虑绝对值函数</p>
+<div class="arithmatex">\[
+    y = f(x) := |x|, \text{for} x \in \mathbb{R}.
+\]</div>
+<blockquote>
+<p>Note that function <span class="arithmatex">\(f\)</span> is not differentiable at <span class="arithmatex">\(x = 0\)</span>.</p>
+</blockquote>
+<p>注意函数 <span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\(x=0\)</span> 处不可微.</p>
+<blockquote>
+<p>We adopt the same network architecture, that is, <span class="arithmatex">\(1\)</span> input layer, <span class="arithmatex">\(2\)</span> hidden layers, <span class="arithmatex">\(1\)</span> output layer and each hidden layer containing <span class="arithmatex">\(5\)</span> neurons, for both the standard DNN model <a href="#eq9">(9)</a> and the <strong>SDNN</strong> model <a href="#eq10">(10)</a>. The training set is composed of equal-distance grid points laying in <span class="arithmatex">\([-2, 2]\)</span> with step size <span class="arithmatex">\(0.01\)</span>. The test set is composed of equal-distance grid points in <span class="arithmatex">\([-5, 5]\)</span> with step size <span class="arithmatex">\(0.1\)</span>. For the sparse regularized network, the regularization parameters are set as <span class="arithmatex">\([10^{-4}, 10^{-3}, 10^{-3}]\)</span>. For both the standard DNN model and the <strong>SDNN</strong> model, the number of epoch equals <span class="arithmatex">\(10,000\)</span>. The initial learning rate is set to <span class="arithmatex">\(0.001\)</span>.</p>
+</blockquote>
+<p>我们对于标准深度神经网络模型 <a href="#eq9">(9)</a> 和 <strong>SDNN</strong> 模型 <a href="#eq10">(10)</a> 采用相同的网络架构, 即一层输入层, <span class="arithmatex">\(2\)</span> 层隐藏层, <span class="arithmatex">\(1\)</span> 层输出层, 每层隐藏层有 <span class="arithmatex">\(5\)</span> 个神经元. 训练集由在区间 <span class="arithmatex">\([-2,2]\)</span> 上设置步长为 <span class="arithmatex">\(0.01\)</span> 的等距格点组成. 测试集由在区间 <span class="arithmatex">\([-5,5]\)</span> 上设置步长为 <span class="arithmatex">\(0.1\)</span> 的等距格点组成. 对于稀疏正则化网络, 正则化参数设置为 <span class="arithmatex">\([10^{-4}, 10^{-3}, 10^{-3}]\)</span>. 对于标准深度神经网络模型和 <strong>SDNN</strong> 模型, epochs 的数量均为 <span class="arithmatex">\(10,000\)</span>. 初始学习率设置为 <span class="arithmatex">\(0.001\)</span>.</p>
+<blockquote>
+<p>We present numerical results of this experiment in <a href="#tab3">Table 3</a>, where we compare errors and sparsity of the functions learned from the two models. Clearly, the network learned from the standard DNN model is non-sparse: all entries of its weight matrices are nonzero. While the network learned from the <strong>SDNN</strong> model has a good sparsity property: There are only <span class="arithmatex">\(1\)</span> non-zero entries in <span class="arithmatex">\(W_3\)</span> and <span class="arithmatex">\(2\)</span> non-zero entries in <span class="arithmatex">\(W_2\)</span> in the network learned from the <strong>SDNN</strong> model. Note that the absolution value function is the linear composition of two ReLU functions, that is <span class="arithmatex">\(|x| = \text{ReLU}(x)+\text{ReLU}(-x)\)</span>. The <strong>SDNN</strong> model is able to find a linear combination of the two functions to represent the function <span class="arithmatex">\(f(x) := |x|\)</span> but the standard DNN model fails to do so.</p>
+</blockquote>
+<p>我们在表格 3 中展示了这一实验的数值结果, 其中我们对比了从两个模型学习到的函数的误差和稀疏度. 很明显, 从标准深度神经网络模型中学习得网络是非稀疏的: 权重矩阵的所有元素都不为零. 而从 <strong>SDNN</strong> 模型中学习的网络由良好的稀疏性质: <span class="arithmatex">\(W_3\)</span> 中只有一个非零元素, <span class="arithmatex">\(W_2\)</span> 中只有两个非零元素. 注意绝对值函数是两个整流线性单元的线性组合, 即 <span class="arithmatex">\(|x| = \text{ReLU}(x)+\text{ReLU}(-x)\)</span>. <strong>SDNN</strong> 模型能够找到两个函数的线性组合来表示绝对值函数, 而标准深度神经网络模型则不行.</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">Model</th>
+<th align="center">Relative <span class="arithmatex">\(L_2\)</span> error</th>
+<th align="center">Sparsity of weight matrices <span class="arithmatex">\([W_1, W_2, W_3]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Standard DNN model</td>
+<td align="center"><span class="arithmatex">\(5.58\times10^{-2}\)</span></td>
+<td align="center"><span class="arithmatex">\([0\%, 0\%, 0\%]\)</span></td>
+</tr>
+<tr>
+<td align="center"><strong>SDNN</strong> model</td>
+<td align="center"><span class="arithmatex">\(1.87\times10^{-3}\)</span></td>
+<td align="center"><span class="arithmatex">\([20\%, 92\%, 80\%]\)</span></td>
+</tr>
+<tr>
+<td align="center"><span id='tab3'>Table 3</span>: Approximation of the absolute value function by a <strong>SDNN</strong> with regularization parameters <span class="arithmatex">\([10^{-4}, 10^{-3}, 10^{-3}]\)</span>.</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>We plot the graphs of the reconstructed functions by the standard DNN model<a href="#eq9">(9)</a> and the <strong>SDNN</strong> model <a href="#eq10">(10)</a> in <a href="#fig4">Figure 4</a> and <a href="#fig5">Figure 5</a>, respectively. It can be seen from <a href="#fig4">Figure 4</a> that the function reconstructed by the standard DNN model <a href="#eq9">(9)</a> has large errors in the interval <span class="arithmatex">\([3, 5]\)</span>. <a href="#fig5">Figure 5</a> shows that the function reconstructed by the <strong>SDNN</strong> model <a href="#eq10">(10)</a> almost coincides with the original function. This example indicates that the <strong>SDNN</strong> model <a href="#eq10">(10)</a> has better generalization ability than the standard DNN model <a href="#eq9">(9)</a>.</p>
+</blockquote>
+<p>我们分别在图 4 和图 5 中绘制了标准深度神经网络模型和 <strong>SDNN</strong> 模型的重构函数. 可以从图 4 中看到标准深度神经网络的重构函数在区间 <span class="arithmatex">\([3,5]\)</span> 上有较大误差. 图 5 则展示了 <strong>SDNN</strong> 模型和原始函数基本相符. 这一例子说明了 <strong>SDNN</strong> 模型比标准深度神经网络有更好的泛化能力.</p>
+<p><img alt="图 4" src="2207.13266_fig4.png" />
+<span id='fig4'>Figure 4 (Left)</span>: Reconstruction of function <span class="arithmatex">\(f(x) := |x|\)</span> by the standard DNN model <a href="#eq9">(9)</a>.
+<span id='fig5'>Figure 5 (Right)</span>: Reconstruction of function <span class="arithmatex">\(f(x) := |x|\)</span> by the <strong>SDNN</strong> model <a href="#eq10">(10)</a>.</p>
+<h3 id="reconstruction-of-a-black-hole">Reconstruction of A Black Hole</h3>
+<blockquote>
+<p>In this example, we consider reconstruction of the image of a black hole by the <strong>SDNN</strong> model. Specifically, we compare numerical results and reconstructed image quality of the <strong>SDNN</strong> model with those of the standard DNN model. We choose a color image of the black hole shown in <a href="#fig6">Figure 6</a> (Left), which is turned into a gray image shown in <a href="#fig6">Figure 6</a> (Right). The image has the size <span class="arithmatex">\(128 \times 128\)</span> and can be represented as a two-dimensional discrete function. The value of the gray image at the point <span class="arithmatex">\((x_1, x_2)\)</span> is defined as a <span class="arithmatex">\(f_{image}(x_1, x_2), x_1, x_2= 1, 2,\cdots, 128\)</span>. The function clearly has singularities.</p>
+</blockquote>
+<p>在这个例子中, 我们考虑通过 <strong>SDNN</strong> 模型 重构黑洞图像. 具体地, 我们将比较 <strong>SDNN</strong> 模型和标准深度神经网络模型的数值结果和重构图像质量. 我们选择图 6 左图所示的黑洞的彩色图片, 转化为图 6 右图所示的灰度图片. 图片大小为 <span class="arithmatex">\(128\times 128\)</span> 能够表示为二维离散函数. 灰度图在 <span class="arithmatex">\((x_1,x_2)\)</span> 的值定义为 <span class="arithmatex">\(f_{image}(x_1, x_2)\)</span>, 这个函数显然具有奇性.</p>
+<p><img alt="图 6" src="2207.13266_fig6.png" />
+<span id='fig6'>Figure 6</span>: Left: color image of the black hole. Right: gray image of the black hole.</p>
+<blockquote>
+<p>The network architecture that we used for the construction is <span class="arithmatex">\([2, 100, 100, 100, 100, 100, 100, 1]\)</span>. We randomly choose <span class="arithmatex">\(5,000\)</span> points <span class="arithmatex">\((x^i_1, x^i_2, f_{image}(x^i_1, x^i_2))\)</span> by uniform sampling, <span class="arithmatex">\(i =1, 2,\cdots, 5,000\)</span>, from the image of the black hole to train both the standard neural network and the sparse regularized network. The optimizer is chosen as the Adam algorithm with batch size <span class="arithmatex">\(1,024\)</span>. The number of epoch is <span class="arithmatex">\(40,000\)</span>. The patience parameter of early stopping is <span class="arithmatex">\(200\)</span>. Prediction results by the standard DNN model and by the <strong>SDNN</strong> model are shown respectively on <a href="#fig7">Figure 7</a> (Left) and (Right).</p>
+</blockquote>
+<p>我们使用的网络架构为 <span class="arithmatex">\([2, 100, 100, 100, 100, 100, 100, 1]\)</span>. 我们从黑洞图像中均匀采样 <span class="arithmatex">\(5,000\)</span> 个样本点 <span class="arithmatex">\((x^i_1, x^i_2, f_{image}(x^i_1, x^i_2))\)</span> 用于训练标准深度神经网络和稀疏正则化网络. 选择 Adam 算法作为优化器, 批量大小为 <span class="arithmatex">\(1024\)</span>. epoch 的数量为 <span class="arithmatex">\(40,000\)</span>. 早停法的耐心参数设置为 <span class="arithmatex">\(200\)</span>, 即允许 <span class="arithmatex">\(200\)</span> 个 epochs 内模型性能没有提升. 图 7 的左图和右图分别展示了标准深度神经网络和 <strong>SDNN</strong> 模型的预测结果.</p>
+<p><img alt="图 7" src="2207.13266_fig7.png" />
+<span id='fig7'>Figure 7</span>: Images of the black hole reconstructed: by the standard DNN model (Left) and by the <strong>SDNN</strong> model (Right).</p>
+<blockquote>
+<p>Error images of the two models are presented in <a href="#fig8">Figure 8</a>, from which it can be seen that the sparse network has a smaller reconstruction error. The prediction error of the fully connected network is <span class="arithmatex">\(9.66\times10^{-3}\)</span>. For the sparse regularized neural network, the regularized parameters are set to be <span class="arithmatex">\([10^{-9}, 10^{-9}, 10^{-9}, 10^{-9}, 10^{-8}, 10^{-8}, 10^{-8}]\)</span>. The prediction error of the sparse regularized network is <span class="arithmatex">\(9.28\times10^{-3}\)</span>. The sparsity of the weight matrices are <span class="arithmatex">\([44.0\%, 78.3\%, 78.4\%, 80.3\%, 96.5\%, 98.2\%, 84.0\%]\)</span>. It shows that the sparse regularized network uses fewer neurons and has smaller prediction error. This indicates that by using the proposed multi-parameter sparse regularization, the deep neural network has the ability of multi-scale and adaptive learning.</p>
+</blockquote>
+<p>两个模型的误差图像在图 8 中展示, 能够从中看到稀疏网络具有更小的重构误差. 全连接网络的预测误差为 <span class="arithmatex">\(9.66\times10^{-3}\)</span>. 对于稀疏正则化神经网络, 正则化参数设置为 <span class="arithmatex">\([10^{-9}, 10^{-9}, 10^{-9}, 10^{-9}, 10^{-8}, 10^{-8}, 10^{-8}]\)</span>. 稀疏正则化网络的预测误差为 <span class="arithmatex">\(9.28\times10^{-3}\)</span>. 权重矩阵的稀疏性为 <span class="arithmatex">\([44.0\%, 78.3\%, 78.4\%, 80.3\%, 96.5\%, 98.2\%, 84.0\%]\)</span>. 这展示了稀疏正则化网络使用了更少的神经元且获得了更小的预测误差. 这说明了通过使用我们提出的多参数稀疏正则化, 深度神经网络有多尺度和自适应学习的能力.</p>
+<p><img alt="图 8" src="2207.13266_fig8.png" />
+<span id='fig8'>Figure 8</span>: Reconstruction errors of the black hole: by the standard DNN model (Left) and by the <strong>SDNN</strong> model (Right).</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th align="center">Relative <span class="arithmatex">\(L_2\)</span> error</th>
+<th align="center">Sparsity of weight matrices</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard DNN model</td>
+<td align="center"><span class="arithmatex">\(9.66\times10^{-3}\)</span></td>
+<td align="center"><span class="arithmatex">\([0\%, 0\%, 0\%, 0\%, 0\%, 0\%, 0\%]\)</span></td>
+</tr>
+<tr>
+<td><strong>SDNN</strong> model</td>
+<td align="center"><span class="arithmatex">\(9.28\times10^{-3}\)</span></td>
+<td align="center"><span class="arithmatex">\([44.0\%, 78.3\%, 78.4\%, 80.3\%, 96.5\%, 98.2\%, 84.0\%]\)</span></td>
+</tr>
+<tr>
+<td><span id='tab4'>Table 4</span>: Numerical results of the black hole reconstructed by the standard DNN model vs. the <strong>SDNN</strong> model.</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h2 id="numerical-solutions-of-partial-differential-equations">Numerical Solutions of Partial Differential Equations</h2>
+<blockquote>
+<p>We study in this section numerical performance of the proposed <strong>SDNN</strong> model for solving partial differential equations. We consider two equations: the Burgers equation and the Schrödinger equation. For both of these two equations, we choose the hyperbolic tangent (tanh) function defined by</p>
+</blockquote>
+<p>本节我们研究所提出的 <strong>SDNN</strong> 模型用于求解偏微分方程的数值性能. 我们考虑两个方程: Burgers 方程和 Schrödinger 方程.</p>
+<div class="arithmatex">\[
+    \tanh(x) := \frac{e^x-e^{-x}}{e^x+ e^{-x}}, x \in \mathbb{R}
+\]</div>
+<blockquote>
+<p>as the activation function to build networks for our approximate solutions due to its differentiability which is required by the differential equations.</p>
+</blockquote>
+<p>对这两个方程, 我们都使用双曲正切函数作为激活函数来建立网络以近似解函数. 这是因为它的可微分性正是微分方程所要求的.</p>
+<h3 id="the-burgers-equation">The Burgers Equation</h3>
+<blockquote>
+<p>The Burgers equation has attracted much attention since it is often used as simplified model for turbulence and shock waves<sup id="fnref:34"><a class="footnote-ref" href="#fn:34">31</a></sup>. It is well-known that the solution of this equation presents a jump discontinuity (a shock wave), even though the initial function is smooth.</p>
+</blockquote>
+<p>Burgers 方程由于经常作为湍流和激波的简化模型而受到很多关注. 众所周知即使初始函数是光滑的, 这个方程的解也存在跳跃不连续性 (激波).</p>
+<blockquote>
+<p>In this example, we consider the following one dimensional Burgers equation <span id='eq15'><span></p>
+</blockquote>
+<p>在这一例子中, 我们考虑如下一维 Burgers 方程.</p>
+<div class="arithmatex">\[
+\begin{align}
+    &amp;u_t(t, x) + u(t, x)u_x(t, x) - \frac{0.01}{\pi} u_{xx}(t, x) = 0, &amp;t \in (0, 1], x \in (-1, 1), \tag{15}\\
+    &amp;u(0, x) = - \sin(\pi x),\tag{16}\\
+    &amp;u(t,-1) = u(t, 1) = 0.\tag{17}
+\end{align}
+\]</div>
+<blockquote>
+<p>The analytic solution of this equation, known in<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>, will be used as our exact solution for comparison. Indeed, the analytic solution has the form</p>
+</blockquote>
+<p>这一方程的解析解将作为我们的精确解以进行对比. 解析解的形式如下</p>
+<div class="arithmatex">\[
+u(t, x) := -\frac{\int_{-\infty}^\infty \sin\pi(x-\eta)h(x-\eta)\exp(-\eta^2/4vt)\text{d}\eta}{\int_{-\infty}^\infty h(x-\eta)\exp(-\eta^2/4vt)\text{d}\eta}t \in [0, 1], x \in [-1, 1],
+\]</div>
+<blockquote>
+<p>where <span class="arithmatex">\(ν := \dfrac{0.01}{\pi}\)</span> and <span class="arithmatex">\(h(y) := \exp(-\cos \pi y/2\pi ν)\)</span>. A neural network solution of equation <a href="#eq15">(15)</a>-<a href="#eq15">(17)</a> was obtained recently from the standard DNN model in<sup id="fnref3:38"><a class="footnote-ref" href="#fn:38">35</a></sup>.</p>
+</blockquote>
+<p>上述方程的神经网络解是从 <strong>PINN</strong> 论文的标准深度神经网络模型获得的.</p>
+<blockquote>
+<p>We apply the setting <a href="#eq1">(1)</a>-<a href="#eq1">(3)</a> with</p>
+</blockquote>
+<p>我们将偏微分方程一般形式代入可知</p>
+<div class="arithmatex">\[
+    \mathcal{F}(u(t, x)) := u_t(t, x) + u(t, x)u_x(t, x) - \frac{0.01}{\pi} u_{xx}(t, x), t \in (0, 1], x \in (-1, 1).
+\]</div>
+<blockquote>
+<p>Let <span class="arithmatex">\(\{x^i_0, u^i_0\}^{N_0}_{i=1}\)</span> denote the training data of <span class="arithmatex">\(u\)</span> satisfying initial condition <a href="#eq15">(16)</a>, that is, <span class="arithmatex">\(u^i_0= - \sin(\pi x^i_0)\)</span>. Let <span class="arithmatex">\(\{t^i_{b_1}\}_{i=1}^{N_{b_1}}\)</span> and <span class="arithmatex">\(\{t^i_{b_2}\}_{i=1}^{N_{b_2}}\)</span> be the collocation points related to boundary condition <a href="#eq15">(17)</a> for <span class="arithmatex">\(x = -1\)</span> and <span class="arithmatex">\(x = 1\)</span> respectively. We denote by <span class="arithmatex">\(\{t^i_f, x^i_f\}_{i=1}^{N_f}\)</span> the collocation points for <span class="arithmatex">\(\mathcal{F}(u(t, x))\)</span> in <span class="arithmatex">\([0, 1]\times(-1, 1)\)</span>. The sparse deep neural network <span class="arithmatex">\(\mathcal{N}_\Theta (t, x)\)</span> are learned by model <a href="#eq8">(8)</a> with</p>
+</blockquote>
+<p>令 <span class="arithmatex">\(\{x^i_0, u^i_0\}^{N_0}_{i=1}\)</span> 表示 <span class="arithmatex">\(u\)</span> 满足初始条件的训练数据, 即 <span class="arithmatex">\(u^i_0= - \sin(\pi x^i_0)\)</span>. 令 <span class="arithmatex">\(\{t^i_{b_1}\}_{i=1}^{N_{b_1}}\)</span> 和 <span class="arithmatex">\(\{t^i_{b_2}\}_{i=1}^{N_{b_2}}\)</span> 分别表示与边界条件 <span class="arithmatex">\(x=-1\)</span> 和 <span class="arithmatex">\(x=1\)</span> 相关的配置点. 令 <span class="arithmatex">\(\{t^i_f, x^i_f\}_{i=1}^{N_f}\)</span> 表示满足偏微分方程的配置点. 稀疏深度神经网络 <span class="arithmatex">\(\mathcal{N}_\Theta (t, x)\)</span> 通过模型 <a href="#eq8">(8)</a> 及以下损失进行学习.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    Loss_0 &amp;=\frac{1}{N_0}\sum_{i=1}^{N_0}|\mathcal{N}_\Theta (0, x^i_0) - u^i_0|^2,\\
+    Loss_b &amp;=\frac{1}{N_b}\sum_{i=1}^{N_b}|\mathcal{N}_\Theta (t^i_{b_1}, -1)| +\frac{1}{N_{b_2}}\sum_{i=1}^{N_{b_2}}|\mathcal{N}_\Theta (t^i_{b_2}, 1)|.
+\end{aligned}
+\]</div>
+<blockquote>
+<p>In this experiment, <span class="arithmatex">\(100\)</span> data points are randomly selected from boundary and initial data points, among which <span class="arithmatex">\(N_{b_1}= 25\)</span> points are located on the boundary <span class="arithmatex">\(x = -1\)</span>, <span class="arithmatex">\(N_{b_2}= 23\)</span> points on the boundary <span class="arithmatex">\(x = 1\)</span>, and <span class="arithmatex">\(N_0= 52\)</span> points on the initial line <span class="arithmatex">\(t = 0\)</span>. The distribution of random collocation points is shown in the top of <a href="#fig9">Figure 9</a>. The number of collocation points of the partial differential equation is <span class="arithmatex">\(N_f= 10,000\)</span> by employing the Latin hypercube sampling method. The test set is composed of grid points <span class="arithmatex">\([0, 1] \times [-1, 1]\)</span> uniformly discretized with step size <span class="arithmatex">\(1/100\)</span> on the <span class="arithmatex">\(t\)</span> direction and step size <span class="arithmatex">\(2/255\)</span> on the <span class="arithmatex">\(x\)</span> direction.</p>
+</blockquote>
+<p>在这个实验中, 从边界和初始数据点随机选择 <span class="arithmatex">\(100\)</span> 个数据点: <span class="arithmatex">\(N_{b_1}= 25\)</span> 个在边界 <span class="arithmatex">\(x=-1\)</span> 上, <span class="arithmatex">\(N_{b_2}=23\)</span> 个在边界 <span class="arithmatex">\(x=1\)</span> 上, <span class="arithmatex">\(N_0=52\)</span> 个在初始线 <span class="arithmatex">\(t=0\)</span> 上. 随机配置点的分布展示在图 9 的顶部. 偏微分方程的配置点数量为 <span class="arithmatex">\(N_f=10,000\)</span> 通过 LHS 采样方法获得. 测试集则由定义域 <span class="arithmatex">\([0, 1] \times [-1, 1]\)</span> 上时间 <span class="arithmatex">\(t\)</span> 方向步长为 <span class="arithmatex">\(0.01\)</span>, <span class="arithmatex">\(x\)</span> 方向上步长为 <span class="arithmatex">\(2/225\)</span> 的均匀网格点组成.</p>
+<p><img alt="图 9" src="2207.13266_fig9.png" />
+<span id='fig9'>Figure 9</span>: Burgers equation: Top: The training data and predicted solution <span class="arithmatex">\(u(t, x)\)</span> for sparse deep neural network with <span class="arithmatex">\([2, 50, 50, 50, 1]\)</span>, regularization parameter <span class="arithmatex">\(\alpha = [10^{-6}, 10^{-6}, 10^{-6}, 10^{-4}]\)</span>, <span class="arithmatex">\(\beta = 20\)</span>. Bottom: Predicted solution <span class="arithmatex">\(u(t, x)\)</span> at time <span class="arithmatex">\(t = 0.3\)</span>, <span class="arithmatex">\(t = 0.6\)</span>, and <span class="arithmatex">\(t = 0.8\)</span>.</p>
+<blockquote>
+<p>We use two different network architectures <span class="arithmatex">\([2, 50, 50, 50, 1]\)</span> and <span class="arithmatex">\([2, 50, 50, 50,50, 50, 50, 50, 1]\)</span> for DNNs. We choose Adam as the optimizer for both neural networks. The number of epoch is <span class="arithmatex">\(30,000\)</span>. The initial learning rate is set to <span class="arithmatex">\(0.001\)</span>. Numerical results of these two networks presented respectively in <a href="#tab5">Table 5</a> and <a href="#tab6">Table 6</a> show that the proposed <strong>SDNN</strong> model outperforms the <strong>PINN</strong> model in both weight matrix sparsity and approximation accuracy.</p>
+</blockquote>
+<p>我们使用两种不同的深度神经网络架构 <span class="arithmatex">\([2, 50, 50, 50, 1]\)</span> 和 <span class="arithmatex">\([2, 50, 50, 50,50, 50, 50, 50, 1]\)</span>. 我们选择 Adam 作为优化器. epochs 的数量为 <span class="arithmatex">\(30,000\)</span>. 初始学习率设置为 <span class="arithmatex">\(0.001\)</span>. 这两个网络的数值结果分别展示在表格 5 和表格 6 里. 表格说明了我们所提出的 <strong>SDNN</strong> 模型在权重矩阵稀疏度和近似进度上都比 <strong>PINN</strong> 模型优越.</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>Algorithms</th>
+<th align="center">Parameters <span class="arithmatex">\(\alpha\)</span> &amp; sparsity of weight matrices</th>
+<th align="center">Relative L2error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PINN</strong></td>
+<td align="center">No regularization <span class="arithmatex">\([0.0\%, 0.2\%, 0.5\%, 0.0\%]\)</span></td>
+<td align="center"><span class="arithmatex">\(2.45\times10^{-2}\)</span></td>
+</tr>
+<tr>
+<td><strong>SDNN</strong>(<span class="arithmatex">\(\beta=20\)</span>)</td>
+<td align="center"><span class="arithmatex">\([10^{-6}, 10^{-6}, 10^{-6}, 10^{-4}]\)</span><br> <span class="arithmatex">\([13.0\%, 61.9\%, 71.2\%, 62.0\%]\)</span></td>
+<td align="center"><span class="arithmatex">\(1.68\times10^{-3}\)</span></td>
+</tr>
+<tr>
+<td><span id='tab5'>Table 5</span>: The Burgers equation: A neural network of <span class="arithmatex">\(4\)</span> layers, with network architecture <span class="arithmatex">\([2, 50,50, 50, 1]\)</span>.</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Algorithms</th>
+<th align="center">Parameters <span class="arithmatex">\(\alpha\)</span> &amp; sparsity of weight matrices</th>
+<th align="center">Relative L2error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PINN</strong></td>
+<td align="center">No regularization <br> <span class="arithmatex">\([0.0\%, 0.8\%, 0.6\%, 0.6\%, 0.8\%, 0.6\%, 0.4\%, 0.0\%]\)</span></td>
+<td align="center"><span class="arithmatex">\(3.39\times10^{-3}\)</span></td>
+</tr>
+<tr>
+<td><strong>SDNN</strong> (<span class="arithmatex">\(\beta=10\)</span>)</td>
+<td align="center"><span class="arithmatex">\([0, 0, 0, 0, 10^{-7}, 10^{-1}0, 10^{-6}, 10^{-5}]\)</span> <br> <span class="arithmatex">\([0.0\%, 0.7\%, 0.8\%, 0.7\%, 15.6\%, 0.5\%, 93.8\%, 94.0\%]\)</span></td>
+<td align="center"><span class="arithmatex">\(1.45\times10^{-4}\)</span></td>
+</tr>
+<tr>
+<td><strong>SDNN</strong> (<span class="arithmatex">\(\beta=10\)</span>)</td>
+<td align="center"><span class="arithmatex">\([10^{-6}, 10^{-6}, 10^{-6}, 10^{-6}, 10^{-6}, 10^{-6}, 10^{-5}, 10^{-5}]\)</span> <br> <span class="arithmatex">\([25.0\%, 78.6\%, 85.3\%, 82.8\%, 79.5\%, 84.0\%, 98.6\%, 94.0\%]\)</span></td>
+<td align="center"><span class="arithmatex">\(4.83\times10^{-4}\)</span></td>
+</tr>
+<tr>
+<td><span id='tab6'>Table 6</span>: The Burgers equation: Neural networks of <span class="arithmatex">\(8\)</span> layers with network architecture <span class="arithmatex">\([2, 50, 50,50, 50, 50, 50, 50, 1]\)</span>.</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="the-schrodinger-equation">The Schrödinger Equation</h3>
+<blockquote>
+<p>The Schrödinger equation is the most essential equation of non-relativistic quantum mechanics. It plays an important role in studying nonlinear optics, Bose-Einstein condensates, protein folding and bending. It is also a model equation for studying waves propagation and soliton<sup id="fnref:39"><a class="footnote-ref" href="#fn:39">36</a></sup>. In this subsection, we consider a one-dimensional Schrödinger equation with periodic boundary conditions <span id='eq18'></span></p>
+</blockquote>
+<p>Schrödinger 方程是非相对论量子力学的最基本的方程. 它在研究非线性光学, Bose-Einstein 凝聚, 蛋白质折叠和弯曲方面发挥着重要作用. 它也是研究波传播和孤子的一个模型方程. 在这一小节中, 我们考虑带有周期边值条件的一维 Schrödinger 方程.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    &amp;iu_t(t, x) + 0.5u_{xx}(t, x) + |u(t, x)|^2u(t, x) = 0, t \in (0, \pi/2], x \in (-5, 5), \\
+    &amp;u(0, x) = 2 \text{sech}(x),\\
+    &amp;u(t, -5) = u(t, 5), \\
+    &amp;u_x(t, -5) = u_x(t, 5).\tag{18}
+\end{aligned}
+\]</div>
+<blockquote>
+<p>Note that the solution <span class="arithmatex">\(u\)</span> of problem <a href="#eq18">(18)</a> is a complex-valued function. The goal of this study is to test the effectiveness of the proposed <strong>SDNN</strong> model in solving complex-valued nonlinear differential equations with periodic boundary conditions, with a comparison to the standard DNN model recently developed in<sup id="fnref2:38"><a class="footnote-ref" href="#fn:38">35</a></sup>.</p>
+</blockquote>
+<p>注意到这一问题的解 <span class="arithmatex">\(u\)</span> 是一个复值函数. 这一研究的目的是测试我们所提出的 <strong>SDNN</strong> 模型在求解带有周期边值条件的复值非线性微分方程得到有效性, 并与基于 <strong>PINN</strong> 的标准深度神经网络模型进行比较.</p>
+<blockquote>
+<p>Problem <a href="#eq18">(18)</a> falls into the setting <a href="#eq1">(1)</a>-<a href="#eq1">(3)</a> with</p>
+</blockquote>
+<p>上述问题代入一般偏微分方程设置可知</p>
+<div class="arithmatex">\[
+    \mathcal{F}(u(t, x)) := iu_t(t, x) + 0.5u_{xx}(t, x) + |u(t, x)|^2u(t, x), t \in (0, \pi/2], x \in (-5, 5).
+\]</div>
+<blockquote>
+<p>Let <span class="arithmatex">\(\psi\)</span> and <span class="arithmatex">\(\phi\)</span> be respectively the real part and imaginary part of the solution <span class="arithmatex">\(u\)</span> of problem <a href="#eq18">(18)</a>. We intend to approximate the solution <span class="arithmatex">\(u(t, x)\)</span> by a neural network <span class="arithmatex">\(\mathcal{N}_\Theta (t, x)\)</span> with two inputs <span class="arithmatex">\((t, x)\)</span> and two outputs which approximate <span class="arithmatex">\(\psi(t, x)\)</span> and <span class="arithmatex">\(\phi(t, x)\)</span>, respectively. Let <span class="arithmatex">\(\{x^i_0, u^i_0\}^{N_0}_{i=1}\)</span> denote the training data to enforce the initial condition at time <span class="arithmatex">\(t = 0\)</span>, that is, <span class="arithmatex">\(u^i_0= \text{sech}(x^i_0)\)</span>, <span class="arithmatex">\(\{t^i_b\}^{N_b}_{i=1}\)</span> the collocation points on the boundary <span class="arithmatex">\(x = -5\)</span> and <span class="arithmatex">\(x = 5\)</span> to enforce the periodic boundary conditions, and <span class="arithmatex">\(\{t^i_f, x^i_f\}^{N_f}_{i=1}\)</span> the collocation points in <span class="arithmatex">\((0, \pi/2]\times (-5, 5)\)</span>. These collocation points were generated by the Latin hypercube sampling method. We then learn the neural network <span class="arithmatex">\(\mathcal{N}_\Theta (t, x)\)</span> by model <a href="#eq8">(8)</a> with</p>
+</blockquote>
+<p>令 <span class="arithmatex">\(\psi\)</span> 和 <span class="arithmatex">\(\phi\)</span> 分别表示解 <span class="arithmatex">\(u\)</span> 的实部和虚部. 我们试图用具有两个输入 <span class="arithmatex">\((t, x)\)</span> 和两个输出分别近似 <span class="arithmatex">\(\psi(t, x)\)</span> 和 <span class="arithmatex">\(\phi(t, x)\)</span> 的神经网络 <span class="arithmatex">\(\mathcal{N}_\Theta (t, x)\)</span> 来近似方程的解 <span class="arithmatex">\(u(t, x)\)</span>. 令 <span class="arithmatex">\(\{x^i_0, u^i_0\}^{N_0}_{i=1}\)</span> 表示用于满足 <span class="arithmatex">\(t=0\)</span> 上初值条件的训练数据, 即 <span class="arithmatex">\(u^i_0= \text{sech}(x^i_0)\)</span>, <span class="arithmatex">\(\{t^i_b\}^{N_b}_{i=1}\)</span> 表示用于满足 <span class="arithmatex">\(x=-5\)</span> 和 <span class="arithmatex">\(x=5\)</span> 上周期边值条件的配置点. <span class="arithmatex">\(\{t^i_f, x^i_f\}^{N_f}_{i=1}\)</span> 表示在 <span class="arithmatex">\((0, \pi/2]\times (-5, 5)\)</span> 的配置点. 这些配置点通过 LHS 方法生成. 然后我们通过具有以下损失的模型 <a href="#eq8">(8)</a> 来学习神经网络 <span class="arithmatex">\(\mathcal{N}_\Theta (t, x)\)</span>.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    Loss_0&amp;:= \frac{1}{N_0}\sum_{i=1}^{N_0} |\mathcal{N}_\Theta(0,x^i_0)-u^i_0|^2\\
+    Loss_b&amp;:= \frac{1}{N_b}\sum_{i=1}^{N_b} \bigg(|\mathcal{N}_\Theta(t^i_b, -5)- \mathcal{N}_\Theta(t^i_b, 5)|^2+\Big|\frac{\partial \mathcal{N}_\Theta}{\partial x}(t^i_b, -5)-\frac{\partial \mathcal{N}_\Theta}{\partial x}(t^i_b, 5)\Big|^2\bigg)
+\end{aligned}
+\]</div>
+<blockquote>
+<p>A reference solution of problem <a href="#eq18">(18)</a> is solved by a Fourier spectral method using the Chebfun package<sup id="fnref:20"><a class="footnote-ref" href="#fn:20">18</a></sup>. Specifically, we obtain the reference solution by using <span class="arithmatex">\(256\)</span> Fourier modes for space discretization and an explicit <strong>fourth-order Runge-Kutta method (RK4)</strong> with time-step <span class="arithmatex">\(\Delta t := (\pi/2) \times 10^{-6}\)</span> for time discretization. For more details of the discretization of Schrödinger equation <a href="#eq18">(18)</a>, the readers are referred to<sup id="fnref:38"><a class="footnote-ref" href="#fn:38">35</a></sup>. For both the standard network and the sparse network, we used the network architecture <span class="arithmatex">\([2, 50, 50, 50, 50, 50, 50, 2]\)</span>. Both the networks were trained by the Adam algorithm with <span class="arithmatex">\(30,000\)</span> epochs. The initial learning rate is set to <span class="arithmatex">\(0.001\)</span>. The training set is composed of <span class="arithmatex">\(N_0:= 50\)</span> data points on <span class="arithmatex">\(u(0, x)\)</span>, <span class="arithmatex">\(N_b:= 50\)</span> sample points for enforcing the periodic boundaries, and <span class="arithmatex">\(N_f:= 20,000\)</span> sample points inside the solution domain of equation <a href="#eq18">(18)</a>. The test set is composed of grid points <span class="arithmatex">\((0, \pi/2] \times [-5, 5]\)</span> uniformly discretized with step size <span class="arithmatex">\(\pi/400\)</span> on the <span class="arithmatex">\(t\)</span> direction and step size <span class="arithmatex">\(10/256\)</span> on the <span class="arithmatex">\(x\)</span> direction.</p>
+</blockquote>
+<p>问题 <a href="#eq18">(18)</a> 的参照解是通过 Chebfun 包的傅立叶谱方法求解的. 具体地, 我们通过在空间离散上使用 <span class="arithmatex">\(256\)</span> 个傅立叶模和时间离散步长为 <span class="arithmatex">\(\Delta t := (\pi/2) \times 10^{-6}\)</span> 的显式四阶龙格库塔方法. Schrödinger 方程的更多离散细节可以参阅 <strong>PINN</strong> 论文. 对于标准网络和稀疏网络, 我们使用网络架构为 <span class="arithmatex">\([2, 50, 50, 50, 50, 50, 50, 2]\)</span>, 都使用 Adam 算法训练 <span class="arithmatex">\(30,000\)</span> 个 epochs. 初始学习率设置为 <span class="arithmatex">\(0.001\)</span>. 训练集由 <span class="arithmatex">\(u(0,x)\)</span> 上的 <span class="arithmatex">\(N_0=50\)</span> 个数据点, 用于满足周期边值条件的 <span class="arithmatex">\(N_b=50\)</span> 样本点和方程定义域内的 <span class="arithmatex">\(N_f=20,000\)</span> 个样本点组成. 测试集则由定义域 <span class="arithmatex">\((0, \pi/2] \times [-5, 5]\)</span> 沿 <span class="arithmatex">\(t\)</span> 方向上均匀离散步长为 <span class="arithmatex">\(\pi/400\)</span> 和沿 <span class="arithmatex">\(x\)</span> 方向上均匀离散步长为 <span class="arithmatex">\(10/256\)</span> 的网格点组成.</p>
+<blockquote>
+<p>Numerical results for this example are listed in <a href="#tab7">Table 7</a>. As we can see, the sparse network has a smaller prediction error than the standard network. When regularization parameters <span class="arithmatex">\(\alpha = [0, 0, 0, 0, 5\times10^{-7}, 10^{-6}, 10^{-5}]\)</span>, the relative <span class="arithmatex">\(L_2\)</span> error is smaller than the <strong>PINN</strong> method. When regularization parameters <span class="arithmatex">\(\alpha\)</span> are taken as <span class="arithmatex">\([9\times10^{-7}, 5\times10^{-7}, 6\times10^{-7}, 7\times10^{-7}, 8\times10^{-7}, 10^{-6}, 10^{-5}]\)</span>, the sparsity of weight matrices are <span class="arithmatex">\([22.0\%,50.5\%, 51.9\%, 50.6\%, 50.0\%, 64.5\%, 66.0\%]\)</span>. In other words, after removing more than half of the neural network connections, the sparse neural network still has a slightly higher prediction accuracy. The predicted solution of the <strong>SDNN</strong> is illustrated in <a href="#fig10">Figure 10</a>. These numerical results clearly confirm that the proposed <strong>SDNN</strong> model outperforms the standard DNN model.</p>
+</blockquote>
+<p>这一例子的数值结果列举在表格 7 中. 正如我们所看到的, 稀疏网络相比标准网络具有更小的预测误差. 当正则化参数 <span class="arithmatex">\(\alpha = [0, 0, 0, 0, 5\times10^{-7}, 10^{-6}, 10^{-5}]\)</span>, 相对 <span class="arithmatex">\(L_2\)</span> 误差比 <strong>PINN</strong> 的要小. 当正则化参数为 <span class="arithmatex">\([9\times10^{-7}, 5\times10^{-7}, 6\times10^{-7}, 7\times10^{-7}, 8\times10^{-7}, 10^{-6}, 10^{-5}]\)</span>, 权重矩阵的稀疏性为 <span class="arithmatex">\([22.0\%,50.5\%, 51.9\%, 50.6\%, 50.0\%, 64.5\%, 66.0\%]\)</span>. 换句话说, 移除了神经网络超过一半的连接后, 稀疏神经网络仍然由稍微更高的预测精度. <strong>SDNN</strong> 的预测解如图 10 所示. 这些数值结果清晰地证实了我们所提出的 <strong>SDNN</strong> 模型比标准深度神经网络模型表现更优越.</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>Algorithms</th>
+<th align="center">Parameters <span class="arithmatex">\(\alpha\)</span> &amp; sparsity of weight matrices</th>
+<th align="center">Relative <span class="arithmatex">\(L_2\)</span> error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PINN</strong></td>
+<td align="center">No regularization <br> <span class="arithmatex">\([0.0\%, 0.3\%, 0.4\%, 0.6\%, 0.4\%, 0.68\%, 0.0\%]\)</span></td>
+<td align="center"><span class="arithmatex">\(1.41\times10^{-3}\)</span></td>
+</tr>
+<tr>
+<td><strong>SDNN</strong><br>(<span class="arithmatex">\(\beta = 10\)</span>)</td>
+<td align="center"><span class="arithmatex">\([0, 0, 0, 0, 5\times10^{-7}, 10^{-6}, 10^{-5}]\)</span> <br> <span class="arithmatex">\([0.7\%, 0.3\%, 0.4\%, 50.6\%, 38.0\%, 74.7\%, 77.0\%]\)</span></td>
+<td align="center"><span class="arithmatex">\(8.15\times10^{-4}\)</span></td>
+</tr>
+<tr>
+<td><strong>SDNN</strong><br>(<span class="arithmatex">\(\beta = 10\)</span>)</td>
+<td align="center"><span class="arithmatex">\([9\times10^{-7}, 5\times10^{-7}, 6\times10^{-7}, 7\times10^{-7}, 8\times10^{-7}, 10^{-6}, 10^{-5}]\)</span> <br> <span class="arithmatex">\([22.0\%, 50.5\%, 51.9\%, 50.6\%, 50.0\%, 64.5\%, 66.0\%]\)</span></td>
+<td align="center"><span class="arithmatex">\(1.38\times10^{-3}\)</span></td>
+</tr>
+<tr>
+<td><span id='tab7'>Table 7</span>: The Schrödinger equation: The neural network of <span class="arithmatex">\(7\)</span> layers with network architecture <span class="arithmatex">\([2,50, 50, 50, 50, 50, 50, 2]\)</span>.</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p><img alt="图 10" src="2207.13266_fig10.png" />
+<span id='fig10'>Figure 10</span>: The Schrödinger equation: Top: The training data and predicted solution <span class="arithmatex">\(|u(t, x)|\)</span> by <strong>SDNN</strong> with network architecture <span class="arithmatex">\([2, 50, 50, 50, 50, 50, 50, 2]\)</span>, regularization parameters <span class="arithmatex">\(\alpha := [9\times10^{-7}, 5\times10^{-7}, 6\times10^{-7}, 7\times10^{-7}, 8\times10^{-7}, 10^{-6}, 10^{-5}]\)</span>, and <span class="arithmatex">\(\beta := 10\)</span>. Bottom: Predicted solutions at time <span class="arithmatex">\(t := 0.55\)</span>, <span class="arithmatex">\(t := 0.79\)</span>, and <span class="arithmatex">\(t := 1.02\)</span>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<blockquote>
+<p>A sparse network requires less memory and computing time to operate it and thus it is desirable. We have developed a sparse deep neural network model by employing a sparse regularization with multiple parameters for solving nonlinear partial differential equations. Noticing that neural networks are layer-by-layer composite structures with an intrinsic multi-scale structure, we observe that the network weights of different layers have different weights of importance. Aiming at generating a sparse network structure while maintaining approximation accuracy, we proposed to impose different regularization parameters on different layers of the neural network. We first tested the proposed sparse regularization model in approximation of singular functions, and discovered that the proposed model can not only generate an adaptive approximation of functions having singularities but also have better generalization than the standard network. We then developed a sparse deep neural network model for solving nonlinear partial differential equations whose solutions may have certain singularities. Numerical examples show that the proposed model can remove redundant network connections leading to sparse networks and has better generalization ability. Theoretical investigation will be performed in a follow-up paper.</p>
+</blockquote>
+<p>稀疏网络只需要更少的内存和计算时间来操作它, 因此它是可取的. 我们采用多参数稀疏正则化方法建立了求解非线性偏微分方程的稀疏深度神经网络模型. 注意到神经网络是具有内在多尺度结构的层层复合结构, 我们观察到不同层的网络权重有不同的重要性权重. 为了在保持逼近精度的同时生成稀疏网络结构, 我们提出在神经网络的不同层上加入不同的正则化参数. 首先对稀疏正则化模型在奇性函数逼近中的应用进行了测试, 发现该模型不仅能自适应逼近具有奇性的函数, 而且比标准网络具有更好的泛化能力. 然后, 我们建立了一个稀疏深度神经网络模型来解决解有一定的奇性的非线性偏微分方程. 数值算例表明, 该模型能够去除冗余网络连接得到稀疏网络, 具有较好的泛化能力. 理论研究将在后续论文中进行.</p>
+<h2 id="references">References</h2>
+<p><strong>未被实际引用的文献</strong>.</p>
+<p>[3] Optimal Approximation with Sparsely Connected Deep Neural Networks, [2019] [SIAM]</p>
+<p>[15] Stochastic Subgradient Method Converges On Tame Functions. [2020].</p>
+<p>[21] Adaptive Subgradient Methods for Online Learning and Stochastic Optimization. [2011].</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>The Gap between Theory and Practice in Function Approximation with Deep Neural Networks. [2021] [SIAM].&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Spectral and Finite Difference Solutions of the Burgers Equation [1986].&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Multiparameter Regularization for Volterra Kernel Identification Via Multiscale Collocation Methods. [2009] <author>Y. Xu</author>.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Robust Uncertainty Principles: Exact Signal Reconstruction from Highly Incomplete Frequency Information [2006].&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>An Introduction to Compressive Sampling. [2008].&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Multi-Parameter Tikhonov Regularization for Linear Ill-Posed Operator Equations [2008] <author>Y. Xu</author>.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>Multiscale Methods for Fredholm Integral Equations. [2015] <author>Y. Xu</author>.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>Deep Learning Networks for Stock Market Analysis and Prediction: Methodology, Data Representations, and Case Studies. [2017].&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>Approximation by Superpositions of A Sigmoidal Function. [1989].&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 9 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:10" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>Robust Training and Initialization of Deep Neural Networks: An Adaptive Basis Viewpoint. [2020].&#160;<a class="footnote-backref" href="#fnref:11" title="Jump back to footnote 10 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:11" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:12">
+<p>Context-Dependent Pretrained Deep Neural Networks for Large-Vocabulary Speech Recognition. [2012].&#160;<a class="footnote-backref" href="#fnref:12" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
+<li id="fn:13">
+<p>(小波十讲) Ten Lectures on Wavelets, [1992].&#160;<a class="footnote-backref" href="#fnref:13" title="Jump back to footnote 12 in the text">&#8617;</a></p>
+</li>
+<li id="fn:14">
+<p>Nonlinear Approximation and (Deep) ReLU Networks. [2021].&#160;<a class="footnote-backref" href="#fnref:14" title="Jump back to footnote 13 in the text">&#8617;</a></p>
+</li>
+<li id="fn:16">
+<p>(BERT) <strong>BERT: Pre-Training of Deep Bidirectional Transformers for Language Understanding</strong>. [2018] [arXiv:1810.04805v1]&#160;<a class="footnote-backref" href="#fnref:16" title="Jump back to footnote 14 in the text">&#8617;</a></p>
+</li>
+<li id="fn:17">
+<p>Neural Network Approximation. [2021].&#160;<a class="footnote-backref" href="#fnref:17" title="Jump back to footnote 15 in the text">&#8617;</a></p>
+</li>
+<li id="fn:18">
+<p>Deeply Learning Deep Inelastic Scattering Kinematics. [2021] <author>Y. Xu</author>, [arxiv:2108.11638v1]&#160;<a class="footnote-backref" href="#fnref:18" title="Jump back to footnote 16 in the text">&#8617;</a></p>
+</li>
+<li id="fn:19">
+<p>Compressive Sensing. [2006].&#160;<a class="footnote-backref" href="#fnref:19" title="Jump back to footnote 17 in the text">&#8617;</a></p>
+</li>
+<li id="fn:20">
+<p>Chebfun Guide. [2014].&#160;<a class="footnote-backref" href="#fnref:20" title="Jump back to footnote 18 in the text">&#8617;</a></p>
+</li>
+<li id="fn:22">
+<p>Hierarchical Models in the Brain, [2008].&#160;<a class="footnote-backref" href="#fnref:22" title="Jump back to footnote 19 in the text">&#8617;</a></p>
+</li>
+<li id="fn:23">
+<p><strong>Deep Learning</strong>. [2016] [MIT Press].&#160;<a class="footnote-backref" href="#fnref:23" title="Jump back to footnote 20 in the text">&#8617;</a></p>
+</li>
+<li id="fn:24">
+<p>(DeepBSDE) <strong>Solving High-Dimensional Partial Differential Equations Using Deep Learning</strong>. [2018] [PNAS].&#160;<a class="footnote-backref" href="#fnref:24" title="Jump back to footnote 21 in the text">&#8617;</a></p>
+</li>
+<li id="fn:25">
+<p>ReLU Deep Neural Networks and Linear Finite Elements. [2020].&#160;<a class="footnote-backref" href="#fnref:25" title="Jump back to footnote 22 in the text">&#8617;</a></p>
+</li>
+<li id="fn:26">
+<p>Latin Hypercube Sampling and the Propagation of Uncertainty in Analyses of Complex Systems. [2003].&#160;<a class="footnote-backref" href="#fnref:26" title="Jump back to footnote 23 in the text">&#8617;</a></p>
+</li>
+<li id="fn:27">
+<p>The Future of Deep Learning Will Be Sparse. [2021].&#160;<a class="footnote-backref" href="#fnref:27" title="Jump back to footnote 24 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:27" title="Jump back to footnote 24 in the text">&#8617;</a></p>
+</li>
+<li id="fn:28">
+<p><strong>Sparsity in Deep Learning: Pruning and Growth for Efficient Inference and Training in Neural Networks</strong>. [2021].&#160;<a class="footnote-backref" href="#fnref:28" title="Jump back to footnote 25 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:28" title="Jump back to footnote 25 in the text">&#8617;</a></p>
+</li>
+<li id="fn:29">
+<p>Deep Learned Finite Elements, [2020].&#160;<a class="footnote-backref" href="#fnref:29" title="Jump back to footnote 26 in the text">&#8617;</a></p>
+</li>
+<li id="fn:30">
+<p><strong>Adam: A Method for Stochastic Optimization</strong>. [2015] [ICLR].&#160;<a class="footnote-backref" href="#fnref:30" title="Jump back to footnote 27 in the text">&#8617;</a></p>
+</li>
+<li id="fn:31">
+<p>Imagenet Classification with Deep Convolutional Neural Networks. [2012].&#160;<a class="footnote-backref" href="#fnref:31" title="Jump back to footnote 28 in the text">&#8617;</a></p>
+</li>
+<li id="fn:32">
+<p>Artificial Neural Networks for Solving Ordinary and Partial Differential Equations. [1998].&#160;<a class="footnote-backref" href="#fnref:32" title="Jump back to footnote 29 in the text">&#8617;</a></p>
+</li>
+<li id="fn:33">
+<p>Neural-Network Methods for Boundary Value Problems with Irregular Boundaries. [2000].&#160;<a class="footnote-backref" href="#fnref:33" title="Jump back to footnote 30 in the text">&#8617;</a></p>
+</li>
+<li id="fn:34">
+<p>Nonlinear Stability of An Undercompressive Shock for Complex Burgers Equation. [1995]&#160;<a class="footnote-backref" href="#fnref:34" title="Jump back to footnote 31 in the text">&#8617;</a></p>
+</li>
+<li id="fn:35">
+<p>Multi-Parameter Regularization Methods for High-Resolution Image Reconstruction with Displacement Errors. [2007] <author>Y. Xu</author>.&#160;<a class="footnote-backref" href="#fnref:35" title="Jump back to footnote 32 in the text">&#8617;</a></p>
+</li>
+<li id="fn:36">
+<p>Using the Matrix Refinement Equation for the Construction of Wavelets on Invariant Sets. [1994] <author>Y. Xu</author>.&#160;<a class="footnote-backref" href="#fnref:36" title="Jump back to footnote 33 in the text">&#8617;</a></p>
+</li>
+<li id="fn:37">
+<p>(DHM) <strong>Deep Hidden Physics Models: Deep Learning of Nonlinear Partial Differential Equations</strong>. [2018].&#160;<a class="footnote-backref" href="#fnref:37" title="Jump back to footnote 34 in the text">&#8617;</a></p>
+</li>
+<li id="fn:38">
+<p>(PINN) <strong>Physics-Informed Neural Networks: A Deep Learning Framework for Solving Forward and Inverse Problems Involving Nonlinear Partial Differential Equations</strong>. [2019] [JCP].&#160;<a class="footnote-backref" href="#fnref:38" title="Jump back to footnote 35 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:38" title="Jump back to footnote 35 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:38" title="Jump back to footnote 35 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:38" title="Jump back to footnote 35 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:38" title="Jump back to footnote 35 in the text">&#8617;</a><a class="footnote-backref" href="#fnref6:38" title="Jump back to footnote 35 in the text">&#8617;</a></p>
+</li>
+<li id="fn:39">
+<p>Novel Soliton Solutions of the Nonlinear Schrödinger Equation Model. [2000].&#160;<a class="footnote-backref" href="#fnref:39" title="Jump back to footnote 36 in the text">&#8617;</a></p>
+</li>
+<li id="fn:40">
+<p>A Representer Theorem for Deep Neural Networks. [2019].&#160;<a class="footnote-backref" href="#fnref:40" title="Jump back to footnote 37 in the text">&#8617;</a></p>
+</li>
+<li id="fn:41">
+<p><strong>Sparse Regularization with the <span class="arithmatex">\(l_0\)</span>-norm</strong>. [2021] <author>Y. Xu</author>, arXiv:2111.08244.&#160;<a class="footnote-backref" href="#fnref:41" title="Jump back to footnote 38 in the text">&#8617;</a></p>
+</li>
+<li id="fn:42">
+<p>Generalized Mercer Kernels and Reproducing Kernel Banach Spaces. [2019] <author>Y. Xu</author>.&#160;<a class="footnote-backref" href="#fnref:42" title="Jump back to footnote 39 in the text">&#8617;</a></p>
+</li>
+<li id="fn:43">
+<p>Convergence of Deep ReLU Networks. [2021] <author>Y. Xu</author>, arXiv:2107.12530.&#160;<a class="footnote-backref" href="#fnref:43" title="Jump back to footnote 40 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:43" title="Jump back to footnote 40 in the text">&#8617;</a></p>
+</li>
+<li id="fn:44">
+<p>Convergence of Deep Convolutional Neural Networks. [2021] <author>Y. Xu</author>, arXiv:2109.13542.&#160;<a class="footnote-backref" href="#fnref:44" title="Jump back to footnote 41 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:44" title="Jump back to footnote 41 in the text">&#8617;</a></p>
+</li>
+<li id="fn:45">
+<p>Reproducing Kernel Banach Spaces for Machine Learning. [2009] <author>Y. Xu</author>.&#160;<a class="footnote-backref" href="#fnref:45" title="Jump back to footnote 42 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:45" title="Jump back to footnote 42 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../javascripts/mathjac.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

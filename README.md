@@ -1,1 +1,0 @@
-# nanxigusyo.github.io

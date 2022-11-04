@@ -1,9 +1,0 @@
-site_name: Nanxi Gu
-
-nav:
-- 首页: index.md
-- 模型: Models.md
-- 歌词: Songs.md
-
-theme:
-  name: material

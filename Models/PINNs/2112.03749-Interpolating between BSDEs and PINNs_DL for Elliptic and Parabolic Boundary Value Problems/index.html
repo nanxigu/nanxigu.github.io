@@ -1,0 +1,2844 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.8">
+    
+    
+      
+        <title>2112.03749 Interpolating between BSDEs and PINNs DL for Elliptic and Parabolic Boundary Value Problems - Nanxi Gu</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.815d1a91.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../paper.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Nanxi Gu" class="md-header__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nanxi Gu
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2112.03749 Interpolating between BSDEs and PINNs DL for Elliptic and Parabolic Boundary Value Problems
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Nanxi Gu" class="md-nav__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Nanxi Gu
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        首页
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        模型
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Scholars/" class="md-nav__link">
+        学者
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Books/" class="md-nav__link">
+        书籍
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Courses/" class="md-nav__link">
+        课程
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Projects/" class="md-nav__link">
+        项目
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    
+  </a>
+  
+    <nav class="md-nav" aria-label="">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nikolas-nusken1-and-lorenz-richter234" class="md-nav__link">
+    Nikolas Nüsken^1 and Lorenz Richter2,3,4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#december-8-2021" class="md-nav__link">
+    December 8, 2021
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    1 Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mathna-7-dec-2021" class="md-nav__link">
+    [math.NA] 7 Dec 2021
+  </a>
+  
+    <nav class="md-nav" aria-label="[math.NA] 7 Dec 2021">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-variational-formulations-of-boundary-value-problems" class="md-nav__link">
+    2 Variational formulations of boundary value problems
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Variational formulations of boundary value problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-the-pinn-loss" class="md-nav__link">
+    2.1 The PINN loss
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 The PINN loss">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    [(
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    ) 2 ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    [(
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    ) 2 ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    [(
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    ) 2 ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    [(
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_4" class="md-nav__link">
+    ) 2 ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e" class="md-nav__link">
+    +E
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    [∣
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    ∣
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    ∣
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    ∣
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    ∣
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_5" class="md-nav__link">
+    2 ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    , (9)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-the-bsde-loss" class="md-nav__link">
+    2.2 The BSDE loss
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 The BSDE loss">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    {
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    (11)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    [(
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_6" class="md-nav__link">
+    ) 2 ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    , (14)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    [(
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    +
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_7" class="md-nav__link">
+    ) 2 ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    (15)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-the-diffusion-loss" class="md-nav__link">
+    3 The diffusion loss
+  </a>
+  
+    <nav class="md-nav" aria-label="3 The diffusion loss">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vxttvx-0-0" class="md-nav__link">
+    V(XT,T)−V(X 0 ,0) =
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t" class="md-nav__link">
+    ∫T
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t_1" class="md-nav__link">
+    ∫T
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    [(
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t_2" class="md-nav__link">
+    ∫T
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    +
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t_3" class="md-nav__link">
+    ∫T
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_8" class="md-nav__link">
+    ) 2 ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    [(
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_9" class="md-nav__link">
+    ) 2 ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    [(
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_10" class="md-nav__link">
+    ) 2 ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t_4" class="md-nav__link">
+    ∫T
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t_5" class="md-nav__link">
+    ∫T
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t_6" class="md-nav__link">
+    ∫T
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t_7" class="md-nav__link">
+    ∫T
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t_8" class="md-nav__link">
+    ∫T
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t_9" class="md-nav__link">
+    ∫T
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_11" class="md-nav__link">
+    2 
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    , (24)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4
+  </a>
+  
+    <nav class="md-nav" aria-label="4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    −→
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    −→
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    [(
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_12" class="md-nav__link">
+    ) 2 ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26" class="md-nav__link">
+    (26)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41-elliptic-boundary-value-problems" class="md-nav__link">
+    4.1 Elliptic boundary value problems
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-elliptic-eigenvalue-problems" class="md-nav__link">
+    4.2 Elliptic eigenvalue problems
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-from-losses-to-algorithms" class="md-nav__link">
+    5 From losses to algorithms
+  </a>
+  
+    <nav class="md-nav" aria-label="5 From losses to algorithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-simulation-of-diffusions-and-their-exit-times" class="md-nav__link">
+    5.1 Simulation of diffusions and their exit times
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 Simulation of diffusions and their exit times">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    √
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    √
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    )
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    {
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    }
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k" class="md-nav__link">
+    ∑K
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n-1" class="md-nav__link">
+    N∑− 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    √
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    +
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n-1_1" class="md-nav__link">
+    N∑− 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    )
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_13" class="md-nav__link">
+    ) 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    √
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-further-modifications-of-the-losses" class="md-nav__link">
+    5.2 Further modifications of the losses
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 Further modifications of the losses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    [(
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t_10" class="md-nav__link">
+    ∫T
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    +
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t_11" class="md-nav__link">
+    ∫T
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    [
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_14" class="md-nav__link">
+    ) 2 ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    (41)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    [(
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    +
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    )
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_15" class="md-nav__link">
+    ) 2 ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    (44)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    √
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    [(
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    +
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_16" class="md-nav__link">
+    ) 2 ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_58" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46" class="md-nav__link">
+    (46)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lkn" class="md-nav__link">
+    L̂(K,N)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lkn_1" class="md-nav__link">
+    L̂(K,N)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lkn_2" class="md-nav__link">
+    L̂(K,N)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k_1" class="md-nav__link">
+    K
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k_2" class="md-nav__link">
+    ∑K
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n-1_2" class="md-nav__link">
+    N∑− 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_59" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_60" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_61" class="md-nav__link">
+    )
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_62" class="md-nav__link">
+    √
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_17" class="md-nav__link">
+    ) 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48" class="md-nav__link">
+    (48)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lkn_3" class="md-nav__link">
+    L̂(K,N)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k_3" class="md-nav__link">
+    K
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k_4" class="md-nav__link">
+    ∑K
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_63" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_18" class="md-nav__link">
+    ) 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#49" class="md-nav__link">
+    . (49)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lkn_4" class="md-nav__link">
+    L̂(K,N)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_64" class="md-nav__link">
+    √
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k_5" class="md-nav__link">
+    ∑K
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    ∑N
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_65" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_19" class="md-nav__link">
+    ) 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_66" class="md-nav__link">
+    +
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k_6" class="md-nav__link">
+    ∑K
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_67" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_20" class="md-nav__link">
+    ) 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    . (52)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-numerical-experiments" class="md-nav__link">
+    6 Numerical experiments
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Numerical experiments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-nonlinear-toy-problems" class="md-nav__link">
+    6.1 Nonlinear toy problems
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 Nonlinear toy problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_68" class="md-nav__link">
+    √
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_69" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_70" class="md-nav__link">
+    )
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_71" class="md-nav__link">
+    √
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_21" class="md-nav__link">
+    2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_72" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_73" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_74" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-1" class="md-nav__link">
+    1 ··· 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_75" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_76" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_77" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_78" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_79" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_80" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-1_1" class="md-nav__link">
+    1 ··· 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_81" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_82" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_83" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_84" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_85" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_86" class="md-nav__link">
+    )
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55" class="md-nav__link">
+    , (55)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_87" class="md-nav__link">
+    √
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_88" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_89" class="md-nav__link">
+    )
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_90" class="md-nav__link">
+    {
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_91" class="md-nav__link">
+    √
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_92" class="md-nav__link">
+    √
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_93" class="md-nav__link">
+    }
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-committor-functions" class="md-nav__link">
+    6.2 Committor functions
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 Committor functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    , (62)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_94" class="md-nav__link">
+    √
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_95" class="md-nav__link">
+    √
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_96" class="md-nav__link">
+    }
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-parabolic-allen-cahn-equation-on-an-unbounded-domain" class="md-nav__link">
+    6.3 Parabolic Allen-Cahn equation on an unbounded domain
+  </a>
+  
+    <nav class="md-nav" aria-label="6.3 Parabolic Allen-Cahn equation on an unbounded domain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_97" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    )− 1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-elliptic-eigenvalue-problems" class="md-nav__link">
+    6.4 Elliptic eigenvalue problems
+  </a>
+  
+    <nav class="md-nav" aria-label="6.4 Elliptic eigenvalue problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_98" class="md-nav__link">
+    (∑
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_99" class="md-nav__link">
+    )
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_100" class="md-nav__link">
+    {
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_101" class="md-nav__link">
+    }
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_4" class="md-nav__link">
+    1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_102" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_22" class="md-nav__link">
+    2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_103" class="md-nav__link">
+    )
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_104" class="md-nav__link">
+    +
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_105" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_106" class="md-nav__link">
+    −
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_107" class="md-nav__link">
+    )
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-69" class="md-nav__link">
+    − 3. (69)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_5" class="md-nav__link">
+    1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_108" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_6" class="md-nav__link">
+    1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_109" class="md-nav__link">
+    )
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#70" class="md-nav__link">
+    (70)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_110" class="md-nav__link">
+    (
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e_1" class="md-nav__link">
+    E
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_111" class="md-nav__link">
+    [
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_112" class="md-nav__link">
+    ]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_7" class="md-nav__link">
+    − 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_23" class="md-nav__link">
+    ) 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_113" class="md-nav__link">
+    {
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_114" class="md-nav__link">
+    }
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-conclusion-and-outlook" class="md-nav__link">
+    7 Conclusion and Outlook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h2 id="_1"></h2>
+<h3 id="nikolas-nusken1-and-lorenz-richter234">Nikolas Nüsken^1 and Lorenz Richter2,3,4</h3>
+<p>(^1) Institute of Mathematics, Universität Potsdam, 14476 Potsdam, Germany, nuesken@uni-potsdam.de (^2) Institute of Mathematics, Freie Universität Berlin, 14195 Berlin, Germany, lorenz.richter@fu-berlin.de (^3) Institute of Mathematics, Brandenburgische Technische Universität Cottbus-Senftenberg, 03046 Cottbus, Germany (^4) dida Datenschmiede GmbH, 10827 Berlin, Germany</p>
+<h3 id="december-8-2021">December 8, 2021</h3>
+<p>Abstract</p>
+<h2 id="1-introduction">1 Introduction</h2>
+<p>(∂t+L)V(x,t) +h(x,t,V(x,t),σ&gt;∇V(x,t)) = 0, (x,t)∈Ω×[0,T), (1a) V(x,T) =f(x), x∈Ω, (1b) V(x,t) =g(x,t), (x,t)∈∂Ω×[0,T], (1c)</p>
+<p>L=</p>
+<h4 id="1">1</h4>
+<h4 id="2">2</h4>
+<p>∑d</p>
+<p>i,j=1</p>
+<p>(σσ&gt;)ij(x,t)∂xi∂xj+</p>
+<p>∑d</p>
+<p>i=1</p>
+<p>bi(x,t)∂xi (2)</p>
+<p>is an elliptic differential operator including the coefficient functionsb∈C(Rd×[0,T],Rd)andσ∈C(Rd×[0,T],Rd×d), withσassumed to be non-degenerate. We will later make use of the fact thatLis the infinitesimal generator of the diffusion process defined by the stochastic differential equation (SDE)</p>
+<p>dXs=b(Xs,s) ds+σ(Xs,s) dWs, (3)</p>
+<p>whereWsis a standardd-dimensional Brownian motion. Our approach exploiting the connection between (1) and (3) extends almost effortlessly to a wide range of nonlinear elliptic PDEs (see Section 4.1) and eigenvalue problems (see Section 4.2). We also note that the terminal condition (1b) can be replaced by an initial condition without</p>
+<h1 id="mathna-7-dec-2021">[math.NA] 7 Dec 2021</h1>
+<hr />
+<p>loss of generality, using a time reversal transformation. Similarly, we may replace the Dirichlet boundary condition (1c) by its Neumann counterpart, that is, constraining the normal derivative∂~nVon∂Ω×[0,T]in (1c).</p>
+<p>A notorious challenge that appears in the numerical treatment of PDEs is thecurse of dimensionality, suggesting that the computational complexity increases exponentially in the dimension of the state space. In recent years, however, multiple numerical [19, 35, 69] as well as theoretical studies [26, 40] have indicated that a combination of Monte Carlo methods and neural networks offers a promising way to overcome this problem. This paper centers around two strategies that allow for solving quite general nonlinear PDEs:</p>
+<ul>
+<li>
+<p>PINNs <a href="69">physics-informed neural networks</a>, also known under the name DGM<a href="72">deep Galerkin     method</a> directly minimize the misfit between the left-hand sides and right-hand sides of (1), evaluated     at appropriately chosen (random) points in the space-time domainΩ×[0,T]and its boundary.</p>
+</li>
+<li>
+<p>deep BSDEs <a href="19">backward stochastic differential equations</a> rely on a reformulation of (1) in terms     of stochastic forward-backward dynamics, explicitly making use of the connection between the PDE (1) and     the SDE (3). Deep BSDEs minimize the misfit in the terminal condition associated to the backward SDE.</p>
+</li>
+</ul>
+<p>We review those approaches (see Section 2) and – motivated by Itô’s formula – introduce a novel optimization objective, called thediffusion lossLtdiffusion(see Section 3). Importantly, our construction depends on the auxiliary time parametert∈(0,∞), allowing us to recover PINNs in the limitt→ 0 and deep BSDEs in the limitt→∞:</p>
+<p>PINNs t→ 0 ←−−−−−−Ltdiffusion t→∞ −−−−−−−→deep BSDEs</p>
+<p>As will become clear below, PINNs may therefore be thought of as accumulating derivative information on the PDE solution locally (in time), whereas deep BSDEs constitute global approximation schemes (relying on entire trajectories).</p>
+<p>The diffusion loss provides an interpolation between seemingly quite distinct methods. Besides this theoretical insight, we show experimentally that an appropriate choice oftcan lead to a computationally favourable blending of PINNs and deep BSDEs, combining the advantages of both methods. In particular, the diffusion loss (witht chosen to be of moderate size) appears to perform well in scenarios where the domainΩhas a (possibly complex) boundary and/or the PDE under consideration contains a large number of second order derivatives (for instance, whenσis not sparse). We will discuss the trade-offs involved in Section 5.</p>
+<p>The curse of dimensionality, BSDEs vs. PINNs.Traditional numerical methods for solving PDEs (such as finite difference and finite volume methods, see [1]) usually require a discretization of the domainΩ, incurring a computational cost that for a prescribed accuracy is expected to grow linearly in the number of grid points, and hence exponentially in the number of dimensions. The recently developed approaches towards beating this curse of dimensionality – BSDEs and PINNs alike^1 – replace the deterministic mesh by Monte Carlo sampling, in principle promising dimension-independent convergence rates [20]. Typically, the approximating function class is comprised of neural networks (expectantly providing adaptivity to low-dimensional latent structures [2]), although also tensor trains have shown to perform well [70]. In contrast to PINNs, methods based on BSDEs make essential use of the underlying diffusion (3) to generate the training data. According to our preliminary numerical experiments, it is not clear whether this use of structure indeed translates into computational benefits; we believe that additional research into this comparison is needed and likely to contribute both conceptually and practically to further advances in the field. The diffusion loss considered in this paper may be a first step in this direction, for a direct comparison between BSDEs and PINNs we refer to Table 1a and Table 1b below.</p>
+<p>Previous works. Attempts to approximate PDE solutions by combining Monte Carlo methods with neural networks date back to the 1990s, where some variants of residual minimizations have been suggested [41, 49, 50, 51, 73]. Recently, this idea gained popularity under the namesphysics-informed neural networks(PINNs, [68, 69]) and deep Galerkin methods(DGMs, [72]). Let us further refer to a comparable approach that has been suggested in [9], and, for the special case of solving the dynamic Schrödinger equation, to [16]. For theoretical analyses we shall for instance mention [57], which provides upper bounds on the generalization error, [17], which states an error analysis for PINNs in the approximation of Kolmogorov-type PDEs, [59], which investigates convergences depending on whether using exact or penalized boundary terms, and [76, 77], which study convergence properties through the</p>
+<p>(^1) We note in passing that multilevel Picard approximations [7, 36, 38] represent another interesting and fairly different class of methods that however are beyond the scope of this paper.</p>
+<hr />
+<p>lens of neural tangent kernels. Some further numerical experiments have been conducted in [18, 56] and multiple algorithmic improvements have been suggested, e.g. in [75], which balances gradients during model training, [39], which considers adaptive activation functions to accelerate convergence, as well as [74], which investigates efficient weight-tuning.</p>
+<p>BSDEs have first been introduced in the 1970s [11] and eventually studied more systematically in the 1990s [62]. For a comprehensive introduction elaborating on their connections to both elliptic and parabolic PDEs we refer for instance to [61]. Numerical attempts to exploit this connection aiming for approximations of PDE solutions have first been approached by backward-in-time iterations, originally relying on a set of basis functions and addressing parabolic equations on unbounded domains [14, 23, 61]. Those methods have been considered and further developed with neural networks in [3, 35] and endowed with tensor trains in [70]. A variational formulation termeddeep BSDE has been first introduced in [19, 28], aiming at PDE solutions at a single point, with some variants following e.g. in [60, 67]. For an analysis of the approximation error of the deep BSDE method we refer to [29] and for a fully nonlinear version based on second-order BSDEs to [5]. An extension to elliptic PDEs on bounded domains has been suggested in [47].</p>
+<p>There are additional works aiming to solve linear PDEs specifically, mainly by exploiting the Feynman-Kac theorem and mostly considering parabolic equations [4, 10]. For the special case of the Poisson equation, [24] considers an elliptic equation on a bounded domain. Linear PDEs often admit a variational formulation that suggests to minimize a certain energy functional – this connection has been used in [22, 44, 54] and we refer to [58] for some further analysis. Similar minimization strategies can be used when considering eigenvalue problems, where we mention [80] in the context of metastable diffusion processes. We also refer to [33, 42, 48, 65] for similar problems in quantum mechanics that often rest on particular neural network architectures. Nonlinear elliptic eigenvalue problems are addressed in [30, 65] by exploiting a connection to a parabolic PDE and a fixed point problem.</p>
+<p>For rigorous results towards the capability of neural networks to overcome the curse of dimensionality we refer to [25, 37, 40], each analyzing certain special PDE cases. Adding to the methods referred to above, let us also mention [78] as an alternative approach exploiting weak PDEs formulations, as well as [53], which approximates operators by neural networks (however relying on training data from reference solutions), where a typical application is to map an initial condition to a solution of a PDE. For further references on approximating PDE solutions with neural networks we refer to the recent review articles [6, 12, 20, 43].</p>
+<p>Outline of the article. In Section 2 we review PINN and BSDE based approaches towards solving highdimensional (parabolic) PDEs. In Section 3 we introduce the diffusion loss, show its validity for solving PDEs of the form (1), and prove that it interpolates between the PINN and BSDE losses. Section 4 develops extensions of the proposed methodology to elliptic PDEs and eigenvalue problems. In Section 5, we discuss implementational details as well as some further modifications of the losses under consideration. In Section 6 we present numerical experiments, including a committor function example from molecular dynamics and a nonlinear eigenvalue problem motivated by quantum physics. Finally, Section 7 concludes the paper with a summary and outlook.</p>
+<h2 id="2-variational-formulations-of-boundary-value-problems">2 Variational formulations of boundary value problems</h2>
+<p>In this section we consider boundary value problems such as (1) in a variational formulation. That is, we aim at approximating the solutionVwith some functionφ∈Fby minimizing suitableloss functionals</p>
+<p>L:F →R≥ 0 , (4)</p>
+<p>which are zero if and only if the boundary value problem is fulfilled,</p>
+<p>L(φ) = 0 ⇐⇒ φ=V. (5)</p>
+<p>HereF ⊂C^2 ,^1 (Ω×[0,T],R)∩C(Ω×[0,T],R)refers to an appropriate function class, usually consisting of deep neural networks. With a loss function at hand we can apply gradient-descent type algorithms to minimize (estimator versions of)L, keeping in mind that different choices of losses lead to different statistical and computational properties and therefore potentially to different convergence speeds and robustness behaviours [60].</p>
+<p>Throughout, we will work under the following assumption:</p>
+<hr />
+<p>Assumption 1.The following hold:</p>
+<ol>
+<li>
+<p>The domainΩis either bounded with piecewise smooth boundary, orΩ =Rd.</p>
+</li>
+<li>
+<p>The boundary value problem(1)admits a unique classical solutionV∈C^2 ,^1 (Ω×[0,T],R)∩C(Ω×[0,T],R).     Moreover, the gradient ofV satisfies a polynomial growth condition inx, that is,</p>
+</li>
+</ol>
+<p>|∇V(x,t)|≤C(1 +|x|q), (x,t)∈Ω×[0,T], (6)</p>
+<p>for someC,q &gt; 0.</p>
+<ol>
+<li>Complemented with a deterministic initial condition, the SDE(3)admits a unique strong solution, globally in     time.</li>
+</ol>
+<h3 id="21-the-pinn-loss">2.1 The PINN loss</h3>
+<p>Losses based on PDE residuals go back to [49, 50] and have gained recent popularity under the namephysicsinformed neural networks(PINNs, [69]) ordeep Galerkin methods(DGMs, [72]). The idea is to minimize an appropriateL^2 -error between the leftand right-hand sides of (1a)-(1c), replacingV by its approximationφ. The derivatives ofφare computed analytically or via automatic differentiation and the data on whichφis evaluated is distributed according to some prescribed probability measure (often a uniform distribution). A precise definition is as follows:</p>
+<p>Definition 2.1(PINN loss).Letφ∈F. ThePINN lossconsists of three terms,</p>
+<p>LPINN(φ) =αintLPINN,int(φ) +αTLPINN,T(φ) +αbLPINN,b(φ), (7)</p>
+<p>where</p>
+<p>LPINN,int(φ) =E</p>
+<h4 id="_2">[(</h4>
+<p>(∂t+L)φ(X,t) +h(X,t,φ(X,t),σ&gt;∇φ(X,t))</p>
+<h4 id="2_1">) 2 ]</h4>
+<p>, (8a)</p>
+<p>LPINN,T(φ) =E</p>
+<h4 id="_3">[(</h4>
+<p>φ(X(T),T)−f(X(T))</p>
+<h4 id="2_2">) 2 ]</h4>
+<p>, (8b)</p>
+<p>LPINN,b(φ) =E</p>
+<h4 id="_4">[(</h4>
+<p>φ(Xb,tb)−g(Xb,tb)</p>
+<h4 id="2_3">) 2 ]</h4>
+<p>. (8c)</p>
+<p>Here,αint,αT,αb&gt; 0 are suitable weights balancing theinterior,terminalandboundaryconstraints, and(X,t)∼ νΩ×[0,T],X(T)∼νΩand(Xb,tb)∼ν∂Ω×[0,T]are distributed according to probability measuresνΩ×[0,T]∈ P(Ω× [0,T]),νΩ∈P(Ω)andν∂Ω×[0,T]∈P(∂Ω×[0,T])that are fully supported on their respective domains.</p>
+<p>While uniform distributions are canonical choices forνΩ×[0,T],νΩandν∂Ω×[0,T], further research might reveal promising (possibly adaptive) alternatives that focus the sampling on specific regions of interest.</p>
+<p>Remark2.2 (Generalizations).Clearly, the loss contributions (8a)-(8c) represent in one-to-one correspondence the constraints in (1a)-(1c). By that principle, the PINN loss can straightforwardly be generalized to other types of PDEs, see [43] and references therein. Let us further already mention that choosing appropriate weights αint,αT,αb &gt; 0 is crucial for algorithmic performance, but not straightforward. We will elaborate on this aspect in Section 5.</p>
+<p>Remark2.3 (Unbounded domains).In the case whenΩ =Rd, the boundary contribution (8c) becomes obsolete and we setαb= 0. Analogous remarks apply to the BSDE and diffusion losses introduced below.</p>
+<p>Remark2.4 (Neumann and periodic boundary conditions).Instead of the Dirichlet boundary condition (1c), Neumann or periodic boundary conditions may be considered, and the generalization of the PINN loss (as well as the diffusion loss introduced below) is straightforward. In the case of periodic boundary conditions, for instance, (8c) may be replaced by</p>
+<p>Lb(φ) =E</p>
+<h4 id="_5">[(</h4>
+<p>φ(Xb)−φ(X b )</p>
+<h4 id="2_4">) 2 ]</h4>
+<h4 id="e">+E</h4>
+<h4 id="_6">[∣</h4>
+<h4 id="_7">∣</h4>
+<p>∣∇φ(Xb)−∇φ(X</p>
+<p>b )</p>
+<h4 id="_8">∣</h4>
+<h4 id="_9">∣</h4>
+<h4 id="_10">∣</h4>
+<h4 id="2_5">2 ]</h4>
+<h4 id="9">, (9)</h4>
+<p>whereXb∼ν∂Ω, andX b refers to the reflected/periodic counterpart. The BSDE loss (see Section 2.2 below) does not seem to admit a similar straightforward extension to more general boundary conditions, but [63] might provide a starting point for constructing a BSDE based method.</p>
+<hr />
+<h3 id="22-the-bsde-loss">2.2 The BSDE loss</h3>
+<p>The BSDE loss makes use of a stochastic representation of the boundary value problem (1) given by a backward stochastic differential equation (BSDE) that is rooted in the correspondence between the differential operatorL defined in (2) and the stochastic processXdefined in (3). Indeed, according to [61], the PDE (1) is related to the system</p>
+<p>dXs=b(Xs,s) ds+σ(Xs,s) dWs, Xt 0 =xinit, (10a) dYs=−h(Xs,s,Ys,Zs) ds+Zs·dWs, YT∧τ=k(XT∧τ,T∧τ), (10b)</p>
+<p>whereτ= inf{t &gt;0 :Xt∈/Ω}is the first exit time fromΩandksubsumes the boundary conditions,</p>
+<p>k(x,t) =</p>
+<h4 id="_11">{</h4>
+<p>f(x), t=T, x∈Ω, g(x,t), t≤T, x∈∂Ω.</p>
+<h4 id="11">(11)</h4>
+<p>Owing to the fact thatXin (10a) is constrained at initial timet 0 andY in (10b) at final timeT, the processes (Xs)t 0 ≤s≤Tand(Ys)t 0 ≤s≤Tare referred to as forward and backward, respectively. Given appropriate growth and regularity conditions on the coefficientsb,σ,handk, Itô’s formula implies that the backward processes satisfy</p>
+<p>Ys=V(Xs,s), Zs=σ&gt;∇V(Xs,s), (12)</p>
+<p>that is, they provide the solution to (1) and its derivative along the trajectories of the forward process(Xs)t 0 ≤s≤T, see [79]. Aiming for the approximationφ≈V, we substitute (12) into (10b) and replaceVbyφto obtain</p>
+<p>Y ̃T∧τ(φ) =φ(Xt 0 ,t 0 )−</p>
+<p>T∫∧τ</p>
+<p>0</p>
+<p>h(Xs,s,φ(Xs,s),σ&gt;∇φ(Xs,s)) ds+</p>
+<p>T∫∧τ</p>
+<p>0</p>
+<p>σ&gt;∇φ(Xs,s)·dWs. (13)</p>
+<p>Our notationY ̃T∧τ(φ)emphasizes the distinction fromYT∧τ(which refers to the solution of (10)) and highlights the dependence on the particular choiceφ∈F. The key idea is now to penalize deviations from the terminal condition in (10b) via the loss</p>
+<p>L(φ) =E</p>
+<h4 id="_12">[(</h4>
+<p>k(XT∧τ,T∧τ)−Y ̃T∧τ(φ)</p>
+<h4 id="2_6">) 2 ]</h4>
+<h4 id="14">, (14)</h4>
+<p>see [28]. We summarize this construction as follows.</p>
+<p>Definition 2.5(BSDE loss).Letφ∈F. TheBSDE lossis defined as</p>
+<p>LBSDE(φ) =E</p>
+<h4 id="_13">[(</h4>
+<p>f(Xτ∧T) (^1) {τ∧T=T}+g(Xτ∧T,τ∧T) (^1) {τ∧T=τ}−φ(Xt 0 ,t 0 )− τ∫∧T t 0 σ&gt;∇φ(Xs,s)·dWs</p>
+<h4 id="_14">+</h4>
+<p>τ∫∧T</p>
+<p>t 0</p>
+<p>h(Xs,s,φ(Xs,s),σ&gt;∇φ(Xs,s)) ds</p>
+<h4 id="2_7">) 2 ]</h4>
+<h4 id="_15"></h4>
+<h4 id="15">(15)</h4>
+<p>where(Xt)t 0 ≤t≤τ∧Tis a solution to (3) andτ= inf{t &gt;0 :Xt∈/Ω}is the first exit time fromΩ. Furthermore, the initial condition(X 0 ,t 0 )is distributed according to a prescribed probability measureνΩ×[0,T]with full support on Ω×[0,T].</p>
+<p>Remark2.6 (BSDE versus PINN).In contrast to the PINN loss (7), the BSDE loss (15) does not rely on a judicious tuning of the weightsαint,αT,αb. On the other hand, implementations based on the BSDE loss face the challenge of simulating the hitting timesτ= inf{t &gt;0 :Xt∈/Ω}efficiently and accurately. We shall elaborate on this aspect in Section 5.1.</p>
+<p>Remark2.7 (Relationship to earlier work). The idea of approximating solutions to PDEs by solving BSDEs has been studied extensively [14, 23, 61], where first approaches were regression based, relying on iterations backwards in time. These ideas do not seem to be straightforwardly applicable to the case whenΩis bounded, as the trajectories of the forward process (10a) are not all of the same length (but see [13] and [31]). A global variational strategy using neural networks has first been introduced in [19], where however in contrast to Definition 2.5, the initial condition (X 0 ,t 0 )is deterministic (and fixed) and only parabolic problems onΩ =Rdare considered. Moreover, slightly different choices for the approximations are chosen, namelyV is only approximated att 0 = 0and∇V instead of Vis learnt by one neural network per time point (instead of using only one neural network withtas an additional input).</p>
+<hr />
+<h2 id="3-the-diffusion-loss">3 The diffusion loss</h2>
+<p>In this section we introduce a novel loss that interpolates between the PINN and BSDE losses from Section 2 using an auxiliary time parametert∈(0,∞). As for the BSDE loss, the connection between the SDE (3) and its infinitesimal generator (2) plays a major role: Itô’s formula</p>
+<h4 id="vxttvx-0-0">V(XT,T)−V(X 0 ,0) =</h4>
+<h4 id="t">∫T</h4>
+<p>0</p>
+<p>(∂s+L)V(Xs,s) ds+</p>
+<h4 id="t_1">∫T</h4>
+<p>0</p>
+<p>σ&gt;∇V(Xs,s)·dWs (16)</p>
+<p>motivates the following variational formulation of the boundary value problem (1).</p>
+<p>Definition 3.1(Diffusion loss).Letφ∈Fandt∈(0,∞). Thediffusion lossconsists of three terms,</p>
+<p>Ltdiffusion(φ) =αintLtdiffusion,int(φ) +αTLtdiffusion,T(φ) +αbLtdiffusion,b(φ), (17)</p>
+<p>where</p>
+<p>Ltdiffusion,int(φ) =E</p>
+<h4 id="_16">[(</h4>
+<p>φ(XT,T)−φ(Xt 0 ,t 0 )−</p>
+<h4 id="t_2">∫T</h4>
+<p>t 0</p>
+<p>σ&gt;∇φ(Xs,s)·dWs (18a)</p>
+<h4 id="_17">+</h4>
+<h4 id="t_3">∫T</h4>
+<p>t 0</p>
+<p>h(Xs,s,φ(Xs,s),σ&gt;∇φ(Xs,s)) ds</p>
+<h4 id="2_8">) 2 ]</h4>
+<h4 id="_18"></h4>
+<p>Ltdiffusion,T(φ) =E</p>
+<h4 id="_19">[(</h4>
+<p>φ(X(T),T)−f(X(T))</p>
+<h4 id="2_9">) 2 ]</h4>
+<p>, (18b)</p>
+<p>Ltdiffusion,b(φ) =E</p>
+<h4 id="_20">[(</h4>
+<p>φ(Xb,tb)−g(Xb,tb)</p>
+<h4 id="2_10">) 2 ]</h4>
+<p>, (18c)</p>
+<p>encode the constraints (1a)-(1c), balanced by the weightsαint,αT,αb&gt; 0. The process(Xt)t 0 ≤t≤Tis a solution to (3) with initial condition(X 0 ,t 0 )∼νΩ×[0,T]and maximal trajectory lengtht&gt; 0. The stopping timeT := (t 0 +t)∧τ∧Tis a shorthand notation, referring to the (random) final time associated to a realization of the path Xas it either hits the parabolic boundary∂Ω×{T}or reaches the maximal timet 0 +t. As in Definition 2.1, τ= inf{t &gt;0 :Xt∈/Ω}is the exit time fromΩ, and(Xb,tb)∼ν∂Ω×[0,T],X(T)∼νΩare distributed according to probability measures that are fully supported on their respective domains.</p>
+<p>Remark3.2 (Comparison to the BSDE and PINN losses).In contrast to the PINN loss from Definition 2.1, the data inside the domainΩis not sampled according to a prescribed probability measureνΩ, but along trajectories of the diffusion (3). Consequently, second derivatives ofφdo not have to be computed explicitly, but are approximated using the driving Brownian motion (and – implicitly – Itô’s formula). A main difference to the BSDE loss from Definition 2.5 is that the simulated trajectories have a maximal lengtht, which might be beneficial computationally if the final timeTor the exit timeτis large (with high probability). Additionally, the sampling of extra boundary data circumvents the problem of accurately simulating those exit times (see Remark 2.6). Both aspects will be further discussed in Section 5. We refer to Figure 1 for a graphical illustration of the data required to compute the three losses.</p>
+<hr />
+<p>PINN loss BSDE loss, t = 0.0001 Diffusion loss, t = 0.0001, N = 50</p>
+<p>Figure 1: We illustrate the training data used for the three losses inside the unit squareΩ = (0,1)^2. The PINN loss in the left panel takes i.i.d. data points that are sampled from prescribed probability distributions in the domainΩ and on the boundary∂Ω(in this case from uniform distributions). The BSDE loss (middle panel) uses trajectories associated to the SDE (3) that are started at random pointsX 0 (green points) and run until they hit the boundary (red points). The trajectories for the diffusion loss have a maximal lengthtand therefore frequently start and end insideΩ, as displayed in the right panel. The blue points for the PINN and diffusion losses indicate the additionally sampled boundary data.</p>
+<p>The following proposition shows that the lossLtdiffusionis indeed suitable for the boundary value problem (1).</p>
+<p>Proposition 3.3.Consider the diffusion loss as defined in(17), and assume thatbandσare globally Lipschitz continuous inx, uniformly int∈[0,T]. Furthermore, assume the following Lipschitz and boundedness conditions onf,gandh,</p>
+<p>|f(x)|≤C(1 +|x|p), |g(x,t)|≤C(1 +|x|p), |h(t,x,y,z)|≤C(1 +|x|p+|y|+|z|), |h(t,x,y,z)−h(t,x,y′,z)|≤C|y−y′|, |h(t,x,y,z)−h(t,x,y,z′)|≤C|z−z′|,</p>
+<p>for appropriate constantsC,p≥ 0 and allx,y,z∈Ω,t∈[0,T]. Finally, assume that Assumption 1 is satisfied. Then forφ∈Fthe following are equivalent:</p>
+<ol>
+<li>
+<p>The diffusion loss vanishes onφ,     Ltdiffusion(φ) = 0. (19)</p>
+</li>
+<li>
+<p>φfulfills the boundary value problem(1).</p>
+</li>
+</ol>
+<p>Proof.Denoting byXsthe unique strong solution to (3), an application of Itô’s lemma toφ(Xs,s)yields</p>
+<p>φ(XT,T) =φ(Xt 0 ,t 0 ) +</p>
+<h4 id="t_4">∫T</h4>
+<p>t 0</p>
+<p>(∂s+L)φ(Xs,s) ds+</p>
+<h4 id="t_5">∫T</h4>
+<p>t 0</p>
+<p>σ&gt;∇φ(Xs,s)·dWs, (20)</p>
+<p>almost surely. Assuming thatφfulfills the PDE (1a), it follows from the definition in (18a) thatLtdiffusion,int(φ) = 0. Similarly, the boundary conditions (1b) and (1c) imply thatLtdiffusion,T(φ) =Ltdiffusion,b(φ) = 0. Consequently, we see thatLtdiffusion(φ) = 0. For the converse direction, observe thatLtdiffusion(φ) = 0implies that</p>
+<p>φ(XT,T) =φ(Xt 0 ,t 0 ) +</p>
+<h4 id="t_6">∫T</h4>
+<p>t 0</p>
+<p>σ&gt;∇φ(Xs,s)·dWs−</p>
+<h4 id="t_7">∫T</h4>
+<p>t 0</p>
+<p>h(Xs,s,φ(Xs,s),σ&gt;∇φ(Xs,s)) ds, (21)</p>
+<hr />
+<p>almost surely, and that the same holds withφreplaced byV. We proceed by defining the processesY ̃s:=φ(Xs,s) andZ ̃s:=σ&gt;∇φ(Xs,s), as well asYs:=V(Xs,s)andZs:=σ&gt;∇V(Xs,s). By the assumptions onφ,band σ, the processesY,Z,Y ̃andZ ̃are progressively measurable with respect to the filtration generated by(Wt)t≥ 0</p>
+<p>and moreover square-integrable. Furthermore, the relation (21) shows that the pairs(Y,Z)and(Y , ̃Z ̃)satisfy a BSDE with terminal conditionξ:=φ(XT,T)on the random time interval[t 0 ,T]. Well-posedness of the BSDE (see [61, Theorems 1.2 and 3.2]) implies thatY =Y ̃andZ=Z ̃, almost surely. Conditional ont 0 andXt 0 , we also haveV(Xt 0 ,t 0 ) =YXt^0 ,t^0 =Y ̃Xt^0 ,t^0 =φ(Xt 0 ,t 0 ), where the superscripts denote conditioning on the initial timet 0 and corresponding initial conditionXt 0 , see [61, Theorems 2.4 and 4.3]. Hence, we conclude thatφ=V, νΩ×[0,T]-almost surely, and the result follows from the continuity ofφandVand the assumption thatνΩ×[0,T] has full support.</p>
+<p>We have noted before that the diffusion loss combines aspects from the BSDE and PINN losses. In fact, it turns out that the diffusion loss can be interpreted as a specific type of interpolation between the two. The following proposition makes this observation precise.</p>
+<p>Proposition 3.4(Relation of the diffusion loss to the PINN and BSDE losses).Letφ∈ F. Assuming that the measuresνΩ×[0,T]in Definitions 2.1 and 3.1 coincide, we have that</p>
+<p>Ltdiffusion,int(φ) t^2</p>
+<p>→LPINN,int(φ), (22)</p>
+<p>ast→ 0. Moreover, ifνΩ×[0,T]refers to the same measure in Definitions 2.1 and 2.5, then</p>
+<p>Ltdiffusion,int(φ)→LBSDE(φ), (23)</p>
+<p>ast→∞.</p>
+<p>Proof.Itô’s formula shows thatLtdiffusion,intcan be expressed as</p>
+<p>Ltdiffusion,int(φ) =E</p>
+<h4 id="_21"></h4>
+<h4 id="_22"></h4>
+<h4 id="_23"></h4>
+<h4 id="_24"></h4>
+<h4 id="_25"></h4>
+<h4 id="t_8">∫T</h4>
+<p>t 0</p>
+<p>(∂s+L)φ(Xs,s) ds+</p>
+<h4 id="t_9">∫T</h4>
+<p>t 0</p>
+<p>h(Xs,s,φ(Xs,s),σ&gt;∇φ(Xs,s)) ds</p>
+<h4 id="_26"></h4>
+<h4 id="_27"></h4>
+<h4 id="2_11">2 </h4>
+<h4 id="_28"></h4>
+<h4 id="24">, (24)</h4>
+<p>which implies the limit (22) by dominated convergence, noting thatT →t 0 ast→ 0 , almost surely. The relation (23) follows immediately from the definition ofLBSDEby noting thatT →τ∧Tast→∞, almost surely.</p>
+<h2 id="4">4</h2>
+<h4 id="_29">−→</h4>
+<p>∂Ωxt:= Ω×{T}∪∂Ω×[0,T], and the augmented variablez= (x,t)&gt;∈Ω×[0,T]. Then problem (1) can be presented as</p>
+<p>AV(z) +h(z,V(z),σ&gt;∇xV(z)) = 0, z∈Ωxt, (25a) V(z) =k(z), z∈</p>
+<h4 id="_30">−→</h4>
+<p>∂Ωxt, (25b)</p>
+<p>withkdefined as in (11). Relying on (25), we can equivalently define the BSDE loss as</p>
+<p>LBSDE(φ) =E</p>
+<h4 id="_31">[(</h4>
+<p>k(Xτxt,τxt)−φ(Xt 0 ,t 0 )−</p>
+<p>∫τxt</p>
+<p>t 0</p>
+<p>σ&gt;∇φ(Xs,s)·dWs+</p>
+<p>∫τxt</p>
+<p>t 0</p>
+<p>h(Xs,s,φ(Xs,s),σ&gt;∇φ(Xs,s)) ds</p>
+<h4 id="2_12">) 2 ]</h4>
+<h4 id="_32"></h4>
+<h4 id="26">(26)</h4>
+<p>whereτxt= inf{t &gt;0 :Xt∈/Ωxt}is the first exit time fromΩxt. The PINN and diffusion losses can similarly be rewritten in terms of the space-time domainΩxtand exit timeτxt.</p>
+<p>(^2) We notice in passing that the (ordinary) topological boundary ofΩxtis given by∂Ωxt= Ω× { 0 , T} ∪∂Ω×[0, T], so that ∂Ωxt=−→∂Ωxt∪{ 0 }×Ω.</p>
+<hr />
+<h3 id="41-elliptic-boundary-value-problems">4.1 Elliptic boundary value problems</h3>
+<p>Removing the time dependence from the solution (and from the coefficientsbandσdeterminingL) we obtain the elliptic boundary value problem</p>
+<p>LV(x) +h(x,V(x),σ&gt;∇V(x)) = 0, x∈Ω, (27a) V(x) =g(x), x∈∂Ω, (27b)</p>
+<p>with the nonlinearityh∈C(Rd×R×Rd,R). In analogy to (10), the corresponding backward equation is given by</p>
+<p>dYs=−h(Xs,Ys,Zs) ds+Zs·dWs, Yτ=g(Xτ), (28)</p>
+<p>whereτ={t &gt;0 :Xt∈/Ω}is the first exit time fromΩ. Given suitable boundedness and regularity assumptions on hand assuming thatτis almost surely finite, one can show existence and uniqueness of solutionsY andZ, which, as before, represent the solutionV and its gradient along trajectories of the forward process [61, Theorem 4.6]. Therefore, the BSDE, PINN and diffusion losses can be applied to (27) with minor modifications: Owing to the fact that there is no terminal condition, we setf= 0in (15), as well asαT= 0in (7) and (17), making (8b) and (18b) obsolete. With the same reasoning, we setT=∞, incurringτ∧T=τandT = (t 0 +t)∧τ; these simplifications are relevant for the expressions (15) and (18a). Proposition 3.3 and its proof can straightforwardly be generalized to the elliptic setting. An algorithm for solving elliptic PDEs of the type (27) in the spirit of the BSDE loss has been suggested in [47], using the same approximation framework as in [19] (cf. Remark 2.7). We note that the solutions to linear elliptic PDEs often admit alternative variational characterizations in terms of energy functionals [22]. An approach using the Feynman-Kac formula has been considered in [24].</p>
+<h3 id="42-elliptic-eigenvalue-problems">4.2 Elliptic eigenvalue problems</h3>
+<p>We can extend the algorithmic approaches from Sections 2 and 3 to eigenvalue problems of the form</p>
+<p>LV(x) =λV(x), x∈Ω, (29a) V(x) = 0, x∈∂Ω, (29b)</p>
+<p>corresponding to the choiceh(x,y,z) =−λyin the elliptic PDE (27). Note, however, thathnow depends on the unknown eigenvalueλ∈R. Furthermore, we can consider nonlinear eigenvalue problems,</p>
+<p>LV(x) +h(x,V(x),σ&gt;∇V(x)) =λV(x), x∈Ω, (30a) V(x) = 0, x∈∂Ω, (30b)</p>
+<p>with a general nonlinearityh∈C(Rd×R×Rd,R).</p>
+<p>For the linear problem (29) it is known that, given suitable boundedness and regularity assumption onbandσ, there exists a unique principal eigenvalue with strictly positive eigenfunction inΩ, see [8, Theorem 2.3]. This motivates us to consider the above losses, now depending onλ, as well as enhanced with an additional term, preventing the trivial solutionV≡ 0. We define Leigen(φ,λ) =Lλ(φ) +αcLc(φ), (31)</p>
+<p>whereLλ(φ)stands for either the PINN, the BSDE, or the diffusion loss (with the nonlinearityhdepending on λ),Lc(φ) = (φ(xc)−1)^2 , andαc&gt; 0 is a weight. Herexc∈Ωis chosen deterministically, preferably not too close to the boundary∂Ω. Clearly, the termLcencouragesφ(xc) = 1, thus discouragingφ≡ 0. We note that V(xc) = 1can be imposed on solutions to (29) without loss of generality, since the eigenfunctions are determined up to a multiplicative constant only. Avoidingφ≡ 0 for nonlinear eigenvalue problems of the form (30) needs to be addressed on a case-by-case basis; we present an example in Section 6.4.2.</p>
+<p>The idea is now to minimizeLeigen(φ,λ)with respect toφ∈ Fandλ∈Rsimultaneously, while constraining the functionφto be non-negative. According to following proposition this is a valid strategy to determine the first eigenpair.</p>
+<p>Proposition 4.2.LetΩbe bounded, and assume thatLis uniformly elliptic, that is, there exist constantsc 0 ,C 0 &gt; 0 such that</p>
+<p>c 0 |ξ|^2 ≤</p>
+<p>∑d</p>
+<p>i,j=1</p>
+<p>(σσ&gt;)(x)ξiξj≤C 0 |ξ|^2 , (32)</p>
+<hr />
+<p>for allξ∈Rd. Moreover, assume thatbis bounded. Letφ∈Fwithφ≥ 0 and assume thatLλ(φ) = 0if and only if(29)is satisfied. Then the following are equivalent:</p>
+<ol>
+<li>
+<p>φis the principal eigenfunction for(29)with principal eigenvalueλand normalizationφ(xc) = 1.</p>
+</li>
+<li>
+<p>Leigen(φ,λ)vanishes on the pair(φ,λ),     Leigen(φ,λ) = 0. (33)</p>
+</li>
+</ol>
+<p>Remark4.3.The assumption thatLλ(φ)is equivalent to (29) is satisfied for any ‘reasonable’ loss function. For the diffusion loss, Proposition 3.3 establishes this condition whenever the coefficients in (29) are regular enough.</p>
+<p>Proof.It is clear that 1. implies 2. by the construction of (31). For the converse direction, notice that (33) implies φ(xc) = 1as well as (29), that is,φis an eigenfunction with eigenvalueλ. In conjunction with the constraintφ≥ 0 , it follows by [8, Theorem 2.3] thatφis the principal eigenfunction.</p>
+<p>An alternative approach towards (29) can be found in [30], where the eigenvalue problem is connected to a parabolic PDE and formulated as a fixed point problem.</p>
+<h2 id="5-from-losses-to-algorithms">5 From losses to algorithms</h2>
+<p>In this section we discuss some details regarding implementational aspects. For convenience, let us start by stating a prototypical algorithm based on the losses introduced in Sections 2 and 3:</p>
+<p>Algorithm 1:Approximation of the solutionVto the boundary value problem (1). Choose a parametrizationRp 3 θ7→φθ. Initializeφθ(with a parameter vectorθ∈Rp). Choose an optimization methoddescent, a batch sizeK∈Nand a learning rateη &gt; 0. For PINN and diffusion losses choose weightsαint,αb,αT&gt; 0 and batch sizesKb,KT∈N. For BSDE and diffusion losses choose a step-size∆t &gt; 0 , for the diffusion loss choose a trajectory lengtht&gt; 0. repeat Choose a loss functionLfrom either (7), (15) or (17). Simulate data according to the chosen loss. ComputeL̂(φθ)as a Monte Carlo version ofL. Compute∇θL̂(φθ)using automatic differentiation. Update parameters:θ←θ−ηdescent(∇θL̂(φθ)). until convergence; Result:φθ≈V.</p>
+<p>Function approximation.In this paper, we rely on neural networks to provide the parametrizationRp 3 θ7→φθ referred to in Algorithm 1 (but note that alternative function classes might offer specific benefits, see, for instance [70]). Standard feed-forward neural networks are given by</p>
+<p>φθ:Rd→R, φθ(x) =AL%(AL− 1 %(···%(A 1 x+b 1 )···) +bL− 1 ) +bL, (34)</p>
+<p>with a collection of matricesAl ∈Rnl×nl−^1 and vectorsbl ∈Rnl comprising the learnable parameters, θ = (Al,bl) 1 ≤l≤L. HereLdenotes the depth of the network, and we haven 0 =das well asnL = 1. The nonlinear activation function%:R→Ris to be applied componentwise. Additionally, we define theDenseNet[22, 34] as a variant of the feed-forward neural network (34), containing additional skip connections, φDenseNetθ (x) =ALxL+bL, (35)</p>
+<p>wherexLis specified recursively as</p>
+<p>yl+1=%(Alxl+bl), xl+1= (xl,yl+1)&gt;, x 1 =x, (36)</p>
+<p>withAl∈Rnl×</p>
+<p>∑l− 1 i=0niandbl∈Rlfor 1 ≤l≤L− 1 ,n 0 =d. Again, the collection of matricesAland vectorsbl</p>
+<p>comprises the learnable parameters.</p>
+<hr />
+<p>Comparison of the losses (practical challenges). The PINN, BSDE and diffusion losses differ in the way training data is generated (see Figure 1 and Table 1a); hence, the corresponding implementations face different challenges (see Table 1b).</p>
+<p>Table 1: Comparison of the different losses.</p>
+<p>PINN BSDE Diffusion SDE simulation 7 7 boundary data 7 7</p>
+<p>(a) The three losses can be characterized by how training data is generated.</p>
+<p>PINN BSDE Diffusion Hesse computations 7 boundary issues 7 weight tuning 7 7 long runtimes 7 discretization 7 7 (b) In this table we list potential challenges and drawbacks for the corresponding losses.</p>
+<p>First, the BSDE and diffusion losses rely on trajectorial data obtained from the SDE (3), in contrast to the PINN loss (cf. the first row in Table 1a). As a consequence, the BSDE and diffusion losses do not require the computation of second-order derivatives, as those are approximated implicitly using Itô’s formula and the SDE (3), cf. the first row in Table 1a. From a computational perspective, the PINN loss therefore faces a significant overhead in high dimensions when the diffusion coefficientσis not sparse (as the expression (8a) involvesd^2 second-order partial derivatives). We notice in passing that an approach similar to the diffusion loss circumventing this problem has been proposed in [72, Section 3]. On the other hand, evaluating the BSDE and diffusion losses requires discretizing the SDE (3), incurring additional numerical errors (cf. the last row in Table 1b and the discussion below in Section 5.1). Second, the PINN and diffusion losses incorporate boundary and final time constraints (see (1c) and (1b)) explicitly by sampling additional boundary data (see (8b), (8c), (18b), (18c) and cf. the second row in Table 1a). On the one hand, this approach necessitates choosing the weightsαint,αb,αT&gt; 0 ; it is by now well established that while algorithmic performance depends quite sensitively on a judicious tuning of these weights, general and principled guidelines to address this issue are not straightforward (see, however, [74, 75, 76, 77]). Weight-tuning, on the other hand, is not required for implementations relying on the BSDE loss, as the boundary data is accounted for implicitly by the hitting event{(Xt,t)∈/Ω×[0,T)}and the corresponding first two terms on the right-hand side of (15). The hitting timesτ= inf{t &gt;0 :Xt∈/Ω}may however be large, leading to a computational overhead in the generation of the training data (but see 5.2.1), and are generally hard to compute accurately (but see Section 5.1).</p>
+<h3 id="51-simulation-of-diffusions-and-their-exit-times">5.1 Simulation of diffusions and their exit times</h3>
+<p>The BSDE and diffusion losses rely on trajectorial data obtained from the stochastic process defined in (3). In practice, we approximate this SDE on a time gridt 0 ≤t 1 ≤ ··· ≤tN, for instance using the Euler-Maruyama scheme [46]</p>
+<p>X ̃n+1=X ̃n+b(X ̃n,tn)∆t+σ(X ̃n,tn)</p>
+<h4 id="_33">√</h4>
+<p>∆tξn+1, (37)</p>
+<p>or, to be precise, by its stopped version</p>
+<p>X̂n+1=X̂n+</p>
+<h4 id="_34">(</h4>
+<p>b(X̂n,tn)∆t+σ(X̂n,tn)</p>
+<h4 id="_35">√</h4>
+<p>∆tξn+1</p>
+<h4 id="_36">)</h4>
+<p>(^1) Cn+1 (38) with step conditionCn:=</p>
+<h4 id="_37">{</h4>
+<p>X ̃n∈Ω</p>
+<h4 id="_38">}</h4>
+<p>∨{tn≤T}and time-incrementtn+1=tn+ ∆t (^1) Cn+1, where∆tis the stepsize andξn+1∼ N(0,Idd×d)are standard normally distributed random variables. We can then straightforwardly construct Monte Carlo estimator versions of either the BSDE or the diffusion loss. For example, the discrete version of the domain part of the diffusion loss (18a) reads L̂(diffusionK,N) ,int(φ) =^1 K</p>
+<h4 id="k">∑K</h4>
+<p>k=1</p>
+<h4 id="_39">(</h4>
+<p>φ(X̂(Nk),t(Nk))−φ(X̂ 0 (k),t( 0 k))−</p>
+<h4 id="n-1">N∑− 1</h4>
+<p>n=0</p>
+<p>σ&gt;∇φ(X̂n(k),t(nk))·ξ(nk+1)</p>
+<h4 id="_40">√</h4>
+<p>∆t (^1) Cn(k) (39a)</p>
+<h4 id="_41">+</h4>
+<h4 id="n-1_1">N∑− 1</h4>
+<p>n=0</p>
+<p>h</p>
+<h4 id="_42">(</h4>
+<p>X̂n(k),t(nk),φ(X̂n(k),t(nk)),σ&gt;∇φ(X̂n(k),t(nk))</p>
+<h4 id="_43">)</h4>
+<p>∆t (^1) C(nk)</p>
+<h4 id="2_13">) 2</h4>
+<p>, (39b)</p>
+<hr />
+<p>whereKis the sample size,N=∆ttis the maximal discrete-time trajectory length, and(X̂n(k))kn=1=1...K...Nare independent copies of the iterates from (38). The Monte Carlo version of the BSDE loss can be formed analogously.</p>
+<p>Given suitable growth and regularity assumptions on the coefficients, the discretization errors of the forward and backward processes are of order</p>
+<h4 id="_44">√</h4>
+<p>∆t[46, 79], cf. also [29] for a numerical analysis on the original version of the BSDE loss. However, the stopped Euler-Maruyama scheme (38) incurs additional errors due to the approximation of the first exit times fromΩ. In the two left panels of Figure 2 we illustrate this problem by displaying multiple “last locations” obtained according to (38), using two different step-sizes∆t. Clearly, all these points should in principle lie on the boundary, (naively) requiring a computationally costly small step-size.</p>
+<p>boundary points, t = 0.001 boundary points, t = 0.0001 trajectories, t = 0.001 reversed trajectories, t = 0.001</p>
+<p>Figure 2: Illustration of the boundary data in the BSDE method.</p>
+<p>Sophisticated approaches towards the accurate simulation of exit times for diffusions discretizing exit times have been put forward, see, e.g. [15, 32]. For our purposes, however, it is not essential to compute the exit times, as long as the simulated trajectories are stopped accurately. We therefore suggest the following two attempts that aim at improving the sampling of boundary data:</p>
+<ol>
+<li>
+<p>Rescaling: StartX 0 randomly inΩ, simulate the trajectory and stop once the boundary has been crossed,     however scale the last time step in such a way that the trajectory exactly ends on∂Ω.</p>
+</li>
+<li>
+<p>Time-reversal: StartX 0 on the boundary∂Ωand simulate the trajectory for a given timeT(unless it hits     the boundary again before timeT, in this case stop the trajectory accordingly or resimulate). Then reverse     the process such that the reversed process exactly ends on the boundary.</p>
+</li>
+</ol>
+<p>An illustration of these two strategies can be found in the two right panels of Figure 2. In our numerical experiments we have found that both rescaling and time-reversal improves the performance of the BSDE method somewhat, but further research is needed.</p>
+<h3 id="52-further-modifications-of-the-losses">5.2 Further modifications of the losses</h3>
+<p>In the following we discuss modifications of the PINN, BSDE and diffusion losses, relating also to versions that have appeared in the literature before.</p>
+<p>5.2.1 Forward control</p>
+<p>We can modify the SDE-based BSDE and diffusion losses by including control termsv∈C(Rd×[0,T],Rd)in the forward process (3), yielding the controlled diffusion</p>
+<p>dXvs= (b(Xsv,s) +σ(Xvs,s)v(Xsv,s)) ds+σ(Xsv,s) dWs. (40)</p>
+<p>Applying Itô’s formula we may obtain losses similar to those considered in Section 2 and 3. For instance, alternative versions of the diffusion loss take the form</p>
+<p>Ltdiffusion,int,v (φ) =E</p>
+<h4 id="_45">[(</h4>
+<p>φ(XTv,T)−φ(Xtv 0 ,t 0 )−</p>
+<h4 id="t_10">∫T</h4>
+<p>t 0</p>
+<p>σ&gt;∇φ(Xs,s)·dWs</p>
+<h4 id="_46">+</h4>
+<h4 id="t_11">∫T</h4>
+<p>t 0</p>
+<h4 id="_47">[</h4>
+<p>h(Xsv,s,φ(Xvs,s),σ&gt;∇φ(Xsv,s))−v(Xsv,s)·σ&gt;∇φ(Xsv,s)</p>
+<h4 id="_48">]</h4>
+<p>ds</p>
+<h4 id="2_14">) 2 ]</h4>
+<h4 id="_49"></h4>
+<h4 id="41">(41)</h4>
+<hr />
+<p>replacing (18a). We note in passing that Proposition 3.3 extends straightforwardly toLtdiffusion,int,v under the assumption thatvsatisfies appropriate Lipschitz and growth conditions.</p>
+<p>Similar considerations apply for the BSDE loss, noting that for solutions to the generalized BSDE system [60]</p>
+<p>dXsv= (b(Xsv,s) +σ(Xsv,s)v(Xvs,s)) ds+σ(Xsv,s) dWs, Xtv 0 =xinit, (42a) dYsv=−h(Xsv,s,Ysv,Zsv) ds+v(Xsv,s)·Zvsds+Zsv·dWs, YTv=k(XvT∧τ,T∧τ), (42b)</p>
+<p>we still have the relations Ysv=V(Xsv,s), Zsv=∇V(Xsv,s) (43)</p>
+<p>for suitablev∈C(Rd×[0,T],Rd), analogously to (12). This immediately incurs the family of losses</p>
+<p>LvBSDE(φ) =E</p>
+<h4 id="_50">[(</h4>
+<p>f(Xτv∧T) (^1) τ∧T=T+g(Xτv∧T,τ∧T) (^1) τ∧T=τ−φ(Xtv 0 ,t 0 )− τ∫∧T t 0 σ&gt;∇φ(Xsv,s)·dWs</p>
+<h4 id="_51">+</h4>
+<p>τ∫∧T</p>
+<p>t 0</p>
+<h4 id="_52">(</h4>
+<p>h(Xvs,s,φ(Xs,s),σ&gt;∇φ(Xs,s))−v(Xsv,s)·σ&gt;∇φ(Xsv,s)</p>
+<h4 id="_53">)</h4>
+<p>ds</p>
+<h4 id="2_15">) 2 ]</h4>
+<h4 id="_54"></h4>
+<h4 id="44">(44)</h4>
+<p>parametrized byv∈C(Rd×[0,T],Rd).</p>
+<p>Adding a control to the forward process can be understood as driving the data generating process into regions of interest, for instance possibly alleviating the problem that exit times might be large (see Table 1b and the corresponding discussion). Identifying suitable forward controls might be an interesting topic for future research (we refer to [60] for some systematic approaches in this respect relating to Hamilton-Jacobi-Bellman PDEs).</p>
+<p>5.2.2 Approximating the gradient of the solution</p>
+<p>The constraints imposed by the BSDE system (10) can be enforced by losses that slightly different from Definition 2.5. Going back to [19], we can for instance use the fact that the backward processY can be written in a forward way, yielding the discrete-time process</p>
+<p>Ŷn+1=Ŷn−h(X̂n,tn,Ŷn,Ẑn)∆t+Ẑn·ξn+1</p>
+<h4 id="_55">√</h4>
+<p>∆t. (45)</p>
+<p>The scheme (45) is explicit, the unknowns beingŶ 0 andẐn, forn∈{ 0 ,...,N− 1 }. This motivates approximating the single parametery 0 ≈Ŷ 0 ∈Ras well as the vector fieldsφ≈σ&gt;∇V∈C(Rd×[0,T],Rd), rather thanVdirectly. This approach gives rise to the loss</p>
+<p>LBSDE− 2 (φ,y 0 ) =E</p>
+<h4 id="_56">[(</h4>
+<p>f(Xτ∧T) (^1) τ∧T=T+g(Xτ∧T,τ∧T) (^1) τ∧T=τ−y 0 − τ∫∧T 0 φ(Xs,s)·dWs</p>
+<h4 id="_57">+</h4>
+<p>τ∫∧T</p>
+<p>0</p>
+<p>h(Xs,s,Ys,φ(Xs,s)) ds</p>
+<h4 id="2_16">) 2 ]</h4>
+<h4 id="_58"></h4>
+<h4 id="46">(46)</h4>
+<p>In this settingX 0 has to be chosen deterministically; we note that a potential drawback is thus that the solution is only expected to be approximated accurately in regions that can be reached by the forward processXt(starting at X 0 ) with sufficiently high probability. It has been shown in [60] that alternative losses (like the log-variance loss) can be considered whenever the nonlinearityhonly depends on the solution through its gradient, in which case the extra parametery 0 can be omitted.</p>
+<p>5.2.3 Penalizing deviations from the discrete scheme</p>
+<p>Another approach that is rooted in the discrete-time backward process (45) has been suggested in [67] for problems on unbounded domains. It relies on the idea to penalize deviations from (45), for eachn∈ { 0 ,...,N− 1 }(cf.</p>
+<hr />
+<p>also [35, 70], where however an implicit scheme and backward iterations are used). Aiming forŶn≈φ(X̂n,tn), Ẑn≈σ&gt;∇φ(X̂n,tn), this motivates the loss</p>
+<p>L̂(K,N) BSDE− 3 (φ) =αint</p>
+<h4 id="lkn">L̂(K,N)</h4>
+<p>BSDE− 3 ,int(φ) +αb</p>
+<h4 id="lkn_1">L̂(K,N)</h4>
+<p>BSDE− 3 ,b(φ) (47)</p>
+<p>with interior part</p>
+<h4 id="lkn_2">L̂(K,N)</h4>
+<p>BSDE− 3 ,int(φ) =</p>
+<h4 id="1_1">1</h4>
+<h4 id="k_1">K</h4>
+<h4 id="k_2">∑K</h4>
+<p>k=1</p>
+<h4 id="n-1_2">N∑− 1</h4>
+<p>n=0</p>
+<h4 id="_59">(</h4>
+<p>φ(X̂n(k+1))−φ(X̂n(k)) +h</p>
+<h4 id="_60">(</h4>
+<p>X̂(nk),φ(X̂(nk)),σ&gt;∇φ(X̂(nk))</p>
+<h4 id="_61">)</h4>
+<p>∆t−σ&gt;∇φ(X̂n(k))ξn+1</p>
+<h4 id="_62">√</h4>
+<p>∆t</p>
+<h4 id="2_17">) 2</h4>
+<h4 id="48">(48)</h4>
+<p>and boundary term</p>
+<h4 id="lkn_3">L̂(K,N)</h4>
+<p>BSDE− 3 ,b(φ) =</p>
+<h4 id="1_2">1</h4>
+<h4 id="k_3">K</h4>
+<h4 id="k_4">∑K</h4>
+<p>k=1</p>
+<h4 id="_63">(</h4>
+<p>φ(X̂ (k) N )−g( X̂(k) N )</p>
+<h4 id="2_18">) 2</h4>
+<h4 id="49">. (49)</h4>
+<p>A generalization to equations posed on bounded domains is straightforward. We also note that in contrast to the</p>
+<p>diffusion loss, (47) does not seem to naturally derive from a continuous-time formulation. Interestingly,L̂(BSDEK,N)− 3 can be related to the diffusion loss via Jensen’s inequality,</p>
+<p>L̂(K,N) diffusion,int(φ)≤N</p>
+<h4 id="lkn_4">L̂(K,N)</h4>
+<p>BSDE− 3 ,int(φ). (50)</p>
+<p>Yet another approach that is based on a discrete backward scheme is the following. Let us initializeŶ 0 =φ(X̂ 0 ,0) and simulate Ŷn+1=Ŷn−h(X̂n,Ŷn,σ&gt;∇φ(X̂n,tn))∆t+σ&gt;∇φ(X̂n,tn)·ξn+1</p>
+<h4 id="_64">√</h4>
+<p>∆t, (51)</p>
+<p>forn∈{ 0 ,...,N− 1 }, where, similarly to (46), but in in contrast to (48), onlyẐnis replaced by its approximation σ&gt;∇φ(X̂n,tn)whileŶnis retained from previous iteration steps. Again penalizing deviations from the discrete-time scheme, we can now introduce the loss</p>
+<p>L̂(BSDEK,N)− 4 (φ) =α^1 K</p>
+<h4 id="k_5">∑K</h4>
+<p>k=1</p>
+<h4 id="n">∑N</h4>
+<p>n=0</p>
+<h4 id="_65">(</h4>
+<p>φ(X̂n(k),tn)−Ŷn(k)</p>
+<h4 id="2_19">) 2</h4>
+<h4 id="_66">+</h4>
+<p>α 2 K</p>
+<h4 id="k_6">∑K</h4>
+<p>k=1</p>
+<h4 id="_67">(</h4>
+<p>φ(Xb(k))−g(Xb(k))</p>
+<h4 id="2_20">) 2</h4>
+<h4 id="52">. (52)</h4>
+<p>Both inLBSDE− 3 andLBSDE− 4 the deterministic initial conditionX̂ 0 att= 0can be replaced by random choices (X̂t 0 ,t 0 )∼νΩ×[0,T], adjusting the sums in (48) and (52) accordingly.</p>
+<h2 id="6-numerical-experiments">6 Numerical experiments</h2>
+<p>In this section we provide several numerical examples of high-dimensional parabolic and elliptic PDEs that shall demonstrate the performances of Algorithm 1 using the different loss functions introduced before. We focus on the PINN, BSDE and diffusion losses from Sections 2 and 3 since their modified versions from Section 5.2 in general led to similar or worse performances. If not specified otherwise, the approximation ofφrelies on a DenseNet architecture defined in (35) with ReLU activation function and four hidden layers withd+ 20,d,d,dunits respectively (recall thatdspecifies the dimension). The optimization is carried out using the Adam optimizer [45] with standard parameters and learning rateη= 0. 001. Throughout, we takeKint= 200samples inside the domainΩand (for the PINN and diffusion losses)Kb= 50samples on the boundary, per gradient step. For the SDE discretization we choose a step-size of∆t= 0. 001. The weight configurations for the PINN and diffusion losses are optimized manually; we then only report the results for the optimal settings (see the discussion on weight-tuning in Section 5). We refer to the code at<a href="https://github.com/lorenzrichter/path-space-PDE-solver">https://github.com/lorenzrichter/path-space-PDE-solver</a>.</p>
+<h3 id="61-nonlinear-toy-problems">6.1 Nonlinear toy problems</h3>
+<p>Let us start with a nonlinear toy problem for which analytical reference solutions are available. Throughout this subsection, the domain of interest is taken to be the unit ballΩ ={x∈Rd:|x|&lt; 1 }.</p>
+<hr />
+<p>6.1.1 Elliptic problem with Dirichlet boundary data</p>
+<p>We first consider an elliptic boundary value problem of the form (27). Letγ∈Rand choose</p>
+<p>b(x,t) = 0 , σ(x,t) =</p>
+<h4 id="_68">√</h4>
+<p>2 Idd×d, g(x) =eγ, (53a)</p>
+<p>h(x,y,z) =− 2 γy(γ|x|^2 +d) + sin</p>
+<h4 id="_69">(</h4>
+<p>e^2 γ|x|</p>
+<p>2 −y^2</p>
+<h4 id="_70">)</h4>
+<p>. (53b)</p>
+<p>It is straightforward to verify that V(x) =eγ|x|</p>
+<p>2 (54)</p>
+<p>is the unique solution to (27).</p>
+<p>We considerd= 50and setγ= 1. For the PINN and diffusion losses the optimized weights are given byαint= 10−^5 , αb= 1andαint= 0. 1 ,αb= 1, respectively. We sample the data uniformly and take a maximal (discrete-time) trajectory length ofN= 20for the diffusion loss. In Figure 3 (left panel) we display the average relative errors |φ(x)−V(x)| V(x) as a function ofr=|x|. Due to volume distortion in high dimensions, very few samples are drawn close to the center of the ball, and hence the numerical results appear to be unreliable forr≤ 0. 8. While this effect could be alleviated by changing the measureνΩaccordingly, we content ourselves here with a comparison forr∈[0. 8 ,1]. In the right panel we display theL^2 error during the training iterations evaluated on uniformly sampled test data. We observe that the PINN and diffusion losses yield similar results and that the BSDE loss performs worse, in particular close to the boundary. We attribute this effect to the challenges inherent in the simulation of hitting times, see Section 5.1.</p>
+<p>0.825 0.850 0.875 0.900 0.925 0.950 0.975 1.000 r</p>
+<p>0.005</p>
+<p>0.006</p>
+<p>0.007</p>
+<p>0.008</p>
+<p>0.009</p>
+<p>0.010</p>
+<p>0.011</p>
+<p>Relative error on test data PINN loss BSDE loss Diffusion loss</p>
+<p>0 50000 100000 150000 200000 gradient steps</p>
+<p>103</p>
+<p>102</p>
+<p>101</p>
+<p>100</p>
+<p>L^2 test error</p>
+<p>Figure 3: Left: Average relative errors as a function ofr=|x|evaluated on uniformly sampled data for the three losses smoothed with a moving average over 500 data points. Right:L^2 error during the training iterations evaluated on uniformly sampled test data.</p>
+<p>In the diffusion loss as stated in Definition 3.1 we are free to choose the lengthtof the forward trajectories, which affects the generated training data. Let us therefore investigate how different choices oftinfluence the performance of Algorithm 1. To this end, we consider again the elliptic problem from Section 6.1.1 and varyt. To be precise, let us fix different step-sizes∆tand vary the Euler stepsN(recalling thatt=N∆t), once choosing the weight αint= 0. 1 , as before, and once by consideringαint= 10. For the former choice we can see in Figure 4a that larger trajectories tend to be better until a plateau is reached, whereas for the latter it turns out that there seems to be an optimal choice of the trajectory length, as displayed in Figure 4b.</p>
+<hr />
+<p>0 20 40 60 80 100 N</p>
+<p>103</p>
+<p>104</p>
+<p>Diffusion test error depending on the trajectory length t = 0.001 t = 0.0005</p>
+<p>(a) Weightαint= 0. 1.</p>
+<p>0 5 10 15 20 25 30 35 40 N</p>
+<p>103</p>
+<p>104</p>
+<p>Diffusion test error depending on the trajectory length</p>
+<p>t = 0.001 t = 0.0005</p>
+<p>(b) Weightαint= 10.</p>
+<p>Figure 4: We display theL^2 error that one attains when using different choices of the maximal Euler stepsNin the diffusion loss for different discretization step-sizes∆t.</p>
+<p>6.1.2 Elliptic problem requiring full Hessian matrix</p>
+<p>We consider the setting specified in (53), replacing however the diffusion coefficient and the nonlinearity by</p>
+<p>σ(x,t) =</p>
+<h4 id="_71">√</h4>
+<h4 id="2_21">2</h4>
+<p>d</p>
+<h4 id="_72"></h4>
+<h4 id="_73"></h4>
+<h4 id="_74"></h4>
+<h4 id="1-1">1 ··· 1</h4>
+<h4 id="_75"></h4>
+<h4 id="_76"></h4>
+<h4 id="_77"></h4>
+<h4 id="_78"></h4>
+<h4 id="_79"></h4>
+<h4 id="_80"></h4>
+<h4 id="1-1_1">1 ··· 1</h4>
+<h4 id="_81"></h4>
+<h4 id="_82"></h4>
+<p>, h(x,y,z) =−^2 γy</p>
+<h4 id="_83"></h4>
+<p>γ</p>
+<p>∑d</p>
+<p>i,j=1</p>
+<p>xixj+d</p>
+<h4 id="_84"></h4>
+<p>+ sin</p>
+<h4 id="_85">(</h4>
+<p>e^2 γ|x|</p>
+<p>2 −y^2</p>
+<h4 id="_86">)</h4>
+<h4 id="55">, (55)</h4>
+<p>respectively. Again, we can check thatV(x) =eγ|x|</p>
+<p>2 is the unique solution to the corresponding boundary value problem. Sinceσis not diagonal anymore, the differential operator (2) contains the full Hessian matrix of secondorder derivatives of the candidate solutionφ. As discussed in Section 5 (see Table 1b) this particularly impacts the runtime of the PINN method since all derivatives need to be computed explicitly. For the BSDE and diffusion losses, on the other hand, second-order derivatives are implicitly approximated using the underlying Brownian motion and we therefore do not expect significantly longer runtimes.</p>
+<p>Let us considerd= 20andγ= 1. In Figure 5 we display theL^2 error during the training process, plotted against the number of gradient steps (left panel) and against the runtime (right panel). As expected, the PINN loss takes significantly longer. This effect should become even more pronounced with growing state space dimensiond.</p>
+<p>0 10000 20000 30000 40000 50000 60000 gradient steps</p>
+<p>103</p>
+<p>102</p>
+<p>101</p>
+<p>100</p>
+<p>L^2 test error PINN loss BSDE loss Diffusion loss</p>
+<p>0 20000 40000 60000 80000100000120000140000 runtime in seconds</p>
+<p>103</p>
+<p>102</p>
+<p>101</p>
+<p>100</p>
+<p>L^2 test error</p>
+<p>Figure 5:L^2 error during the training process evaluated on test data for the three losses, plotted against the number of gradient steps (left panel) and against the runtime (right panel).</p>
+<hr />
+<p>6.1.3 Parabolic problem with Neumann boundary data</p>
+<p>Let us now consider the parabolic problem (1), with the Dirichlet boundary condition (1c) replaced by its Neumann counterpart ∂~nV(x,t) =gN(x,t), (x,t)∈∂Ω×[0,T]. (56)</p>
+<p>Here,∂~nV:=∇V·~nrefers to the (outward facing) normal derivative at the boundary∂Ω. We take</p>
+<p>b(x,t) = 0 , σ(x,t) =</p>
+<h4 id="_87">√</h4>
+<p>2 Idd×d, f(x) =eγ|x|</p>
+<p>(^2) +T , gN(x,t) = 2γeγ+t, (57a) h(x,t,y,z) =−y(2γ(2γ|x|^2 +d) + 1) + sin</p>
+<h4 id="_88">(</h4>
+<p>e^2 γ|x|</p>
+<p>(^2) +2t −y^2</p>
+<h4 id="_89">)</h4>
+<p>. (57b)</p>
+<p>In this case, V(x,t) =eγ|x|</p>
+<p>(^2) +t (58) provides the unique solution. We choosed= 20andγ= 1. In the left and central panels of Figure 6 we display the approximated solutions along the curve</p>
+<h4 id="_90">{</h4>
+<p>(κ,...,κ)&gt;:κ∈[− 1 /</p>
+<h4 id="_91">√</h4>
+<p>d, 1 /</p>
+<h4 id="_92">√</h4>
+<p>d]</p>
+<h4 id="_93">}</h4>
+<p>for two different times. We can see that both the diffusion and the</p>
+<p>PINN loss work well, with small advantages for the PINN loss. The right panel displays theL^2 test error over the iterations and confirms this observation.</p>
+<p>0.2 0.1 0.0 0.1 0.2</p>
+<p>1.5</p>
+<p>2.0</p>
+<p>2.5</p>
+<p>3.0</p>
+<p>t = 0.2 PINN loss Diffusion reference</p>
+<p>0.2 0.1 0.0 0.1 0.2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>t = 0.8</p>
+<p>0 50000 100000 150000 200000 gradient steps</p>
+<p>103</p>
+<p>102</p>
+<p>101</p>
+<p>100</p>
+<p>101 L</p>
+<p>(^2) test loss κ κ Figure 6: Left and central panel: Approximations along a curve for two different times using the diffusion and PINN losses. Right:L^2 test error along the training iterations.</p>
+<h3 id="62-committor-functions">6.2 Committor functions</h3>
+<p>Committor functions are important quantities in molecular dynamics as they specify likely transition pathways as well as transition rates between (potentially metastable) regions or conformations of interest [21, 55]. Since for most practical applications those functions are high-dimensional and hard to compute, there have been recent attempts to approach this problem using neural networks [44, 52, 71]. Based on the fact that committor functions fulfill elliptic boundary value problems, we can rely on the methods discussed in this paper.</p>
+<p>For anRd-valued stochastic process(Xt)t≥ 0 with continuous sample paths and two disjoint open setsA,B⊂Rd, the committor functionVcomputes the probability ofXhittingAbeforeBwhen starting inx∈R, that is,</p>
+<p>V(x) =P(τB&lt; τA|X 0 =x) =E[ (^1) B(Xτ)|X 0 =x]. (59) Here,τA= inf{t &gt;0 :Xt∈A}andτB= inf{t &gt;0 :Xt∈B}refer to the hitting times corresponding to the sets AandB. In the case when(Xt)t≥ 0 is given as the unique strong solution to the SDE (3), it can be shown via the Kolmogorov backward PDE [64, Section 2.5] thatV fulfills the elliptic boundary value problem LV= 0, V|∂A= 0, V|∂B= 1, (60) whereLas in (2) refers to the associated infinitesimal generator, see, for instance, [21]. In the notation of (27) we haveΩ =Rd(A∪B),h= 0andg(x) = (^1) B(x).</p>
+<hr />
+<p>Following [31, Section V.A], we consider(Xt)t≥ 0 to be a standard Brownian motion starting atx∈Rd, that is, Xt=x+Wt, corresponding tob= 0 andσ= Idd×din (3). The setsAandBare defined as</p>
+<p>A={x∈Rd:|x|&lt; a}, B={x∈Rd:|x|&gt; b}, (61)</p>
+<p>withb &gt; a &gt; 0. Hence, in this case the committor function describes the statistics of leaving a spherical shell through one of its boundaries. The solution takes the form</p>
+<p>V(x) =</p>
+<p>a^2 −|x|^2 −da^2 a^2 −b^2 −da^2</p>
+<h4 id="62">, (62)</h4>
+<p>ford≥ 3. Let us considerd= 10as well asa= 1,b= 2. We take a DenseNet withtanhas activation function and compare the three losses against each other. In Figure 7 we display the approximated solutions along a curve{</p>
+<p>(κ,...,κ)&gt;:κ∈[a/</p>
+<h4 id="_94">√</h4>
+<p>d,b/</p>
+<h4 id="_95">√</h4>
+<p>d]</p>
+<h4 id="_96">}</h4>
+<p>in the left panel, realizing that in particular the PINN and diffusion losses lead</p>
+<p>to good approximations. This can also be observed in the right panel, where we plot a moving average of theL^2 error on test data based on a moving window of length 200. The BSDE loss appears to be especially error-prone close to the left end-point of the curve displayed in Figure 7, that is, close to the inner shell. Due to the volume distortion in high dimensions, few samples are drawn according toνΩfor small values of|x|, see Figure 8. We hence conclude that in this example, the BSDE loss suffers particularly from the relative sparsity of the samples, possibly in conjunction with numerical errors made while estimating the hitting times at the inner shell (see Section 5.1).</p>
+<p>0.35 0.40 0.45 0.50 0.55 0.60</p>
+<p>0.0</p>
+<p>0.2</p>
+<p>0.4</p>
+<p>0.6</p>
+<p>0.8</p>
+<p>1.0</p>
+<p>Evaluation along curve</p>
+<p>PINN loss BSDE Diffusion loss reference solution 0 1000020000300004000050000600007000080000 runtime in seconds</p>
+<p>104</p>
+<p>103</p>
+<p>102</p>
+<p>101</p>
+<p>L^2 test error during training</p>
+<p>κ</p>
+<p>Figure 7: Left: approximations of the 10 -dimensional committor function evaluated along a curve. Right: moving average of the testL^2 error along the training iterations.</p>
+<p>1.0 1.2 1.4 1.6 1.8 2.0 r</p>
+<p>0.0</p>
+<p>0.2</p>
+<p>0.4</p>
+<p>0.6</p>
+<p>0.8</p>
+<p>1.0</p>
+<p>PINN loss</p>
+<p>1.0 1.2 1.4 1.6 1.8 2.0 r</p>
+<p>0.0</p>
+<p>0.2</p>
+<p>0.4</p>
+<p>0.6</p>
+<p>0.8</p>
+<p>1.0</p>
+<p>BSDE</p>
+<p>1.0 1.2 1.4 1.6 1.8 2.0 r</p>
+<p>0.0</p>
+<p>0.2</p>
+<p>0.4</p>
+<p>0.6</p>
+<p>0.8</p>
+<p>1.0</p>
+<p>Diffusion loss</p>
+<p>Figure 8: We plot the approximated committor functions evaluated at 10000 points uniformly sampled from the domainΩ(blue dots) and compare those to the reference solution (orange line) as a function ofr=|x|.</p>
+<h3 id="63-parabolic-allen-cahn-equation-on-an-unbounded-domain">6.3 Parabolic Allen-Cahn equation on an unbounded domain</h3>
+<p>The Allen-Cahn equation ind= 100has been suggested as a benchmark problem in [19]. It is an example of a parabolic PDE posed on an unbounded domain,</p>
+<p>(∂t+L)V(x,t) +V(x,t)−V^3 (x,t) = 0, (x,t)∈Rd×[0,T], (63) V(x,T) =f(x), x∈Rd, (64)</p>
+<hr />
+<p>withf(x) =</p>
+<h4 id="_97">(</h4>
+<p>2 +^25 |x|^2</p>
+<h4 id="1_3">)− 1</h4>
+<p>andT= 103. We restrict attention to the ball{x∈Rd:|x|&lt; r}with radiusr= 7. Instead of using the uniform distribution on this set, we consider sampling uniformly on a box around the origin with side length 2 and multiplying each data pointxby|rx|. In contrast to uniform sampling, this approach generates more samples close to the origin, which we observe to slightly improve the accuracy of the obtained solutions. We compare our approximations to a reference solution atx 0 = (0,...,0)&gt;for different timest∈[0,T]that is provided by a branching diffusion method specified in [19]. In Figure 9 we see that all three attempts match this reference solution, with very minor advantages (for instance at the right end point) for the PINN and diffusion losses. In Table 2 we display the computation times until convergence, realizing that the BSDE loss needs significantly longer. We note that the computation times are longer in comparison to e.g. [19] since we aim for a solution on a given domain, whereas other attempts only strive for approximating the solution at a single point.</p>
+<p>0.00 0.05 0.10 0.15 0.20 0.25 0.30 t</p>
+<p>0.1</p>
+<p>0.2</p>
+<p>0.3</p>
+<p>0.4</p>
+<p>0.5 PINN loss BDSE loss Diffusion loss reference solution</p>
+<p>Allen-Cahn equation, d = 100</p>
+<p>Figure 9: Approximation of the solution to an AllenCahn equation ind= 100using different losses compared to a reference solution atx 0 = (0,...,0)&gt;for different timest∈[0,T].</p>
+<p>Computation time PINN loss 325. 46 min BSDE loss 4280. 68 min Diffusion loss 194. 38 min</p>
+<p>Table 2: Computation times until convergence.</p>
+<h3 id="64-elliptic-eigenvalue-problems">6.4 Elliptic eigenvalue problems</h3>
+<p>In this section we provide two examples for the approximation of principal eigenvalues and corresponding eigenfunctions. The first one is a linear problem and therefore Proposition 4.2 assures that the minimization of an appropriate loss as in (31) leads to the desired solution. The second example is a nonlinear eigenvalue problem, for which we can numerically show that our algorithm still provides the correct solution.</p>
+<p>6.4.1 Fokker-Planck equation</p>
+<p>As suggested in [30], we aim at computing the principal eigenpair associated to a Fokker-Planck operator, defined by LV=−∆V−∇·(V∇Ψ), (65)</p>
+<p>forV : Ω→Ron the domainΩ = [0, 2 π]d, and whereΨ(x) = sin</p>
+<h4 id="_98">(∑</h4>
+<p>d i=1cicos(xi)</p>
+<h4 id="_99">)</h4>
+<p>is a potential with constants</p>
+<p>ci∈[0. 1 ,1], assuming periodic boundary conditions. This results in the eigenvalue problem</p>
+<p>∆V(x) +∇Ψ(x)·∇V(x) + ∆Ψ(x)V(x) =−λV(x), (66)</p>
+<p>and V(x) =e−Ψ(x) (67)</p>
+<p>is an eigenfunction associated to the principal eigenvalueλ= 0, see [64, Section 4.7]. We chooseci= 0. 1 ,i= 1,...,d, and approach this problem in dimensiond= 5following Section 4.2, i.e. by minimizing the loss (31), where for Lwe choose the diffusion loss and the periodic boundary condition is encoded via the term (9). Here and in the following eigenvalue problem the positivity of the approximating function is enforced by adding a ReLU function after the last layer of the DenseNet.</p>
+<p>In the left panel of Figure 10 we display the approximated eigenfunction along the curve</p>
+<h4 id="_100">{</h4>
+<p>(κ,...,κ)&gt;:κ∈[0, 2 π]</p>
+<h4 id="_101">}</h4>
+<p>and compare it to the reference solution. In the central panel we show theL^2 error w.r.t. the reference solution</p>
+<hr />
+<p>evaluated on uniformly sampled test data along the training iterations. The right panel displays the moving average of the absolute value of the eigenvalue taken over a moving window of 100 gradient steps (since the true value is λ= 0it is not possible to compute a relative error here). We see that both the eigenfunction and the eigenvalue are approximated sufficiently well.</p>
+<p>0 1 2 3 4 5 6</p>
+<p>0.6</p>
+<p>0.8</p>
+<p>1.0</p>
+<p>1.2</p>
+<p>1.4</p>
+<p>1.6</p>
+<p>Eigenfunction approximation reference approximation</p>
+<p>0 10000200003000040000 5000060000 gradient steps</p>
+<p>104</p>
+<p>103</p>
+<p>102</p>
+<p>L^2 error of eigenfunction</p>
+<p>0 100002000030000 400005000060000 gradient steps</p>
+<p>103</p>
+<p>102</p>
+<p>Eigenvalue approximation</p>
+<p>κ</p>
+<p>Figure 10: Left: Approximation and reference of the eigenfunction corresponding to the principal eigenvalue of the Fokker-Planck operator (65). Middle:L^2 error w.r.t. test data along the training iterations. Right: Moving average of the absolute value of the approximated eigenvalue along the gradient steps.</p>
+<p>6.4.2 Nonlinear Schrödinger equation</p>
+<p>Let us now consider a nonlinear eigenvalue problem. Again following [30], we consider the nonlinear Schrödinger operator including a cubic term that arises from the Gross-Pitaevskii equation for the single-particle wave function in a Bose-Einstein condensate [27, 66]. To be precise, we consider</p>
+<p>∆V(x)−V^3 (x)−Ψ(x)V(x) =−λV(x), (68)</p>
+<p>where</p>
+<p>Ψ(x) =−</p>
+<h4 id="1_4">1</h4>
+<p>c^2</p>
+<p>exp</p>
+<h4 id="_102">(</h4>
+<h4 id="2_22">2</h4>
+<p>d</p>
+<p>∑d</p>
+<p>i=1</p>
+<p>cosxi</p>
+<h4 id="_103">)</h4>
+<h4 id="_104">+</h4>
+<p>∑d</p>
+<p>i=1</p>
+<h4 id="_105">(</h4>
+<p>sin^2 (xi) d^2</p>
+<h4 id="_106">−</h4>
+<p>cosxi d</p>
+<h4 id="_107">)</h4>
+<h4 id="3-69">− 3. (69)</h4>
+<p>One can show that</p>
+<p>V(x) =</p>
+<h4 id="1_5">1</h4>
+<p>c</p>
+<p>exp</p>
+<h4 id="_108">(</h4>
+<h4 id="1_6">1</h4>
+<p>d</p>
+<p>∑d</p>
+<p>i=1</p>
+<p>cosxi</p>
+<h4 id="_109">)</h4>
+<h4 id="70">(70)</h4>
+<p>Ln(φ) =</p>
+<h4 id="_110">(</h4>
+<h4 id="e_1">E</h4>
+<h4 id="_111">[</h4>
+<p>φ(X)^2</p>
+<h4 id="_112">]</h4>
+<h4 id="1_7">− 1</h4>
+<h4 id="2_23">) 2</h4>
+<p>,</p>
+<h4 id="_113">{</h4>
+<p>(κ,...,κ)&gt;:κ∈[0, 2 π]</p>
+<h4 id="_114">}</h4>
+<p>0 1 2 3 4 5 6</p>
+<p>0.5</p>
+<p>1.0</p>
+<p>1.5</p>
+<p>2.0</p>
+<p>2.5</p>
+<p>Eigenfunction approximation reference approximation</p>
+<p>0 50000 100000 150000 200000 gradient steps</p>
+<p>107</p>
+<p>106</p>
+<p>105</p>
+<p>104</p>
+<p>103</p>
+<p>102</p>
+<p>L^2 error of eigenfunction</p>
+<p>0 50000 100000 150000 200000 gradient steps</p>
+<p>106</p>
+<p>105</p>
+<p>104</p>
+<p>103</p>
+<p>102</p>
+<p>101</p>
+<p>Relative error eigenvalue</p>
+<p>κ</p>
+<p>Figure 11: Left: Approximation and reference of the eigenfunction corresponding to the principal eigenvalue of the nonlinear Schrödinger operator ind= 5. Middle:L^2 error w.r.t. test data along the training iterations. Right: Relative error of the approximated eigenvalue along the gradient steps.</p>
+<hr />
+<p>0 1 2 3 4 5 6</p>
+<p>0.5</p>
+<p>1.0</p>
+<p>1.5</p>
+<p>2.0</p>
+<p>2.5</p>
+<p>Eigenfunction approximation reference approximation</p>
+<p>0 50000100000150000200000250000300000 gradient steps</p>
+<p>106</p>
+<p>105</p>
+<p>104</p>
+<p>103</p>
+<p>L^2 error of eigenfunction</p>
+<p>0 50000100000150000200000250000300000 gradient steps</p>
+<p>104</p>
+<p>103</p>
+<p>102</p>
+<p>101</p>
+<p>Relative error eigenvalue</p>
+<p>κ</p>
+<p>Figure 12: Same experiment as in Figure 11 in dimensiond= 10.</p>
+<h2 id="7-conclusion-and-outlook">7 Conclusion and Outlook</h2>
+<h2 id="references">References</h2>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjac.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

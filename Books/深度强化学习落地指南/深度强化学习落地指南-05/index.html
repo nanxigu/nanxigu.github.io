@@ -1,0 +1,657 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.8">
+    
+    
+      
+        <title>第五章 算法选择 - Nanxi Gu</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.815d1a91.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../paper.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Nanxi Gu" class="md-header__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nanxi Gu
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第五章 算法选择
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Nanxi Gu" class="md-nav__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Nanxi Gu
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        首页
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Models/" class="md-nav__link">
+        模型
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Scholars/" class="md-nav__link">
+        学者
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        书籍
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Courses/" class="md-nav__link">
+        课程
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Projects/" class="md-nav__link">
+        项目
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    5.1 拿来主义 &amp; 改良主义
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 拿来主义 &amp; 改良主义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-based" class="md-nav__link">
+    Model-Based
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-free" class="md-nav__link">
+    Model-Free
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    一筛、二比、三改良
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    5.2 经典算法
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 经典算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dqn" class="md-nav__link">
+    DQN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ddpg" class="md-nav__link">
+    DDPG
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a3c" class="md-nav__link">
+    A3C
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-sota" class="md-nav__link">
+    5.3 SOTA 算法
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3 SOTA 算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#td3" class="md-nav__link">
+    TD3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sac" class="md-nav__link">
+    SAC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ppo" class="md-nav__link">
+    PPO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">第五章 算法选择</h1>
+<h2 id="51">5.1 拿来主义 &amp; 改良主义</h2>
+<p>尽管深度强化学习算法已经取得长足进步, 但尚未在理论层面取得质的突破, 而只是在传统强化学习理论基础上引入深度神经网络, 并做了一系列适配和增量式改进工作.</p>
+<p>总体上, DRL 算法沿着 Model-Based 和 Model-Free 两大分支发展.</p>
+<h3 id="model-based">Model-Based</h3>
+<p>Model-Based 算法利用已知环境模型/对未知环境模型进行显式建模, 并与<strong>前向搜索 (Look Ahead Search)</strong> 和<strong>轨迹优化 (Trajectory Optimization)</strong> 等规划算法结合达到提升数据效率的目的. 但未在实践中得到广泛应用, 因为现实任务的环境模型通常十分复杂, 导致模型学习的难度很高 [1] [2], 并且建模误差也会对策略造成负面影响.</p>
+<h3 id="model-free">Model-Free</h3>
+<p>Model-Free 算法可以解构为: <strong>基本原理-探索方式-样本管理-梯度计算</strong>的四元核心组件。</p>
+<p>按照<strong>基本原理</strong>有两种划分体系 Value-Based &amp; Policy-Based 以及 On-Policy &amp; Off-Policy。</p>
+<ul>
+<li>Value-Based: 算法直接学习状态-动作组合的值估计;</li>
+<li>Policy-Based: 算法具有独立策略;</li>
+<li>Actor-Critic: 同时具备独立策略和值估计函数的算法;</li>
+<li>On-Policy: 采样策略和待优化策略相同或差异很小;</li>
+<li>Off-Policy: 采样策略和待优化策略不同.</li>
+</ul>
+<p>DQN[3], DDPG[4], A3C[5] 作为这两种彼此交织的划分体系下的经典算法框架, 构成了 DRL 研究中的重要节点, 后续提出的大部分算法基本都立足于这三种框架, 针对其核心组件所进行的迭代优化或者拆分重组.</p>
+<p>四元核心组件:</p>
+<ul>
+<li>基本原理: 进展缓慢, 但却是 DRL 算法将来大规模推广的关键所在.</li>
+<li>探索方式: 相应改进使算法更充分探索环境, 更好地平衡探索和利用, 从而有机会学习到更好的策略.</li>
+<li>样本管理: 相应改进有助于提升算法的样本效率, 加快收敛速度, 提高算法实用性.</li>
+<li>梯度计算: 致力于使每一次梯度更新都更稳定, 无偏和高效.</li>
+</ul>
+<p>总体而言, 深度强化学习算法正朝着通用化和高效化的方向发展.</p>
+<h3 id="_2">一筛、二比、三改良</h3>
+<p>粗略来看, 根据问题定义, 动作空间类型, 采样成本, 可用计算资源等因素的不同, 确实存在一些关于不同类型 DRL 算法适用性方面的结论.</p>
+<ul>
+<li>DQN 及其变体一般只适用于离散动作空间;</li>
+<li>DDPG 及其变体只适合连续动作空间;</li>
+<li>A3C 及 SAC 等则支持离散和连续动作空间.</li>
+<li>随机性策略通常比确定性策略有更好的训练稳定性.</li>
+</ul>
+<p>对于机器人等涉及硬件的应用或采样成本较高的任务, 能够重复利用历史数据的 Off-Policy 算法比 On-Policy 算法更有优势[7]。</p>
+<p>多智能体强化学习任务, 多个交互的智能体互相构成对方环境的一部分, 并随着各自策略的迭代导致这些环境模型发生变化, 从而导致基于这些模型构建的知识/技能失效, 这种现象称为<strong>环境不稳定性 (Environment Nonstationarity)</strong>. 因此除非<strong>经验回放缓存 (Replay Buffer)</strong> 中的数据更新得足够快, 否则 Off-Policy 算法反而可能引入偏差[8].</p>
+<p>由于利用贝尔曼公式 Bootstrap 特性的值迭代方法是有偏的, On-Policy 算法在训练稳定性方面要好于 Off-Policy 算法. 然而为了尽可能获取关于值函数的无偏估计, On-Policy 算法往往需要利用多个环境并行采集足够多的样本, 这对硬件有所要求, 而 Off-Policy 则不必, 虽然也能够从并行采样中受益[5]。</p>
+<p>下面总结了 Model-Free DRL 算法适用性的一般结论:</p>
+<ul>
+<li>动作空间兼容性:</li>
+<li>Value-Based: 离散动作空间;</li>
+<li>Policy-Based + 确定性策略: 连续动作空间;</li>
+<li>Policy-Based + 随机性策略: 离散&amp;连续动作空间.</li>
+<li>采样成本容忍度: Off-Policy &gt; On-Policy.</li>
+<li>运算资源需求: On-Policy 需要更多的 CPU 核心.</li>
+<li>训练稳定性:</li>
+<li>On-Policy &gt; Off-Policy;</li>
+<li>随机性策略 &gt; 确定性策略.</li>
+<li>其他:
+    Off-Policy 容易受多智能体强化学习任务中环境不稳定性的影响.</li>
+</ul>
+<p>完成粗略的筛选后, 对于符合条件的不同 DRL 算法之间的取舍就相对微妙.</p>
+<p>一般而言学术界提出的 SOTA 算法, 性能通常优于旧算法, 但在具体任务上并不绝对, 因此需要根据实际表现从若干备选算法中找出性能最好的那个.</p>
+<p>此外, 只有部分经过精细定义的实际任务可以通过直接应用标准算法得到较好解决, 而许多任务由于自身的复杂性和特殊性, 需要针对标准算法的核心组件进行不同程度的优化后才能得到较为理想的结果. [9] [10] [11]</p>
+<p>此处的优化更多时候是基于对当前性能瓶颈成因的深入分析, 在学术界现有的组件改良措施和思想中对症选择.</p>
+<ul>
+<li>DQN 探索改善: 加入噪声网络 Noisy Net 代替默认 <span class="arithmatex">\(\varepsilon\)</span>-greedy;</li>
+<li>DQN 样本效率改善: 将常规经验回访改为优先级经验回放 PER [13];</li>
+<li>DQN 训练稳定性改善: 计算目标值时由单步 Boostrap 改为多步;</li>
+</ul>
+<p>学术研究为了突出算法的优势, 其他要素只要保持一致甚至被刻意弱化;
+落地应用为了充分发挥算法的性能, 其他要素应该主动迎合算法需求以降低其学习难度.</p>
+<p>学术研究的目标是在普遍意义上解决或改善 DRL 算法存在的固有缺陷: 如低样本效率, 对超参数敏感等问题, 算法自身特质的优劣是核心. 许多开放平台为各种任务预设了固定的状态空间, 动作空间和回报函数. 研究者很少需要主动修改这些要素.</p>
+<p>落地应用的目标是在特定任务上获得最佳策略性能, 而算法仅仅是实现该目标的众多环节之一. 落地应用中的策略性能优化是一项系统工程, 需要充分调动各种有利因素.</p>
+<h2 id="52">5.2 经典算法</h2>
+<h3 id="dqn">DQN</h3>
+<p><strong>基本原理</strong>: 深度 Q 网络 (Deep Q-Networks, DQNs) 继承了 Q-Learning 的思想, 利用贝尔曼公式的 Boostrap 特性, 计算目标值并不断迭代优化一个状态-动作估值函数 <span class="arithmatex">\(Q_\theta(s,a):\mathcal{S}\to\mathbb{R}^{|\mathcal{A}|}\)</span> 直至收敛, <span class="arithmatex">\(Q_\theta(s,a)\)</span> 用参数为 <span class="arithmatex">\(\theta\)</span> 的神经网络表示, 经过一次前向计算输出所有可能动作 (总数为动作空间维度 <span class="arithmatex">\(|\mathcal{A}|\)</span>) 的 <span class="arithmatex">\(Q\)</span> 值估计, 从而可以根据它们的相对大小在各种状态下选择最优动作.
+$$
+    J_Q(\theta) = \mathbb{E}<em>{s,a\sim\mathcal{D}}\bigg[\frac{1}{2}\big(r(s,a)+\gamma\max</em>{a'\in\mathcal{A}}Q_\theta(s',a')-Q_\theta(s,a)\big)^2\bigg]
+$$</p>
+<p><strong>探索方式</strong>: DQN 在训练时默认使用 <span class="arithmatex">\(\varepsilon\)</span>-greedy 的探索策略, 根据当前输入状态 <span class="arithmatex">\(s\)</span> 和估值函数 <span class="arithmatex">\(Q_\theta(s,a)\)</span>, 以概率 <span class="arithmatex">\(1-\varepsilon\)</span> 选择 <span class="arithmatex">\(\arg\max_{a\in\mathcal{A}}Q(s,a)\)</span>, 以概率 <span class="arithmatex">\(\varepsilon\)</span> 随机选择动作, 随着训练的进行, <span class="arithmatex">\(\varepsilon\)</span> 在区间 <span class="arithmatex">\((0,1]\)</span> 内由大到小线性变化, DQN 从强探索转为强利用.</p>
+<p><strong>样本管理</strong>: DQN 属于 Off-Policy 算法, 使用 Replay Buffer 的先入先出堆栈存储在训练过程中采集的单步转移样本 <span class="arithmatex">\((s,a,s',r)\)</span>, 并每次从中随机选取一个批次用于梯度计算和参数更新. Replay Buffer 允许重复利用历史数据, 以批次为单位的训练方式覆盖了更大的状态空间, 中和了单个样本计算梯度时的方差, 因此是稳定 DQN 训练和提高其样本效率的重要措施.</p>
+<p><strong>梯度计算</strong>: 为了克服 Boostrap 给训练带来的不稳定性, DQN 设置了一个与 Q 网络结构完全相同的目标 Q 网络专门用于计算目标值, 其参数用 <span class="arithmatex">\(\theta^-\)</span> 表示. 目标 Q 网络是每 N 次迭代后将主 Q 网络参数整体复制, 有效提升 DQN 训练稳定性.</p>
+<p><strong>特点分析</strong>: DQN 作为 Value-Based 算法只适用于可穷举的离散动作空间, 只有这样才能保证在特定状态下不同动作间通过 <span class="arithmatex">\(Q\)</span> 值比较择优的运算量可控, 对于连续控制任务显然无法做到, 但可以尝试保持足够控制精度的前提下, 将连续动作区间离散化.
+DQN 在计算目标值时使用同一个目标 Q 网络进行动作的选择和评估, 在噪声和误差存在的情况下容易产生偏高的值估计, 称为过估计问题 (Overestimation), 会对 DQN 性能造成影响.</p>
+<p><strong>改进措施</strong>: [15]</p>
+<ul>
+<li>基本原理: Dueling DQN[16], Distributional DQN[17], Multi-Step Boostrap[14];</li>
+<li>探索方式: 参数噪声[12,18];</li>
+<li>样本管理: 优先级经验回放 PER[13,19], 正负 Episode 分开存储 Double Bin Replay Buffer[20,21], 事后经验回放 HER[22], 多核并行采样改善探索和采样效率[5, 23, 24];</li>
+<li>梯度计算: Double DQN; Twin Q [26]</li>
+</ul>
+<h3 id="ddpg">DDPG</h3>
+<p><strong>基本原理</strong>: 为了支持连续控制任务, 深度确定性策略梯度 (Deep Deterministic Policy Gradient) 在 DQN 的基础上增加一个参数为 <span class="arithmatex">\(\phi\)</span> 的策略网络 <span class="arithmatex">\(\pi_\phi(a|s)\)</span>, 根据输入状态 <span class="arithmatex">\(s\)</span> 输出唯一确定性动作 <span class="arithmatex">\(a\in\mathcal{A}\)</span>, <span class="arithmatex">\(\mathcal{A}\)</span> 是 <span class="arithmatex">\(n\)</span> 维连续动作空间.
+值网络 <span class="arithmatex">\(Q_\theta(s,a):\mathcal{S}\times\mathcal{A}\to\mathbb{R}\)</span> 输入状态和动作并输出单个值估计, 其更新同样基于利用贝尔曼公式的 Boostrap 属性的时序差分方法, 但由于动作是连续取值的, 在计算目标值时放弃基于 <span class="arithmatex">\(Q\)</span> 值的动作寻优而直接使用策略网络输出. 策略网络扮演了 Q 网络优化器的角色, 更新梯度完全来自 Q 网络, 目标是最大化当前 Q 网络输出, 推理时只需策略网络做一次前向计算.
+$$
+    \begin{aligned}
+        J_Q(\theta)&amp;=\mathbb{E}<em>{s,a\sim\mathcal{D}}\bigg[\frac{1}{2}\big(r(s,a)+\gamma \textcolor{red}{Q</em>{\theta^-}(s',\pi_\phi(a'|s'))}-Q_\theta(s,a)\big)^2\bigg]\
+        J_\pi(\phi)&amp;=-\mathbb{E}<em>{s,a\sim\mathcal{D}}[Q</em>\theta(s,\pi_\phi(a|s))]
+    \end{aligned}
+$$</p>
+<p><strong>探索方式</strong>: DDPG 采用加性噪声探索方式, 即策略网络的输出与相同维度的高斯噪声相加, 噪声的方差决定了探索力度. 以当前输出动作为中心形成了一个高斯分布, 而每次更新策略网络都使得输出动作向该分布中 <span class="arithmatex">\(Q\)</span> 值更高的方向移动, 直到分布内其他方向都是更差的方向, 策略输出也就稳定在最优动作附近, 从而实现探索和利用的平衡. 除了高斯噪声, DDPG 原论文推荐使用 OU 噪声, 即方差线性衰减的高斯噪声, 实现强探索到强利用的过渡.</p>
+<p><strong>样本管理</strong>: DDPG 是 Off-Policy 算法, 使用了经验回放和 Replay Buffer.
+<strong>梯度计算</strong>: 为了稳定训练, DDPG 为价值网络和策略网络分别设置了对应的目标网络, 并在 Q 网络更新中使用它们来计算目标值, 防止 Boostrap 的自激效应放大误差. DDPG 的目标网络每次迭代都跟随主网络进行更新, 使用计算当前目标网络和主网络的加权移动平均, Temperature, 用于调节目标网络每步更新幅度.</p>
+<p><strong>特点分析</strong>: DDPG 突破了离散动作空间的限制, 使得算法的使用价值得到进一步提升. 连续动作使得任务探索空间急剧扩大, 从而导致学习难度上升. 此外 Q 网络同样面临过估计问题, 并将其拟合误差直接通过梯度传导为策略网络, 多重因素会使得 DDPG 的训练稳定性和性能相对较差, 尤其在动作维度较高的复杂任务中表现不佳.</p>
+<p><strong>改进措施</strong>:</p>
+<ul>
+<li>基本原理: 引入最大熵学习目标和随机策略的 SAC[27,28]; 引入值分布思想的 D4PG[29];</li>
+<li>探索方式: 参数噪声[18]和并行采样 [5]</li>
+<li>样本管理: 用于 DQN 的都可用于 DDPG</li>
+<li>梯度计算: 孪生 Q 网络, 延迟策略更新, 目标策略平滑等一系列改善目标值计算过程中过估计问题和方差抑制措施的 TD3[26].</li>
+</ul>
+<h3 id="a3c">A3C</h3>
+<p><strong>基本原理</strong>:  Asynchronous Advantage Actor-Critic, A3C 算法采用随机策略并输出动作的概率分布, 因此不能直接从值网络获得更新梯度, 而只能通过随机采样估计其梯度. A3C 继承了经典的 REINFORCE 策略梯度[31]
+$$
+    \nabla_\phi \log\pi_{\phi}(a_t|s_t)(R-b(s_t))\
+    R=\sum_{i=0}^{k-1}\gamma^i r_{t+1} + \gamma^k V_\theta(s_{t+k})
+$$
+<span class="arithmatex">\(R\)</span> 是一段从状态 <span class="arithmatex">\(s_t\)</span> 起始的 Episode 的折扣累计回报. <span class="arithmatex">\(b(s_t)\)</span> 用于降低奖励方差[32] 的关于状态 <span class="arithmatex">\(s_t\)</span> 的基准函数.
+A3C 以神经网络拟合的值函数 <span class="arithmatex">\(V_\theta(s_t)\)</span> 为基准, 并将 <span class="arithmatex">\(A(s_t,a_t)=R-V_\theta(s_t)\)</span> 诠释为在状态 <span class="arithmatex">\(s_t\)</span> 下选择动作 <span class="arithmatex">\(a_t\)</span> 的优势估计, <span class="arithmatex">\(J_\pi\)</span> 鼓励策略网络增加状态 <span class="arithmatex">\(s_t\)</span> 的优势估计较高的动作的输出概率.
+策略网络和值网络共享了一部分底层结构, 有助于算法更高效地学习特征提取.
+$$
+    \begin{aligned}
+        J_Q(\theta)&amp;=\mathbb{E}<em>{s,a\sim\rho^\pi}\bigg[\frac{1}{2}\big(R-V</em>\theta(s)\big)^2\bigg]\
+        J_\pi(\phi)&amp;=-\mathbb{E}<em>{s,a\sim\rho^\pi}[\log\pi</em>\phi(a|s)A(s,a) +\omega\mathcal{H}(\pi_\phi(a|s))]
+    \end{aligned}
+$$</p>
+<p><strong>探索方式</strong>: 由于随机策略自带探索属性, 不必依靠额外的探索手段, 只需每次按照输出动作概率分布进行随机采样即可. 随着训练的不断推进, 策略对动作选择越来越自信, 其输出的随机性相应地下降, 从而实现探索和利用的平衡. 为了避免策略过早陷入局部最优而而退化为确定性策略, A3C 引入了策略熵损失鼓励策略网络保持随机性, 参数 <span class="arithmatex">\(\omega\)</span> 用于调节策略熵损失和策略损失之间的相对权重. A3C 采用了多环境并行采样方案, 每个环境都使用了不同的随机种子甚至是不同的探索方案, 不同的 Actor 各自独立探索并共享经验, 极大提升探索效率, 并且可以通过参数噪声进一步加强.
+<strong>样本管理</strong>: On-Policy 算法每次更新模型时都是用当前最新的策略采集一批样本并在更新完成后彻底抛弃这些样本, 而不是重复利用 (On-Policy 算法直接使用 Replay Buffer 中旧策略采集的历史样本计算梯度会引入偏差). 上述并行采样通过足够高的采样效率在事实上保证了值网络 <span class="arithmatex">\(V_\theta(s_t)\)</span> 更新梯度的无偏性, 从而达到稳定训练的目的.</p>
+<p><strong>梯度计算</strong>: A3C 使用每段 Episode 的折扣累计回报减去值网络输出作为优势估计并参与到 REINFORCE 策略梯度计算中. 基于优势的策略梯度可以在不引入偏差的前提下降低梯度方差的绝对值, 从而提升训练稳定性.
+A3C 在每个采样进程中独立计算梯度, 并在主线程聚合后用来更新值网络和策略网络参数. A3C 默认采用异步聚合的方式, 优点是运行效率较高[34], 但采样策略与实际被更新策略间的差异可能损害算法的训练稳定性和最终性能, 因此后续研究更多沿用了 A3C 的同步梯度聚合版本 A2C.
+<strong>特点分析</strong>: 并行采样和蒙特卡洛目标值估计为 On-Polcy 算法带来了低样本效率和高梯度回传效率. A3C 除了训练稳定性更高, 其采用的随机策略对外界扰动也更鲁棒, 因此具有比确定性策略更好的泛化能力. 对于多智能体强化学习而言, 其理论纳什均衡点所对应的最优策略是随机的. A3C 支持多种概率分布: 类别分布, 伯努利分布, 多变量高斯分布, 通用性强.
+<strong>改进措施</strong>: 低下的样本效率使其在采样成本高的任务中几乎不具备实用价值. 理论上可以多次利用同一批在线采集的样本, 但这样会导致单一梯度方向过大的参数更新而破坏训练稳定性. TRPO 重构了基于优势的策略梯度优化目标 [35], 并以更新前后策略输出分布的 KL 散度来约束策略参数的变化幅度, ACKTR[36] 使用二阶方法计算的自然梯度提升了样本效率, 并同样采用 KL 散度约束更新幅度. PPO[37]继承了 TRPO 的思想, 将 KL 散度约束进一步简化为对策略分布比例偏移 1 的程度的约束. IMPALA [38] 在保留 A3C 高效率的同时利用重要性采样克服了异步采样带来的负面影响.</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+        \max_{\phi'}\mathbb{E}_{s,a\sim\rho^\pi}\bigg[\frac{\pi_{\phi'}(a|s)}{\pi_\phi(a|s)}A^\pi(s,a)\bigg]\\
+        s.t. \mathbb{E}_{s,a\sim\rho^\pi} D_{KL}(\pi_\phi(\cdot|s)\|\pi_{\phi'}(\cdot|s))
+    \end{aligned}
+\]</div>
+<h2 id="53-sota">5.3 SOTA 算法</h2>
+<h3 id="td3">TD3</h3>
+<p>Twin Delayed Deep Deterministic Policy Gradient, TD3 是在 DDPG 算法基础上迭代产生的改良版本, 其基本原理, 探索方式, 样本管理都沿用 DPPG, TD3 的主要改进在于降低计算目标值存在的偏差和方差进行的, 均属于对梯度计算的优化.</p>
+<p><strong>基本原理</strong>:-
+<strong>探索方式</strong>:-
+<strong>样本管理</strong>:-
+<strong>梯度计算</strong>: 目标值计算的偏差主要来自于 Boostrap 方法普遍存在的 Overestimation 问题, Double DQN 通过将状态 <span class="arithmatex">\(s'\)</span> 下最优动作的Q值评估和选择相分离, 从而实现对过估计问题的一致, 但 Double DQN 无法直接应用到连续动作空间, 为此 TD3 给出的解决方案是设置两个完全相同的 Q 网络 (孪生 Q 网络 Twin Q) 以及配套的两个目标 Q 网络, 并对它们分别做独立更新, 每次计算目标值时总是选择较小的那个
+$$
+    J_Q(\theta_t)=\mathbb{E}<em>{s,a\sim\mathcal{D}}\bigg[\frac{1}{2}\big(r(s,a)+\gamma\min</em>{i=1,2}Q_{\theta_i^-}(s',\pi_{\phi^-}(a'|s')+\varepsilon)-Q_{\theta_i}(s,a)\big)^2\bigg]
+$$</p>
+<p>为了降低目标值计算的方差, 并缓解确定性测了对值函数局部窄峰的过拟合倾向, TD3 借鉴 SARSA[31] 的思想, 秉持近似动作应有近似值估计的启发式原则, 在状态 <span class="arithmatex">\(s'\)</span> 下目标策略输出的基础上添加了一个随即高斯噪声 <span class="arithmatex">\(\varepsilon\sim\text{clip}(\mathcal{N}(0,\sigma^2),-c,c)\)</span>, 截断是为了保持噪声化后的新动作在原输出动作附近. 这为目标策略平滑, 注意和探索噪声的区分.</p>
+<p>为了降低目标值计算的方差对策略学习的负面影响, TD3 降低了策略网络参数与目标网络参数的更新频率, 以保证 Q 网络经过充分学习降低方差之后再影响策略网络和目标网络, 类似 DQN 和 DDPG 的混合方案, 每更新 <span class="arithmatex">\(d\)</span> 次孪生 Q 网络更新一次策略网络, 梯度默认来源于孪生 Q 网络中的 <span class="arithmatex">\(Q_{\theta_1}\)</span> 并采用移动平均更新目标网络.</p>
+<p><strong>特点分析</strong>: TD3 在连续控制任务中的表现获得了显著改善, 无论在训练稳定性还是最终性能上都很有竞争力. Off-Policy 具有相对较高的样本效率. 此外探索方式和样本管理的改进同样适用于 TD3. 在缺点方面, 仅仅适用于连续控制任务, 不支持离散动作空间.</p>
+<p><strong>改进措施</strong>: -</p>
+<h3 id="sac">SAC</h3>
+<p>SAC 同样主要针对 DDPG 在高维连续控制任务上表现不佳的问题的, 但与 TD3 集中关注梯度计算组件的改进不同, SAC 在常规强化学习优化目标的基础上引入了最大熵目标, 并为之做出了一系列的适配工作.</p>
+<p><strong>基本原理</strong>: 为了实现最大熵目标, <span class="arithmatex">\(\pi_\phi(a|s)\)</span> 由确定转随机, 输出动作的概率分布. 相应地在 Q 网络目标值计算中增加了策略熵成分. 针对随机策略为了直接从 Q 网络获得更新梯度, 同时避免类似于 REINFORCE 中的蒙特卡洛估计降低样本效率,  SAC 使用了 VAE 的重参数化技巧, 并将策略输出重新表示为 <span class="arithmatex">\(f_\phi(s;\varepsilon)\)</span>, 而策略学习目标也从最大化 Q 网络输出改为最小化两个分布之间的 KL 散度. SAC 在经过少量适配后即可支持离散动作空间, 归功于算法所采用的随机策略及其分布拟合学习目标</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    J_Q(\theta_i) &amp;= \mathbb{E}_{s,a\sim\mathcal{D}}\bigg[\frac{1}{2}\big(r(s,a)+\gamma(\min_{i=1,2}Q_{\theta_i^-}(s',a')-\alpha\log\pi_\phi(a'|s'))-Q_{\theta_i}(s,a)\big)^2\bigg]\\
+    J_\pi(\phi) &amp;= \mathbb{E}_{s\sim\mathcal{D},\varepsilon\sim\mathcal{N}(0,I)}[\alpha\log\pi_\phi(f_\phi(s;\varepsilon)|s)-\min_{i=1,2}Q_{\theta_i}(s,f_\phi(s;\varepsilon))]
+    \end{aligned}
+\]</div>
+<p><strong>探索方式</strong>: SAC 为控制最大熵目标分量与 Reward 相对尺度的超参数 <span class="arithmatex">\(\alpha\)</span> 设计了自动调节机制, 方法是将原目标重构为在约束条件下求解传统强化学习目标, 并利用对偶问题推导出 <span class="arithmatex">\(\alpha\)</span> 的更新公式, 注意上述约束条件针对的是策略熵的数学期望, 而不是机械地要求策略在任意时刻都保持高随机性和高探索强度.
+多数状态下的优劣动作随着训练的推进变得清晰无需继续探索, 为了满足约束条件, 探索力度会逐渐集中到解空间中不确定性仍较大的部分, 使策略呈现多模态特征.</p>
+<p><strong>样本管理</strong>: Off-Policy 算法
+<strong>梯度计算</strong>: SAC 借鉴了 TD3 的孪生 Q 网络, 但没有设置独立地目标策略网络而是直接使用当前最新策略 <span class="arithmatex">\(\pi_\phi\)</span> 进行动作采样. 此外 SAC 在重参数化后利用 Tanh 激活函数将每个动作压缩到 [-1,1], 使得策略输出由高斯分布变为挤压高斯分布, 后续梯度计算做了相应地适配.[27]
+<strong>特点分析</strong>: 使用随机策略替换确定性策略, 显著提升了训练稳定性, 并通过引入最大熵学习目标极大地改善了探索效率, 这比 A3C 中单纯地将策略熵损失作为维持策略随机性地正则化手段更有效. 实践中 SAC 绝对收敛速度通常快于其他 DRL 算法, 支持离散和连续控制任务, 核心超参数 <span class="arithmatex">\(\alpha\)</span> 的自动调节机制使其在不同任务中的调参工作变得简单, 使得 SAC 实用价值较高.
+<strong>改进措施</strong>: DDPG 探索方式和样本管理改进均适用 (离散SAC可以尝试 Dueling Network 和 Multi-Step Boostrap)</p>
+<h3 id="ppo">PPO</h3>
+<p>PPO 在 A2C 基础上对样本管理和梯度计算做出了改进. 提高在线采集样本的使用效率, PPO 将同一批样本分成 MINI-BATCH 并重复利用多次, 同时在计算策略梯度时, 限制参数更新幅度, 从而避免产生训练不稳定性. 为了实现这一点, PPO 继承了 TRPO 置信区域的思想, 同时避免了共轭梯度计算的复杂性.</p>
+<p>PPO 将 KL 散度约束替换为对 <span class="arithmatex">\(\pi_{\phi'}(a|s)/\pi_\phi(a|s)\)</span> 偏离 1 的程度约束. 利用 <span class="arithmatex">\(\varepsilon\in(0,1)\)</span> 定义了以 1 为中心的窄区间, 在一个mini-batch 内使新旧策略输出之比超出该区间范围的部分数据, 由于截断操作而实际不产生梯度, 只有处于置信范围内的数据才能将梯度回传至策略网络, 可见 PPO 以在微观层面(一个mini-batch) 降低样本利用率为代价, 实现了整体 (batch) 样本利用率的提升.</p>
+<div class="arithmatex">\[
+    J_\pi(\phi) = \mathbb{E}_{s,a\sim\rho^\pi}[\min(\frac{\pi_{\phi'}(a|s)}{\pi_{\phi}(a|s)}A^\pi(s,a),\text{clip}(\frac{\pi_{\phi'}(a|s)}{\pi_{\phi}(a|s)},1-\varepsilon,1+\varepsilon)A^\pi(s,a))]
+\]</div>
+<p>PPO 在计算一段固定长度 Episode 内的动作优势时, 采用了类似于 <span class="arithmatex">\(TD(\lambda)\)</span> 的通用优势估计 (Generalized Advantage Estimation, GAE) 来降低梯度的方差.</p>
+<p><strong>基本原理</strong>:
+<strong>探索方式</strong>:
+<strong>样本管理</strong>:
+<strong>梯度计算</strong>:
+<strong>特点分析</strong>: On-Policy 算法和随机策略稳定性高的优点, 同时以较小的运算代价在一定程度上改善了 On-Policy 算法地下的样本利用率, 类似 A2C 多环境并行采样使得 PPO 具有较高的探索效率, 尤其适合在具有优质环境模拟器的任务中使用.
+<strong>改进措施</strong>: 探索方式 12 18 和梯度计算 40 44 方面的改进可以用于提升 PPO 的性能.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjac.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

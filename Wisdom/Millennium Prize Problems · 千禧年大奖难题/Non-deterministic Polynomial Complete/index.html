@@ -8,19 +8,19 @@
       
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.8">
     
     
       
-        <title>Johnson-Lindenstrauss Lemma - Nanxi Gu</title>
+        <title>Non-Deterministic Polynomial Complete - Nanxi Gu</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.815d1a91.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.815d1a91.min.css">
         
       
       
@@ -37,9 +37,9 @@
       
     
     
-      <link rel="stylesheet" href="../../paper.css">
+      <link rel="stylesheet" href="../../../paper.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#johnson-lindenstrauss-lemma" class="md-skip">
+        <a href="#non-deterministic-polynomial-complete" class="md-skip">
           Skip to content
         </a>
       
@@ -82,7 +82,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Nanxi Gu" class="md-header__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
+    <a href="../../.." title="Nanxi Gu" class="md-header__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Johnson-Lindenstrauss Lemma
+              Non-Deterministic Polynomial Complete
             
           </span>
         </div>
@@ -190,7 +190,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Nanxi Gu" class="md-nav__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
+    <a href="../../.." title="Nanxi Gu" class="md-nav__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -209,7 +209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         首页
       </a>
     </li>
@@ -224,7 +224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Models/" class="md-nav__link">
+      <a href="../../../Models/" class="md-nav__link">
         模型
       </a>
     </li>
@@ -239,7 +239,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Scholars/" class="md-nav__link">
+      <a href="../../../Scholars/" class="md-nav__link">
         学者
       </a>
     </li>
@@ -254,7 +254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Books/" class="md-nav__link">
+      <a href="../../../Books/" class="md-nav__link">
         书籍
       </a>
     </li>
@@ -269,7 +269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Courses/" class="md-nav__link">
+      <a href="../../../Courses/" class="md-nav__link">
         课程
       </a>
     </li>
@@ -284,7 +284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Projects/" class="md-nav__link">
+      <a href="../../../Projects/" class="md-nav__link">
         项目
       </a>
     </li>
@@ -311,6 +311,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    相关定义
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -324,7 +339,31 @@
                   
 
 
-<h1 id="johnson-lindenstrauss-lemma">Johnson-Lindenstrauss Lemma</h1>
+<h1 id="non-deterministic-polynomial-complete">Non-Deterministic Polynomial Complete</h1>
+<p>NP 完全问题/多项式复杂程度的非确定性问题. NP=P?</p>
+<h2 id="_1">相关定义</h2>
+<dl>
+<dt>判定问题</dt>
+<dd>判断是否有一种能够解决某一类问题的能行算法的研究课题.</dd>
+<dt>P 类问题</dt>
+<dd>所有可以在多项式时间内求解的判定问题构成 P 类问题.</dd>
+<dt>NP 类问题</dt>
+<dd>所有的非确定多项式时间可解的判定问题构成 NP 类问题.</dd>
+<dt>非确定性算法</dt>
+<dd>非确定性算法将问题分解成猜测和验证两个阶段. 算法的猜测阶段时非确定性的, 算法的验证阶段是确定性的, 即验证猜测阶段给出解的正确性.
+设算法 A 是解一个判定问题 Q 的非确定性算法, 如果 A 的验证阶段能在多项式时间内完成, 则称 A 是一个多项式时间非确定性算法.</dd>
+</dl>
+<p>有些计算问题是确定性的 (如: 加减乘除), 只需按照公式推导即可得到结果.
+有些计算问题无法直接计算出来 (如: 找大质数), 只能通过间接的猜算得到结果, 即非确定性问题.
+非确定性问题通常有个算法, 无法直接给出答案, 但是能够判断某个可能的结果是正确或错误. 如果可以在多项式时间算出来就称为多项式非确定性问题.</p>
+<dl>
+<dt>NPC 问题</dt>
+<dd>NP 中的某些问题的复杂性与整个类的复杂性相关联. 这些问题中任何一个如果存在多项式时间的算法, 那么所有 NP 问题都是多项式时间可解的. 这些问题称为 NP-完全问题 (NPC 问题).</dd>
+</dl>
+<p>所有的完全多项式非确定性问题, 都可以转换为一类叫满足性问题的逻辑运算问题. 既然这类问题的所有可能答案, 都可以在多项式时间内计算, 那么这类问题是否存在确定性算法, 可以在多项式时间内直接算出或搜索出正确答案呢?</p>
+<p>1971 斯蒂文·考克</p>
+<p>美国麻州的克雷（Clay）数学研究所于2000年5月24日在巴黎法兰西学院宣布了一件被媒体炒得火热的大事：对七个“千僖年数学难题”的每一个悬赏一百万美元。</p>
+<p>解决这个猜想，无非两种可能，一种是找到一个这样的算法，只要针对某个特定NP完全问题找到一个算法，所有这类问题都可以迎刃而解了，因为他们可以转化为同一个问题。另外的一种可能，就是这样的算法是不存在的。那么就要从数学理论上证明它为什么不存在。</p>
 
 
 
@@ -362,12 +401,12 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
       
-        <script src="../../javascripts/mathjac.js"></script>
+        <script src="../../../javascripts/mathjac.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

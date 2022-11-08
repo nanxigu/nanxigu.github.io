@@ -1,0 +1,850 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.8">
+    
+    
+      
+        <title>Interpolating between BSDEs and PINNs: Deep Learning for Elliptic and Parabolic Boundary Value Problems - Nanxi Gu</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.815d1a91.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../paper.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#interpolating-between-bsdes-and-pinns-deep-learning-for-elliptic-and-parabolic-boundary-value-problems" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Nanxi Gu" class="md-header__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nanxi Gu
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Interpolating between BSDEs and PINNs: Deep Learning for Elliptic and Parabolic Boundary Value Problems
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Nanxi Gu" class="md-nav__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Nanxi Gu
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        首页
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        模型
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Scholars/" class="md-nav__link">
+        学者
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Books/" class="md-nav__link">
+        书籍
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Courses/" class="md-nav__link">
+        课程
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Projects/" class="md-nav__link">
+        项目
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bsdes-pinns" class="md-nav__link">
+    椭圆型/抛物型边值问题的深度学习方法： 在 BSDEs 和 PINNs 之间插值
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#abstract" class="md-nav__link">
+    Abstract 摘要
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-variational-formulations-of-boundary-value-problems" class="md-nav__link">
+    2. Variational Formulations of Boundary Value Problems  边值问题的变分形式
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Variational Formulations of Boundary Value Problems  边值问题的变分形式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-the-pinn-loss" class="md-nav__link">
+    2.1 The PINN Loss  物理信息神经网络损失函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-the-bsde-loss" class="md-nav__link">
+    2.2 The BSDE 损Loss  倒向随机微分方程损失函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-diffusion-loss" class="md-nav__link">
+    3. The Diffusion Loss  扩散损失
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-extensions-to-elliptic-pdes-and-eigenvalue-problems" class="md-nav__link">
+    4. Extensions to Elliptic PDEs and Eigenvalue Problems  推广到椭圆型偏微分方程与特征值问题
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Extensions to Elliptic PDEs and Eigenvalue Problems  推广到椭圆型偏微分方程与特征值问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-elliptic-boundary-value-problems" class="md-nav__link">
+    4.1 Elliptic Boundary Value Problems 椭圆型边值问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-elliptic-eigenvalue-problems" class="md-nav__link">
+    4.2 Elliptic Eigenvalue Problems 椭圆型特征值问题
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-from-losses-to-algorithms" class="md-nav__link">
+    5. From Losses to Algorithms 从损失函数到算法
+  </a>
+  
+    <nav class="md-nav" aria-label="5. From Losses to Algorithms 从损失函数到算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-simulation-of-diffusions-and-their-exit-times" class="md-nav__link">
+    5.1 Simulation of Diffusions and Their Exit Times  扩散模拟和相应退出时间
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-further-modifications-of-the-losses" class="md-nav__link">
+    5.2. Further Modifications of the Losses  损失函数的进一步修改
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2. Further Modifications of the Losses  损失函数的进一步修改">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#521" class="md-nav__link">
+    5.2.1 前向控制
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#522" class="md-nav__link">
+    5.2.2 近似解的梯度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#523" class="md-nav__link">
+    5.2.3 惩罚离散格式的偏差
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-conclusion-and-outlook" class="md-nav__link">
+    7. Conclusion and Outlook 结论与展望
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    参考文献
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="interpolating-between-bsdes-and-pinns-deep-learning-for-elliptic-and-parabolic-boundary-value-problems">Interpolating between BSDEs and PINNs: Deep Learning for Elliptic and Parabolic Boundary Value Problems</h1>
+<h2 id="bsdes-pinns"><center>椭圆型/抛物型边值问题的深度学习方法：<br> 在 BSDEs 和 PINNs 之间插值</center></h2>
+<ul>
+<li>作者: Nikolas Nüsken | Lorenz Richter</li>
+<li>机构:</li>
+<li>时间: 2021-12-07</li>
+<li>预印: <a href="https://arxiv.org/abs/2112.03749">arXiv:2112.03749v1</a></li>
+<li>领域: #数学</li>
+<li>标签: #PINN</li>
+<li>引用: 80 篇</li>
+<li>页数: 25 页</li>
+</ul>
+<h2 id="abstract">Abstract 摘要</h2>
+<blockquote>
+<p>Solving high-dimensional partial differential equations is a recurrent challenge in economics, science and engineering. In recent years, a great number of computational approaches have been developed, most of them relying on a combination of Monte Carlo sampling and deep learning based approximation. For elliptic and parabolic problems, existing methods can broadly be classified into those resting on reformulations in terms ofbackward stochastic differential equations(BSDEs) and those aiming to minimize a regression-typeL^2 -error (physics-informed neural networks, PINNs). In this paper, we review the literature and suggest a methodology based on the noveldiffusion lossthat interpolates between BSDEs and PINNs. Our contribution opens the door towards a unified understanding of numerical approaches for high-dimensional PDEs, as well as for implementations that combine the strengths of BSDEs and PINNs. We also provide generalizations to eigenvalue problems and perform extensive numerical studies, including calculations of the ground state for nonlinear Schrödinger operators and committor functions relevant in molecular dynamics.</p>
+</blockquote>
+<p>求解高维偏微分方程是经济学、科学和工程领域中一个经常遇到的挑战。近年来，人们发展了大量的计算方法，其中大部分是基于蒙特卡罗采样和基于深度学习的近似方法的结合。对于椭圆型和抛物型问题，现有的方法大致可以分为基于倒向随机微分方程重构的方法（BSDEs）和旨在最小化回归型 <span class="arithmatex">\(L^2\)</span> 误差的方法（物理信息神经网络 PINNs）。在本文中，我们回顾了相关文献，并提出了一种基于新的扩散损失的方法，即在 BSDEs 和 PINNs 之间插值。我们的贡献为统一理解高维偏微分方程的数值方法以及结合 BSDEs 和 PINNs 优势的实现打开了大门。我们还提供了特征值问题的推广，并进行了广泛的数值研究，包括计算非线性薛定谔算子的基态和分子动力学相关的 committor 函数。</p>
+<h2 id="1">1. 介绍</h2>
+<blockquote>
+<p>In this article, we consider approaches towards solving high-dimensional partial differential equations (PDEs) that are based on minimizing appropriate loss functions in the spirit of machine learning. For example, we aim at identifying approximate solutions to nonlinear parabolic boundary value problems of the form</p>
+</blockquote>
+<p>本文考虑用于求解高维偏微分方程 (PDEs) 基于机器学习思想即最小化近似损失函数的方法。例如找到如下形式非线性抛物型边值问题的解：</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    &amp;(\partial_t+L)V(x,t)+h(x,t,V(x,t),\sigma^\mathsf{T}\nabla V(x,t))=0, &amp;(x,t)\in\Omega\times [0,T),\\
+    &amp;V(x,T)=f(x), &amp;x\in\Omega,\\
+    &amp;V(x,t)=g(x,t), &amp;(x,t)\in\partial\Omega\times[0,T],
+    \end{aligned}
+\]</div>
+<blockquote>
+<p>on a spatial domain\Omega⊂Rdand time interval[0,T], whereh∈C(Rd×[0,T]×R×Rd,R)specifies the nonlinearity, andf∈C(Rd,R)as well asg∈C(Rd×[0,T],R)are given functions defining the terminal and boundary conditions. Moreover,</p>
+</blockquote>
+<p>其中空间定义域 <span class="arithmatex">\(\Omega\subset\mathbb{R}^d\)</span>，时间区间 <span class="arithmatex">\([0,T]\)</span>，函数 <span class="arithmatex">\(h\in C(\mathbb{R}^d\times [0,T]\times\mathbb{R}\times\mathbb{R}^d,\mathbb{R})\)</span> 为非线性部分，<span class="arithmatex">\(f\in C(\mathbb{R}^d,\mathbb{R})\)</span> 和 <span class="arithmatex">\(g\in C(\mathbb{R}^d\times[0,T],\mathbb{R})\)</span> 是给定的函数，分别定义了终值条件和边值条件。此外</p>
+<div class="arithmatex">\[
+    L=\frac{1}{2}\sum_{i,j=1}^d(\sigma\sigma^\mathsf{T})_{ij}(x,t)\partial_{x_i}\partial_{x_j}+\sum_{i=1}^d b_i(x,t)\partial_{t_i},
+\]</div>
+<p>是椭圆微分算子，包含了系数函数 <span class="arithmatex">\(b\in C(\mathbb{R}^d\times[0,T],\mathbb{R})\)</span> 和 <span class="arithmatex">\(\sigma\in  C(\mathbb{R}^d\times[0,T],\mathbb{R}^{d\times d})\)</span>，假设 <span class="arithmatex">\(\sigma\)</span> 是非退化的。</p>
+<p>之后会使用 <span class="arithmatex">\(L\)</span> 是由如下随机微分方程定义的扩散过程的 infinitesimal generator 的事实：
+$$
+    \text{d}X_s = b(X_s,s)\text{d}s+\sigma(X_s,s)\text{d}W_s,
+$$
+其中 <span class="arithmatex">\(W_s\)</span> 是标准 <span class="arithmatex">\(d\)</span> 维布朗运动。</p>
+<p>本文算法利用了偏微分方程和随机微分方程的联系几乎毫不费力地推广到很大范围的非线性椭圆型偏微分方程和特征值问题。此外需要注意的是不失一般性，可以使用时间逆转变换将终值条件替换为初值条件。类似地，可以将 Dirichlet 边界条件替换为相应的 Neumann 边界条件，即在 <span class="arithmatex">\(\partial\Omega\times[0,T]\)</span> 上约束法向导数 <span class="arithmatex">\(\partial_{\vec{n}}V\)</span>。</p>
+<p>在偏微分方程的数值处理中出现的一个臭名昭著的挑战是维数灾难，它表明计算的复杂性在状态空间的维度中呈指数增长。然而，近年来，多种数值[19,35,69]以及理论研究[26,40]表明，蒙特卡罗方法和神经网络的结合为克服这一问题提供了一个有希望的方法。本文围绕两个策略来解决相当一般的非线性偏微分方程: • PINNs <a href="69">physics-informed neural networks</a> ，也称为 DGM <a href="72">deep Galerkin method</a> ，直接最小化(1)的左右两边之间的不匹配，在时空域 \Omega × [0，t ]及其边界上选择合适的(随机)点进行求解。•深倒向随机微分方程[19]依赖于随机正倒向动力学(1)的重新表述，明确利用偏微分方程(1)和倒向随机微分方程(3)之间的联系。深层 bsde 最小化与后向 SDE 相关的终端条件中的不匹配。</p>
+<p>我们回顾了这些方法(见第2节) ，并在伊藤公式的激励下，引入了一个新的优化目标，称为扩散损失的扩散(见第3节)。重要的是，我们的构造依赖于辅助时间参数 t ∈(0，∞) ，允许我们恢复极限 t →0的 PINNs 和极限 t →∞ : PINNst →0←--Ltdiffusiont →∞→深 BSDEs。扩散损失提供了一个插值之间似乎相当不同的方法。除了这个理论上的见解，我们实验表明，适当的 t 选择可以导致计算上有利的 PINNs 和深 BSDEs 的混合，结合两种方法的优点。特别是，在区域 \Omega 有一个(可能是复杂的)边界和/或正在考虑的 PDE 包含大量二阶导数的情况下，扩散损失(选择 t 为中等大小)似乎表现良好(例如，当 σ 不稀疏时)。我们将讨论第5节中涉及的权衡问题。维数灾难，BSDEs vs. PINNs。传统的求解偏微分方程的数值方法(例如差分法和有限体积法，参见文献[1])通常需要将区域 \Omega 离散化，导致计算成本增加，为了达到规定的精度，需要在网格点数上线性增长，因此在维数上呈指数增长。最近发展起来的方法可以打败这个维数灾难-BSDEs 和 PINNs alike1-用蒙特卡罗抽样取代确定性网格，原则上有望实现维数无关的收敛速度[20]。通常，近似函数类由神经网络组成(期望提供对低维潜在结构的自适应能力[2]) ，虽然张量列车也表现良好[70]。与 pinn 相反，基于 BSDEs 的方法利用基本的扩散(3)来生成训练数据。根据我们的初步数值实验，目前还不清楚这种结构的使用是否真正转化为计算的好处; 我们认为需要对这种比较进行更多的研究，并且可能在概念上和实践上对该领域的进一步进展作出贡献。本文所考虑的扩散损失可能是朝这个方向迈出的第一步，对于 BSDEs 和 pinn 之间的直接比较，我们参见下面的表1a 和表1b。</p>
+<p>过往作品。将蒙特卡罗方法与神经网络相结合来近似 PDE 解的尝试可以追溯到20世纪90年代，其中有人提出了一些残差最小化的变体[41,49,50,51,73]。最近，这个想法在物理学知识的神经网络(PINNs，[68,69])和深层伽辽金方法(DGMs，[72])下获得了普及。让我们进一步参考文献[9]中提出的类似方法，对于解决动态薛定谔方程的特殊情况，参考文献[16]。对于理论分析，我们将举例提到[57] ，它提供了泛化误差的上界，[17] ，它陈述了 pinn 在 kolmogorov 型偏微分方程近似下的误差分析，[59] ，它根据是否使用精确的或缺陷的边界条件来研究收敛性，[76,77] ，它通过神经切线的透镜来研究收敛性。在[18,56]中进行了进一步的数值实验，并提出了多种算法改进，例如在[75]中，在模型训练期间平衡了梯度，[39]考虑了自适应激活函数以加速收敛，[74]则研究了有效的权重调整。</p>
+<p>生物同位素衍生物最早是在20世纪70年代引入的，最终在20世纪90年代得到了更系统的研究。对于一个全面的介绍，详细阐述了它们与椭圆型和抛物型偏微分方程的联系，我们参考了例如[61]。数值试图利用这种联系，以逼近偏微分方程的解决方案已首先处理后向时间迭代，最初依赖于一组基本函数和解决抛物方程在无界区域[14,23,61]。这些方法在[3,35]中已经被考虑，并在神经网络中得到进一步发展，在[70]中被赋予了张量序列。在文献[19,28]中首次提出了一个变分公式，称为深度随机微分方程，其目的是在一个点上求解偏微分方程。</p>
+<p>[60,67].对于深层 BSDE 方法的逼近误差分析，我们参考了[29]和基于二阶 BSDE 的完全非线性方法。在文[47]中提出了有界区域上椭圆偏微分方程的一个推广。还有一些专门针对线性偏微分方程的工作，主要是利用 Feynman-Kac 定理和主要考虑抛物型方程[4,10]。对于 Poisson 方程的特殊情况，[24]考虑了有界区域上的椭圆型方程。线性偏微分方程通常包含一个变分公式，这个变分公式建议最小化某个能量泛函——这种联系在[22,44,54]中已经使用过，我们参考[58]作进一步的分析。当考虑特征值问题时，可以使用类似的极小化策略，我们在亚稳扩散过程中提到了[80]。我们也参考了[33,42,48,65]关于21量子力学的类似问题，这些问题通常依赖于特定的神经网络结构。文[30,65]中利用一个抛物型偏微分方程和一个不动点问题的联系来处理非线性椭圆特征值问题。</p>
+<p>关于神经网络克服维数灾难的能力的严格结果，我们参考了文献[25,37,40] ，每一个都分析了特定的偏微分方程情况。除了上面提到的方法之外，我们还要提到[78]作为利用弱偏微分方程式的一种替代方法，以及[53] ，其中的典型应用是将初始条件映射到偏微分方程的解，用神经网络(但是依赖于参考解中的训练数据)逼近算子。关于用神经网络逼近偏微分方程解的进一步参考文献，我们参考了最近的评论文章[6,12,20,43]。在第二部分，我们回顾了基于 PINN 和 BSDE 的方法来解决高维(抛物线)偏微分方程。第三部分介绍了扩散损耗，证明了它在求解形式(1)的偏微分方程时的有效性，并证明了它介于 PINN 和 BSDE 损耗之间。第4节扩展了提出的方法学的椭圆偏微分方程和特征值问题。在第5节中，我们讨论实施细节以及一些正在考虑的损失的进一步修改。在第6部分，我们提出了数值实验，包括一个来自分子动力学的函数例子和一个由量子物理学激发的非线性本征值问题。最后，第七部分对全文进行了总结和展望。</p>
+<h2 id="2-variational-formulations-of-boundary-value-problems">2. Variational Formulations of Boundary Value Problems <br> 边值问题的变分形式</h2>
+<blockquote>
+<p>In this section we consider boundary value problems such as <a href="#eq1">(1)</a> in a variational formulation. That is, we aim at approximating the solution <span class="arithmatex">\(V\)</span> with some function <span class="arithmatex">\(\varphi\in\mathcal{F}\)</span> by minimizing suitable loss functionals</p>
+</blockquote>
+<div class="arithmatex">\[
+    \mathcal{L}: \mathcal{F} \to \mathbb{R}_{\geq 0},\tag{4}
+\]</div>
+<blockquote>
+<p>which are zero if and only if the boundary value problem is fulfilled,</p>
+</blockquote>
+<div class="arithmatex">\[
+    \mathcal{L}(\varphi) = 0 ⇐⇒ \varphi = V.\tag{5}
+\]</div>
+<blockquote>
+<p>Here <span class="arithmatex">\(\mathcal{F}\subset C^{2,1}(\Omega\times [0, T], \mathbb{R})\cap C(\bar{\Omega}\times [0, T], \mathbb{R})\)</span> refers to an appropriate function class, usually consisting of deep neural networks. With a loss function at hand we can apply gradient-descent type algorithms to minimize (estimator versions of) <span class="arithmatex">\(\mathcal{L}\)</span>, keeping in mind that different choices of losses lead to different statistical and computational properties and therefore potentially to different convergence speeds and robustness behaviours [60].</p>
+<p>Throughout, we will work under the following assumption:</p>
+<dl>
+<dt>Assumption 1.</dt>
+<dd>The following hold:</dd>
+</dl>
+<ol>
+<li>The domain <span class="arithmatex">\(\Omega\)</span> is either bounded with picewise smooth boundary, or <span class="arithmatex">\(\Omega=\mathbb{R}^d\)</span>.
+2.</li>
+</ol>
+</blockquote>
+<h3 id="21-the-pinn-loss">2.1 The PINN Loss <br> 物理信息神经网络损失函数</h3>
+<h3 id="22-the-bsde-loss">2.2 The BSDE 损Loss <br> 倒向随机微分方程损失函数</h3>
+<h2 id="3-the-diffusion-loss">3. The Diffusion Loss <br> 扩散损失</h2>
+<blockquote>
+<p>In this section we introduce a novel loss that interpolates between the PINN and BSDE losses from <a href="#sec2">Section 2</a> using an auxiliary time parameter <span class="arithmatex">\(\mathfrak{t}\in (0, \infty)\)</span>. As for the BSDE loss, the connection between the SDE <a href="#eq3">(3)</a> and its infinitesimal generator <a href="#eq2">(2)</a> plays a major role: Itô’s formula motivates the following variational formulation of the boundary value problem <a href="#eq1">(1)</a>.</p>
+</blockquote>
+<div class="arithmatex">\[
+    V(X_T, T) - V(X_0, 0) = \int_0^T (\partial_s+L) V(X_s,s)\text{d}s + \int_0^T \sigma^\mathsf{T}\nabla V(X_s, s)\cdot \text{d}W_s
+\]</div>
+<blockquote>
+<dl>
+<dt>Definition 3.1 (Diffusion Loss)</dt>
+<dd>Let <span class="arithmatex">\(\varphi\in\mathcal{F}\)</span> and <span class="arithmatex">\(\mathfrak{t}\in(0,\infty)\)</span>. The diffusion loss consists of three terms,</dd>
+</dl>
+<div class="arithmatex">\[
+    \mathcal{L}^{\mathfrak{t}}_{\text{diffusion}}(\varphi) = \alpha_{\text{int}}\mathcal{L}^{\mathfrak{t}}_{\text{diffusion,int}}(\varphi)+\alpha_T\mathcal{L}^{\mathfrak{t}}_{\text{diffusion,T}}(\varphi) + \alpha_b \mathcal{L}^{\mathfrak{t}}_{\text{diffusion, b}}(\varphi)
+\]</div>
+<dl>
+<dd>where</dd>
+</dl>
+<div class="arithmatex">\[
+\begin{aligned}
+    \mathcal{L}^{\mathfrak{t}}_{\text{diffusion, int}}(\varphi)&amp;=
+    \mathbb{E}[(\varphi(X_{\mathcal{T}}, \mathcal{T}) - \varphi(X_{t_0}, t_0) - \int_{t_0}^\mathcal{T} \sigma^\mathsf{T}\nabla\varphi(X_s,s)\cdot\text{d}W_s + \int_{t_0}^\mathcal{T} h(X_s,s,\varphi(X_s,s),\sigma^\mathsf{T}\nabla \varphi(X_s, s)) \text{d}s)^2]\\
+    \mathcal{L}^{\mathfrak{t}}_{\text{diffusion, T}}(\varphi)&amp;=\mathbb{E}[(\varphi(X^{T},T) - f(X^{T}))^2]\\
+    \mathcal{L}^{\mathfrak{t}}_{\text{diffusion, b}}(\varphi)&amp;=\mathbb{E}[(\varphi(X^{\text{b}},t^{\text{b}}) - g(X^{\text{b}},t^{\text{b}}))^2]
+\end{aligned}
+\]</div>
+<dl>
+<dd>encode the constraints (1a)-(1c), balanced by the weights <span class="arithmatex">\(\alpha_\text{int}, \alpha_{\text{T}}, \alpha_{\text{b}}&gt;0\)</span>. The process <span class="arithmatex">\((X_t)_{t_0\leq t\leq \mathcal{T}}\)</span> is a solution to <a href="#eq3">(3)</a> with initial condition <span class="arithmatex">\((X_0, t_0)\sim ν_{\Omega\times[0,T]}\)</span> and maximal trajectory length <span class="arithmatex">\(\mathfrak{t}&gt;0\)</span>. The stopping time <span class="arithmatex">\(\mathcal{T}:=(t_0+ \mathfrak{t}) ∧ \tau ∧ T\)</span> is a shorthand notation, referring to the (random) final time associated to a realization of the path X as it either hits the parabolic boundary ∂Ω × {T} or reaches the maximal time t0+ t. As in Definition 2.1,τ = inf{t &gt; 0 : Xt/∈ Ω} is the exit time from Ω, and (Xb, tb) ∼ ν∂Ω×[0,T ], X(T )∼ νΩare distributed according to probability measures that are fully supported on their respective domains.</dd>
+<dt>Remark 3.2 (Comparison to the BSDE and PINN losses).</dt>
+<dd>In contrast to the PINN loss from Definition 2.1, the data inside the domain Ω is not sampled according to a prescribed probability measure νΩ, but along trajectories of the diffusion (3). Consequently, second derivatives of ϕ do not have to be computed explicitly, but are approximated using the driving Brownian motion (and – implicitly – Itô’s formula). A main difference to the BSDE loss from Definition 2.5 is that the simulated trajectories have a maximal length t, which might be beneficial computationally if the final time T or the exit time τ is large (with high probability). Additionally, the sampling of extra boundary data circumvents the problem of accurately simulating those exit times (see Remark 2.6). Both aspects will be further discussed in Section 5. We refer to Figure 1 for a graphical illustration of the data required to compute the three losses.</dd>
+</dl>
+<p>The following proposition shows that the loss Ltdiffusionis indeed suitable for the boundary value problem (1).</p>
+<dl>
+<dt>Proposition 3.3.</dt>
+<dd>Consider the diffusion loss as defined in (17), and assume that b and σ are globally Lipschitz continuous in x, uniformly in t ∈ [0, T]. Furthermore, assume the following Lipschitz and boundedness conditions on f, g and h,|f(x)| ≤ C(1 + |x|p),|g(x, t)| ≤ C(1 + |x|p),|h(t, x, y, z)| ≤ C(1 + |x|p+ |y| + |z|),|h(t, x, y, z) − h(t, x, y0, z)| ≤ C|y − y0|,|h(t, x, y, z) − h(t, x, y, z0)| ≤ C|z − z0|,for appropriate constants C, p ≥ 0 and all x, y, z ∈ Ω, t ∈ [0, T]. Finally, assume that Assumption 1 is satisfied.
+Then for ϕ ∈ F the following are equivalent:</dd>
+</dl>
+<ol>
+<li>The diffusion loss vanishes on ϕ,Ltdiffusion(ϕ) = 0.(19)</li>
+<li>ϕ fulfills the boundary value problem (1).</li>
+</ol>
+<dl>
+<dt>Proof.</dt>
+<dd>Denoting by Xsthe unique strong solution to (3), an application of Itô’s lemma to ϕ(Xs, s) yieldsϕ(XT, T ) = ϕ(Xt0, t0) +T Z t0(∂s+ L)ϕ(Xs, s) ds +T Z t0σ&gt;∇ϕ(Xs, s) · dWs,(20)almost surely. Assuming that ϕ fulfills the PDE (1a), it follows from the definition in (18a) that Ltdiffusion,int(ϕ) = 0.Similarly, the boundary conditions (1b) and (1c) imply that Ltdiffusion,T(ϕ) = Ltdiffusion,b(ϕ) = 0. Consequently, we see that Ltdiffusion(ϕ) = 0.For the converse direction, observe that Ltdiffusion(ϕ) = 0 implies thatϕ(XT, T ) = ϕ(Xt0, t0) +T Z t0σ&gt;∇ϕ(Xs, s) · dWs−T Z t0h(Xs, s, ϕ(Xs, s), σ&gt;∇ϕ(Xs, s)) ds,(21)7almost surely, and that the same holds with ϕ replaced by V . We proceed by defining the processes e Ys:= ϕ(Xs, s)and e Zs:= σ&gt;∇ϕ(Xs, s), as well as Ys:= V (Xs, s) and Zs:= σ&gt;∇V (Xs, s). By the assumptions on ϕ, b andσ, the processes Y , Z, eY and e Z are progressively measurable with respect to the filtration generated by (Wt)t≥0and moreover square-integrable. Furthermore, the relation (21) shows that the pairs (Y, Z) and (eY , eZ) satisfy a BSDE with terminal condition ξ := ϕ(XT, T ) on the random time interval [t0, T ]. Well-posedness of the BSDE(see [61, Theorems 1.2 and 3.2]) implies that Y = eY and Z = eZ, almost surely. Conditional on t0and Xt0, we also have V (Xt0, t0) = YXt0,t0= eYXt0,t0= ϕ(Xt0, t0), where the superscripts denote conditioning on the initial time t0and corresponding initial condition Xt0, see [61, Theorems 2.4 and 4.3]. Hence, we conclude that ϕ = V ,νΩ× [0, T]-almost surely, and the result follows from the continuity of ϕ and V and the assumption that νΩ×[0,T ]has full support.</dd>
+</dl>
+<p>We have noted before that the diffusion loss combines aspects from the BSDE and PINN losses. In fact, it turns out that the diffusion loss can be interpreted as a specific type of interpolation between the two. The following proposition makes this observation precise.</p>
+<dl>
+<dt>Proposition 3.4 (Relation of the diffusion loss to the PINN and BSDE losses).</dt>
+<dd>
+<dl>
+<dt>Let ϕ ∈ F. Assuming that the measures νΩ×[0,T ]in Definitions 2.1 and 3.1 coincide, we have that Ltdiffusion,int(ϕ)t2→ LPINN,int(ϕ),(22)as t → 0. Moreover, if νΩ×[0,T ]refers to the same measure in Definitions 2.1 and 2.5, then Ltdiffusion,int(ϕ) → LBSDE(ϕ),(23)as t → ∞.</dt>
+<dt>Proof.</dt>
+<dd>Itô’s formula shows that Ltdiffusion,intcan be expressed as Ltdiffusion,int(ϕ) = ET Z t0(∂s+ L)ϕ(Xs, s) ds +T Z t0h(Xs, s, ϕ(Xs, s), σ&gt;∇ϕ(Xs, s)) ds2 ,(24)which implies the limit (22) by dominated convergence, noting that T → t0as t → 0, almost surely. The relation(23) follows immediately from the definition of LBSDEby noting that T → τ ∧ T as t → ∞, almost surely.</dd>
+</dl>
+</dd>
+</dl>
+</blockquote>
+<h2 id="4-extensions-to-elliptic-pdes-and-eigenvalue-problems">4. Extensions to Elliptic PDEs and Eigenvalue Problems <br> 推广到椭圆型偏微分方程与特征值问题</h2>
+<blockquote>
+<p>In this section we show that the ideas reviewed and developed in the previous sections in the context of the parabolic boundary value problem (1) can straightforwardly be extended to the treatment of elliptic PDEs and certain eigenvalue problems. To begin with, it is helpful to notice that the boundary value problem (1) can be written in the following slightly more abstract form:</p>
+<dl>
+<dt>Remark4.1 (Compact Notation).</dt>
+<dd>Consider the operator <span class="arithmatex">\(\mathcal{A}:=\partial_t+L\)</span>, the space-time domain <span class="arithmatex">\(\Omega_{xt}:= \Omega\times[0,T)\)</span> with (forward) boundary <span class="arithmatex">\(\vec{\partial}\Omega_{xt}:=\Omega\times\{T\}\cup\partial\Omega\times [0,T]\)</span> (<span class="arithmatex">\(\partial\Omega_{xt}=\vec{\partial}\Omega_{xt}\cup\{0\}\times\Omega\)</span>), and the augmented variable <span class="arithmatex">\(z=(x,t)^\mathsf{T}\in\Omega\times [0,T]\)</span>. Then problem (1) can be presented as</dd>
+</dl>
+<div class="arithmatex">\[
+    \begin{aligned}
+    \mathcal{A}V(z) + h(z,V(z),\sigma^{\mathsf{T}}\nabla_x V(z))&amp;=0, &amp;&amp;z\in\Omega_{xt}\\
+    V(z)&amp;=k(z), &amp;&amp;z\in\vec{\partial}\Omega_{xt}
+    \end{aligned}\tag{25}
+\]</div>
+<dl>
+<dd>with <span class="arithmatex">\(k\)</span> defined as in (11).</dd>
+<dd>Relying on (25), we can equivalently define the BSDE loss as</dd>
+</dl>
+<div class="arithmatex">\[
+\begin{aligned}
+    \mathcal{L}_{\text{BSDE}}(\varphi)=\mathbb{E}
+    \bigg[\Big(
+        &amp;k(X_{\tau_{xt}}, \tau_{xt})-\varphi(X_{t_0}, t_0) - \int_{t_0}^{\tau_{xt}}\sigma^\mathsf{T}\nabla\varphi(X_s,s)\cdot\text{d}W_s \\
+        &amp;+ \int_{t_0}^{\tau_{xt}} h(X_s,s,\varphi(X_s,s), \sigma^\mathsf{T}\nabla\varphi(X_s, s))\text{d}s
+    \Big)^2\bigg]
+\end{aligned}
+\tag{26}
+\]</div>
+<dl>
+<dd>where <span class="arithmatex">\(\tau_{xt}=\inf\{t&gt;0,X_t\notin\Omega_{xt}\}\)</span> is the first exit time from <span class="arithmatex">\(\Omega_{xt}\)</span>. The PINN and diffusion losses can similarly be rewritten in terms of the space-time domain <span class="arithmatex">\(\Omega_{xt}\)</span> and exit time <span class="arithmatex">\(\tau_{xt}\)</span>.</dd>
+</dl>
+</blockquote>
+<h3 id="41-elliptic-boundary-value-problems">4.1 Elliptic Boundary Value Problems 椭圆型边值问题</h3>
+<p>Removing the time dependence from the solution (and from the coefficients b and σ determining L) we obtain the elliptic boundary value problem</p>
+<p>with the nonlinearity h ∈ C(Rd× R × Rd, R). In analogy to (10), the corresponding backward equation is given by dYs= −h(Xs, Ys, Zs) ds + Zs· dWs,Yτ= g(Xτ),(28)where τ = {t &gt; 0 : Xt/∈ Ω} is the first exit time from Ω. Given suitable boundedness and regularity assumptions on h and assuming that τ is almost surely finite, one can show existence and uniqueness of solutions Y and Z, which,as before, represent the solution V and its gradient along trajectories of the forward process [61, Theorem 4.6].Therefore, the BSDE, PINN and diffusion losses can be applied to (27) with minor modifications: Owing to the fact that there is no terminal condition, we set f = 0 in (15), as well as \alpha_T= 0 in (7) and (17), making (8b) and (18b)obsolete. With the same reasoning, we set T = ∞, incurring τ ∧ T = τ and T = (t0+ t) ∧ τ; these simplifications are relevant for the expressions (15) and (18a). Proposition 3.3 and its proof can straightforwardly be generalized to the elliptic setting. An algorithm for solving elliptic PDEs of the type (27) in the spirit of the BSDE loss has been suggested in [47], using the same approximation framework as in [19] (cf. Remark 2.7). We note that the solutions to linear elliptic PDEs often admit alternative variational characterizations in terms of energy functionals[22]. An approach using the Feynman-Kac formula has been considered in [24].</p>
+<h3 id="42-elliptic-eigenvalue-problems">4.2 Elliptic Eigenvalue Problems 椭圆型特征值问题</h3>
+<p>We can extend the algorithmic approaches from Sections 2 and 3 to eigenvalue problems of the form LV (x) = λV (x),x ∈ Ω,(29a)V (x) = 0,x ∈ ∂Ω,(29b)corresponding to the choice h(x, y, z) = −λy in the elliptic PDE (27). Note, however, that h now depends on the unknown eigenvalue λ ∈ R. Furthermore, we can consider nonlinear eigenvalue problems,LV (x) + h(x, V (x), σ&gt;∇V (x)) = λV (x),x ∈ Ω,(30a)V (x) = 0,x ∈ ∂Ω,(30b)with a general nonlinearity h ∈ C(Rd× R × Rd, R).For the linear problem (29) it is known that, given suitable boundedness and regularity assumption on b and σ, there exists a unique principal eigenvalue with strictly positive eigenfunction in Ω, see [8, Theorem 2.3]. This motivates us to consider the above losses, now depending on λ, as well as enhanced with an additional term, preventing the trivial solution V ≡ 0. We define Leigen(ϕ, λ) = Lλ(ϕ) + \alpha_cLc(ϕ),(31)where Lλ(ϕ) stands for either the PINN, the BSDE, or the diffusion loss (with the nonlinearity h depending onλ), Lc(ϕ) = (ϕ(xc) − 1)2, and \alpha_c&gt; 0 is a weight. Here xc∈ Ω is chosen deterministically, preferably not too close to the boundary ∂Ω. Clearly, the term Lcencourages ϕ(xc) = 1, thus discouraging ϕ ≡ 0. We note that V (xc) = 1 can be imposed on solutions to (29) without loss of generality, since the eigenfunctions are determined up to a multiplicative constant only. Avoiding φ ≡ 0 for nonlinear eigenvalue problems of the form (30) needs to be addressed on a case-by-case basis; we present an example in Section 6.4.2.The idea is now to minimize Leigen(ϕ, λ) with respect to ϕ ∈ F and λ ∈ R simultaneously, while constraining the function ϕ to be non-negative. According to following proposition this is a valid strategy to determine the first eigenpair.</p>
+<blockquote>
+<dl>
+<dt>Proposition 4.2.</dt>
+<dd>
+<dl>
+<dt>Let Ω be bounded, and assume that L is uniformly elliptic, that is, there exist constants c0, C0&gt; 0such that c0|ξ|2≤d X i,j=1(σσ&gt;)(x)ξiξj≤ C0|ξ|2,(32)9for all ξ ∈ Rd. Moreover, assume that b is bounded. Let ϕ ∈ F with ϕ ≥ 0 and assume that Lλ(ϕ) = 0 if and only if (29) is satisfied. Then the following are equivalent:1. ϕ is the principal eigenfunction for (29) with principal eigenvalue λ and normalization ϕ(xc) = 1.2. Leigen(ϕ, λ) vanishes on the pair (ϕ, λ),Leigen(ϕ, λ) = 0.(33)Remark 4.3. The assumption that Lλ(ϕ) is equivalent to (29) is satisfied for any ‘reasonable’ loss function. For the diffusion loss, Proposition 3.3 establishes this condition whenever the coefficients in (29) are regular enough.</dt>
+<dt>Proof.</dt>
+<dd>It is clear that 1. implies 2. by the construction of (31). For the converse direction, notice that (33) impliesϕ(xc) = 1 as well as (29), that is, ϕ is an eigenfunction with eigenvalue λ. In conjunction with the constraint ϕ ≥ 0,it follows by [8, Theorem 2.3] that ϕ is the principal eigenfunction.</dd>
+</dl>
+</dd>
+</dl>
+<p>An alternative approach towards (29) can be found in [30], where the eigenvalue problem is connected to a parabolic PDE and formulated as a fixed point problem.</p>
+</blockquote>
+<h2 id="5-from-losses-to-algorithms">5. From Losses to Algorithms 从损失函数到算法</h2>
+<blockquote>
+<p>In this section we discuss some details regarding implementational aspects. For convenience, let us start by stating a prototypical algorithm based on the losses introduced in <a href="#sec2">Section 2</a> and <a href="#sec3">Section 3</a>:</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Algorithm 1: Approximation of the solution <span class="arithmatex">\(V\)</span> to the boundary value problem <a href="#eq1">(1)</a>.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Choose a parametrization <span class="arithmatex">\(\theta\in\mathbb{R}^p\mapsto \varphi_\theta\)</span>.<br> Initialize <span class="arithmatex">\(\varphi_\theta\)</span> (with a parameter vector <span class="arithmatex">\(\theta\in\mathbb{R}^p\)</span>). <br> Choose an optimization method <span class="arithmatex">\(\text{descent}\)</span>, a batch size <span class="arithmatex">\(K\in\mathbb{N}\)</span> and a learning rate <span class="arithmatex">\(\eta&gt;0\)</span>. <br>For PINN and diffusion losses choose weights <span class="arithmatex">\(\alpha_{\text{int}}\)</span>, <span class="arithmatex">\(\alpha_b\)</span>, <span class="arithmatex">\(\alpha_T&gt;0\)</span> and batch sizes <span class="arithmatex">\(K_b, K_T\in\mathbb{N}\)</span>. <br>For BSDE and diffusion losses choose a step-size <span class="arithmatex">\(\Delta t&gt;0\)</span>, for the diffusion loss choose a trajectory length <span class="arithmatex">\(t &gt; 0\)</span>. <br> <strong>repeat</strong> <br> <span class="arithmatex">\(\qquad\)</span>Choose a loss function <span class="arithmatex">\(\mathcal{L}\)</span> from either (7), (15) or (17).<br> <span class="arithmatex">\(\qquad\)</span>Simulate data according to the chosen loss. <br> <span class="arithmatex">\(\qquad\)</span>Compute <span class="arithmatex">\(\hat{\mathcal{L}}(\varphi_\theta)\)</span> as a Monte Carlo version of <span class="arithmatex">\(\mathcal{L}\)</span>.<br> <span class="arithmatex">\(\qquad\)</span>Compute <span class="arithmatex">\(\nabla_\theta \hat{\mathcal{L}}(\varphi_\theta)\)</span> using automatic differentiation.<br> <span class="arithmatex">\(\qquad\)</span>Update parameters: <span class="arithmatex">\(\theta \leftarrow \theta - \eta\ \text{descent}(\nabla_\theta \hat{\mathcal{L}}(\varphi_\theta))\)</span>.<br><strong>until</strong> convergence;<br><strong>Result</strong>: <span class="arithmatex">\(\varphi_\theta\approx V\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Function Approximation 函数逼近.</strong></p>
+<p>In this paper, we rely on neural networks to provide the parametrization <span class="arithmatex">\(\theta\in\mathbb{R}^p\mapsto\varphi_\theta\)</span> referred to in <a href="#alg1">Algorithm 1</a> (but note that alternative function classes might offer specific benefits, see, for instance [70]). Standard feed-forward neural networks are given by</p>
+<p><strong>Comparison of Losses (Practical Challenges) 损失函数的比较 (实践挑战).</strong></p>
+<p>The PINN, BSDE and diffusion losses differ in the way training data is generated (see Figure 1 and Table 1a); hence, the corresponding implementations face different challenges (see Table 1b).</p>
+<p>First, the BSDE and diffusion losses rely on trajectorial data obtained from the SDE (3), in contrast to the PINN loss (cf. the first row in Table 1a). As a consequence, the BSDE and diffusion losses do not require the computation of second-order derivatives, as those are approximated implicitly using Itô’s formula and the SDE (3), cf. the first row in Table 1a. From a computational perspective, the PINN loss therefore faces a significant overhead in high dimensions when the diffusion coefficient σ is not sparse (as the expression (8a) involves d2second-order partial derivatives). We notice in passing that an approach similar to the diffusion loss circumventing this problem has been proposed in [72, Section 3]. On the other hand, evaluating the BSDE and diffusion losses requires discretizing the SDE (3), incurring additional numerical errors (cf. the last row in Table 1b and the discussion below in Section5.1).</p>
+<p>Second, the PINN and diffusion losses incorporate boundary and final time constraints (see (1c) and (1b)) explicitly by sampling additional boundary data (see (8b), (8c), (18b), (18c) and cf. the second row in Table 1a). On the one hand, this approach necessitates choosing the weights \alpha_int, \alpha_b, \alpha_T&gt; 0; it is by now well established that while algorithmic performance depends quite sensitively on a judicious tuning of these weights, general and principled guidelines to address this issue are not straightforward (see, however, [74, 75, 76, 77]). Weight-tuning, on the other hand, is not required for implementations relying on the BSDE loss, as the boundary data is accounted for implicitly by the hitting event {(Xt, t) /∈ Ω×[0, T)} and the corresponding first two terms on the right-hand side of (15). The hitting times τ = inf{t &gt; 0 : Xt/∈ Ω} may however be large, leading to a computational overhead in the generation of the training data (but see 5.2.1), and are generally hard to compute accurately (but see Section 5.1).</p>
+<h3 id="51-simulation-of-diffusions-and-their-exit-times">5.1 Simulation of Diffusions and Their Exit Times <br> 扩散模拟和相应退出时间</h3>
+<h3 id="52-further-modifications-of-the-losses">5.2. Further Modifications of the Losses <br> 损失函数的进一步修改</h3>
+<h4 id="521">5.2.1 前向控制</h4>
+<h4 id="522">5.2.2 近似解的梯度</h4>
+<h4 id="523">5.2.3 惩罚离散格式的偏差</h4>
+<!-- ## 6. 数值实验
+
+### 6.1 非线性 toy 问题
+
+#### 6.1.1 带 Dirichlet 边界的椭圆型问题
+
+#### 6.1.2 需要全 Hessian 矩阵的椭圆型问题
+
+#### 6.1.3 带 Neumann 边界的抛物型问题
+
+### 6.2 Committor 函数
+
+### 6.3 无边界区域的抛物型 Allen-Cahn 方程
+
+### 6.4 椭圆型特征值问题
+
+#### 6.4.1 Fokker-Plank 方程
+
+#### 6.4.2 Nonlinear Schrödinger Equation 非线性薛定谔方程 -->
+
+<h2 id="7-conclusion-and-outlook">7. Conclusion and Outlook 结论与展望</h2>
+<blockquote>
+<p>In this paper, we have investigated the relationship between BSDE and PINN based approximation schemes for high-dimensional PDEs through the lens of the novel diffusion loss. In particular, we have shown that the diffusion loss provides an interpolation between the aforementioned methods and demonstrated its promising numerical performance in a range of experiments, allowing us to trade-off strengths and weaknesses of BSDEs and PINNs. Although we believe that the diffusion loss may be a stepping stone towards a unified understanding of computational approaches for high-dimensional PDEs, many questions remain open: First, there is a need for principled insights into the mechanisms with which BSDE, PINN and diffusion losses can or cannot overcome the curse of dimensionality. Second, it is of great practical interest to optimize the algorithmic details, preferably according to well-understood theoretical foundations. In this regard, we mention sophisticated (possibly adaptive) choices of the weights <span class="arithmatex">\(\alpha_{\text{int}},\alpha_b,\alpha_T\)</span> and the measures <span class="arithmatex">\(ν_{\Omega\times [0,T]},ν_{\Omega},ν_{\partial_\Omega\times [0,T]}\)</span> as well as variance reduction techniques for estimator versions of the losses (see, for instance, [60] [Remark 4.7]). Last but not least, we expect that the concepts explored in this paper may be fruitfully extended to the setting of parameter-dependent PDEs.</p>
+</blockquote>
+<p>本文通过新的扩散损耗透镜研究了高维偏微分方程的 BSDE 和基于 PINN 的近似格式之间的关系。特别是，我们已经表明，扩散损失提供了上述方法之间的插值，并在一系列实验中证明了其有希望的数值性能，使我们能够权衡 BSDE 和 PINN 的优缺点。尽管我们相信扩散损失可能是统一理解高维偏微分方程计算方法的一块踏脚石，但许多问题仍然悬而未决: 首先，需要对 BSDE、 PINN 和扩散损失能否克服维数灾难的机制有原则性的认识。其次，优化算法的细节，最好是根据众所周知的理论基础，具有很大的实际意义。在这方面，我们提到了权重和度量的复杂(可能是自适应的)选择，以及损失估计量版本的方差减少技术(参见，例如，[60][注4.7])。最后，我们期望本文探讨的概念能够有效地推广到依赖于参数的偏微分方程的设置。</p>
+<h2 id="_1">参考文献</h2>
+<p>[1] W. F. Ames. Numerical Methods for Partial Differential Equations. Academic press, 2014.</p>
+<p>[2] F. Bach. Breaking the Curse of Dimensionality with Convex Neural Networks. The Journal of Machine Learning Research, 18(1):629–681, 2017.</p>
+<p>[3] C. Beck, S. Becker, P. Cheridito, A. Jentzen, and A. Neufeld. Deep Splitting Method for Parabolic PDEs. SIAM Journal on Scientific Computing, 43(5):A3135–A3154, 2021.</p>
+<p>[4] C. Beck, S. Becker, P. Grohs, N. Jaafari, and A. Jentzen. Solving stochastic differential equations and Kolmogorov equations by means of deep learning.arXiv:1806.00421, 2018.</p>
+<p>[5] C. Beck, W. E, and A. Jentzen. Machine Learning Approximation Algorithms for High-Dimensional Fully Nonlinear Partial Differential Equations and Second-Order Backward Stochastic Differential Equations.Journal of Nonlinear Science, 29(4):1563–1619, 2019.</p>
+<p>[6] C. Beck, M. Hutzenthaler, A. Jentzen, and B. Kuckuck. An Overview on Deep Learning-Based Approximation Methods for Partial Differential Equations. arXiv preprint arXiv:2012.12348, 2020.</p>
+<p>[7] S. Becker, R. Braunwarth, M. Hutzenthaler, A. Jentzen, and P. von Wurstemberger. Numerical simulations for full history recursive multilevel Picard approximations for systems of high-dimensional partial differential equations.arXiv preprint arXiv:2005.10206, 2020.</p>
+<p>[8] H. Berestycki, L. Nirenberg, and S. S. Varadhan. The principal eigenvalue and maximum principle for secondorder elliptic operators in general domains.Communications on Pure and Applied Mathematics, 47(1):47–92, 1994.</p>
+<p>[9] J. Berg and K. Nyström. A unified deep artificial neural network approach to partial differential equations in complex geometries.Neurocomputing, 317:28–41, 2018.</p>
+<p>[10] J. Berner, P. Grohs, and A. Jentzen. Analysis of the generalization error: empirical risk minimization over deep artificial neural networks overcomes the curse of dimensionality in the numerical approximation of Black– Scholes partial differential equations.SIAM Journal on Mathematics of Data Science, 2(3):631–657, 2020.</p>
+<p>[11] J.-M. Bismut. Conjugate convex functions in optimal stochastic control.Journal of Mathematical Analysis and Applications, 44(2):384–404, 1973.</p>
+<p>[12] J. Blechschmidt and O. G. Ernst. Three ways to solve partial differential equations with neural networks—a review.GAMM-Mitteilungen:e202100006, 2021.</p>
+<p>[13] B. Bouchard, S. Menozzi, et al. Strong approximations of BSDEs in a domain.Bernoulli, 15(4):1117–1147, 2009.</p>
+<p>[14] B. Bouchard and N. Touzi. Discrete-time approximation and Monte-Carlo simulation of backward stochastic differential equations.Stochastic Processes and their applications, 111(2):175–206, 2004.</p>
+<p>[15] F. Buchmann and W. Petersen. Solving Dirichlet problems numerically using the Feynman-Kac representation. BIT Numerical Mathematics, 43(3):519–540, 2003.</p>
+<p>[16] G. Carleo and M. Troyer. Solving the quantum many-body problem with artificial neural networks.Science, 355(6325):602–606, 2017.</p>
+<p>[17] T. De Ryck and S. Mishra. Error analysis for physics informed neural networks (PINNs) approximating Kolmogorov PDEs.arXiv preprint arXiv:2106.14473, 2021.</p>
+<p>[18] T. Dockhorn. A discussion on solving partial differential equations using neural networks.arXiv preprint arXiv:1904.07200, 2019.</p>
+<p>[19] W. E, J. Han, and A. Jentzen. Deep learning-based numerical methods for high-dimensional parabolic partial differential equations and backward stochastic differential equations.Communications in Mathematics and Statistics, 5(4):349–380, 2017.</p>
+<p>[20] W. E, J. Han, A. Jentzen, et al. Algorithms for solving high dimensional PDEs: from nonlinear Monte Carlo to machine learning.arXiv preprint arXiv:2008.13333, 2020.</p>
+<p>[21] W. E and E. Vanden-Eijnden. Towards a theory of transition paths.Journal of statistical physics, 123(3):503– 523, 2006.</p>
+<p>[22] W. E and B. Yu. The deep Ritz method: a deep learning-based numerical algorithm for solving variational problems.Communications in Mathematics and Statistics, 6(1):1–12, 2018.</p>
+<p>[23] E. Gobet, J.-P. Lemor, X. Warin, et al. A regression-based Monte Carlo method to solve backward stochastic differential equations.The Annals of Applied Probability, 15(3):2172–2202, 2005.</p>
+<p>[24] P. Grohs and L. Herrmann. Deep neural network approximation for high-dimensional elliptic PDEs with boundary conditions.arXiv preprint arXiv:2007.05384, 2020.</p>
+<p>[25] P. Grohs, F. Hornung, A. Jentzen, and P. Von Wurstemberger. A proof that artificial neural networks overcome the curse of dimensionality in the numerical approximation of Black-Scholes partial differential equations. arXiv preprint arXiv:1809.02362, 2018.</p>
+<p>[26] P. Grohs, A. Jentzen, and D. Salimova. Deep neural network approximations for Monte Carlo algorithms. arXiv:1908.10828, 2019.</p>
+<p>[27] E. P. Gross. Structure of a quantized vortex in boson systems.Il Nuovo Cimento (1955-1965), 20(3):454–477, 1961.</p>
+<p>[28] J. Han, A. Jentzen, and W. E. Solving high-dimensional partial differential equations using deep learning. Proceedings of the National Academy of Sciences, 115(34):8505–8510, 2018.</p>
+<p>[29] J. Han and J. Long. Convergence of the deep BSDE method for coupled FBSDEs.Probability, Uncertainty and Quantitative Risk, 5(1):1–33, 2020.</p>
+<p>[30] J. Han, J. Lu, and M. Zhou. Solving high-dimensional eigenvalue problems using deep neural networks: a diffusion Monte Carlo like approach.Journal of Computational Physics, 423:109792, 2020.</p>
+<p>[31] C. Hartmann, O. Kebiri, L. Neureither, and L. Richter. Variational approach to rare event simulation using least-squares regression.Chaos: An Interdisciplinary Journal of Nonlinear Science, 29(6):063107, 2019.</p>
+<p>[32] E. Hausenblas. A numerical scheme using Itô excursions for simulating local time resp. stochastic differential equations with reflection.Osaka journal of mathematics, 36(1):105–137, 1999.</p>
+<p>[33] J. Hermann, Z. Schätzle, and F. Noé. Deep-neural-network solution of the electronic Schrödinger equation. Nature Chemistry, 12(10):891–897, 2020.</p>
+<p>[34] G. Huang, Z. Liu, L. Van Der Maaten, and K. Q. Weinberger. Densely connected convolutional networks. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 4700–4708, 2017.</p>
+<p>[35] C. Huré, H. Pham, and X. Warin. Deep backward schemes for high-dimensional nonlinear PDEs.Mathematics of Computation, 89(324):1547–1579, 2020.</p>
+<p>[36] M. Hutzenthaler, A. Jentzen, T. Kruse, T. Anh Nguyen, and P. von Wurstemberger. Overcoming the curse of dimensionality in the numerical approximation of semilinear parabolic partial differential equations.Proceedings of the Royal Society A, 476(2244):20190630, 2020.</p>
+<p>[37] M. Hutzenthaler, A. Jentzen, T. Kruse, and T. A. Nguyen. A proof that rectified deep neural networks overcome the curse of dimensionality in the numerical approximation of semilinear heat equations.SN partial differential equations and applications, 1(2):1–34, 2020.</p>
+<p>[38] M. Hutzenthaler, A. Jentzen, T. Kruse, et al. Multilevel Picard iterations for solving smooth semilinear parabolic heat equations.arXiv preprint arXiv:1607.03295, 2016.</p>
+<p>[39] A. D. Jagtap, K. Kawaguchi, and G. E. Karniadakis. Adaptive activation functions accelerate convergence in deep and physics-informed neural networks.Journal of Computational Physics, 404:109136, 2020.</p>
+<p>[40] A. Jentzen, D. Salimova, and T. Welti. Proof that deep artificial neural networks overcome the curse of dimensionality in the numerical approximation of Kolmogorov partial differential equations with constant diffusion and nonlinear drift coefficients.Communications in Mathematical Sciences, 19(5):1167–1205, 2021.</p>
+<p>[41] L. Jianyu, L. Siwei, Q. Yingjian, and H. Yaping. Numerical solution of elliptic partial differential equation using radial basis function neural networks.Neural Networks, 16(5-6):729–734, 2003.</p>
+<p>[42] H. Jin, M. Mattheakis, and P. Protopapas. Unsupervised neural networks for quantum eigenvalue problems. arXiv preprint arXiv:2010.05075, 2020.</p>
+<p>[43] G. E. Karniadakis, I. G. Kevrekidis, L. Lu, P. Perdikaris, S. Wang, and L. Yang. Physics-informed machine learning.Nature Reviews Physics, 3(6):422–440, 2021.</p>
+<p>[44] Y. Khoo, J. Lu, and L. Ying. Solving for high-dimensional committor functions using artificial neural networks. Research in the Mathematical Sciences, 6(1):1, 2019.</p>
+<p>[45] D. P. Kingma and J. Ba. Adam: A method for stochastic optimization. In Y. Bengio and Y. LeCun, editors, 3rd International Conference on Learning Representations, ICLR 2015, San Diego, CA, USA, May 7-9, 2015, Conference Track Proceedings, 2015.url:<a href="http://arxiv.org/abs/1412.6980">http://arxiv.org/abs/1412.6980</a>.</p>
+<p>[46] P. E. Kloeden and E. Platen. Stochastic differential equations. InNumerical Solution of Stochastic Differential Equations, pages 103–160. Springer, 1992.</p>
+<p>[47] S. Kremsner, A. Steinicke, and M. Szölgyenyi. A deep neural network algorithm for semilinear elliptic PDEs with applications in insurance mathematics.Risks, 8(4):136, 2020.</p>
+<p>[48] I. E. Lagaris, A. Likas, and D. I. Fotiadis. Artificial neural network methods in quantum mechanics.Computer Physics Communications, 104(1-3):1–14, 1997.</p>
+<p>[49] I. E. Lagaris, A. Likas, and D. I. Fotiadis. Artificial neural networks for solving ordinary and partial differential equations.IEEE transactions on neural networks, 9(5):987–1000, 1998.</p>
+<p>[50] I. E. Lagaris, A. C. Likas, and D. G. Papageorgiou. Neural-network methods for boundary value problems with irregular boundaries.IEEE Transactions on Neural Networks, 11(5):1041–1049, 2000.</p>
+<p>[51] H. Lee and I. S. Kang. Neural algorithm for solving differential equations.Journal of Computational Physics, 91(1):110–131, 1990.</p>
+<p>[52] Q. Li, B. Lin, and W. Ren. Computing committor functions for the study of rare events using deep learning. The Journal of Chemical Physics, 151(5):054112, 2019.</p>
+<p>[53] Z. Li, N. Kovachki, K. Azizzadenesheli, B. Liu, K. Bhattacharya, A. Stuart, and A. Anandkumar. Fourier neural operator for parametric partial differential equations.arXiv preprint arXiv:2010.08895, 2020.</p>
+<p>[54] J. Lu and Y. Lu. A priori generalization error analysis of two-layer neural networks for solving high dimensional Schrödinger eigenvalue problems.arXiv preprint arXiv:2105.01228, 2021.</p>
+<p>[55] J. Lu and J. Nolen. Reactive trajectories and the transition path process.Probability Theory and Related Fields, 161(1):195–244, 2015.</p>
+<p>[56] M. Magill, F. Qureshi, and H. W. de Haan. Neural networks trained to solve differential equations learn general representations.arXiv preprint arXiv:1807.00042, 2018.</p>
+<p>[57] S. Mishra and R. Molinaro. Estimates on the generalization error of physics informed neural networks (PINNs) for approximating PDEs.arXiv preprint arXiv:2006.16144, 2020.</p>
+<p>[58] J. Müller and M. Zeinhofer. Deep Ritz revisited.arXiv preprint arXiv:1912.03937, 2019.</p>
+<p>[59] J. Müller and M. Zeinhofer. Notes on exact boundary values in residual minimisation. arXiv preprint arXiv:2105.02550, 2021.</p>
+<p>[60] N. Nüsken and L. Richter. Solving High-Dimensional Hamilton–Jacobi–Bellman PDEs Using Neural Networks: Perspectives from the Theory of Controlled Diffusions and Measures on Path Space.SN Partial Differential Equations and Applications, 2(4):1–48, 2021.</p>
+<p>[61] É. Pardoux. Backward stochastic differential equations and viscosity solutions of systems of semilinear parabolic and elliptic PDEs of second order. InStochastic Analysis and Related Topics VI, pages 79–127. Springer, 1998.</p>
+<p>[62] E. Pardoux and S. Peng. Adapted solution of a backward stochastic differential equation.Systems &amp; Control Letters, 14(1):55–61, 1990.</p>
+<p>[63] É. Pardoux and S. Zhang. Generalized BSDEs and nonlinear Neumann boundary value problems.Probability Theory and Related Fields, 110(4):535–558, 1998.</p>
+<p>[64] G. A. Pavliotis.Stochastic processes and applications: diffusion processes, the Fokker-Planck and Langevin equations, volume 60. Springer, 2014.</p>
+<p>[65] D. Pfau, J. S. Spencer, A. G. Matthews, and W. M. C. Foulkes. Ab initio solution of the many-electron Schrödinger equation with deep neural networks.Physical Review Research, 2(3):033429, 2020.</p>
+<p>[66] L. P. Pitaevskii. Vortex lines in an imperfect Bose gas.Sov. Phys. JETP, 13(2):451–454, 1961.</p>
+<p>[67] M. Raissi. Forward-backward stochastic neural networks: deep learning of high-dimensional partial differential equations.arXiv preprint arXiv:1804.07010, 2018.</p>
+<p>[68] M. Raissi, P. Perdikaris, and G. E. Karniadakis. Physics-informed neural networks: a deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations.Journal of Computational Physics, 378:686–707, 2019.</p>
+<p>[69] M. Raissi, P. Perdikaris, and G. E. Karniadakis. Physics informed deep learning (part I): data-driven solutions of nonlinear partial differential equations.arXiv preprint arXiv:1711.10561, 2017.</p>
+<p>[70] L. Richter, L. Sallandt, and N. Nüsken. Solving High-Dimensional Parabolic PDEs Using the Tensor Train Format. In M. Meila and T. Zhang, editors,Proceedings of the 38th International Conference on Machine Learning, ICML 2021, 18-24 July 2021, Virtual Event, volume 139 ofProceedings of Machine Learning Research, pages 8998–9009. PMLR, 2021.url:<a href="http://proceedings.mlr.press/v139/richter21a.html">http://proceedings.mlr.press/v139/richter21a.html</a>.</p>
+<p>[71] G. M. Rotskoff and E. Vanden-Eijnden. Learning with rare data: using active importance sampling to optimize objectives dominated by rare events.arXiv preprint arXiv:2008.06334, 2020.</p>
+<p>[72] J. Sirignano and K. Spiliopoulos. DGM: a deep learning algorithm for solving partial differential equations. Journal of computational physics, 375:1339–1364, 2018.</p>
+<p>[73] T. Uchiyama and N. Sonehara. Solving inverse problems in nonlinear PDEs by recurrent neural networks. In IEEE International Conference on Neural Networks, pages 99–102. IEEE, 1993.</p>
+<p>[74] R. van der Meer, C. Oosterlee, and A. Borovykh. Optimally weighted loss functions for solving PDEs with neural networks.arXiv preprint arXiv:2002.06269, 2020.</p>
+<p>[75] S. Wang, Y. Teng, and P. Perdikaris. Understanding and mitigating gradient flow pathologies in physicsinformed neural networks.SIAM Journal on Scientific Computing, 43(5):A3055–A3081, 2021.</p>
+<p>[76] S. Wang, H. Wang, and P. Perdikaris. On the eigenvector bias of Fourier feature networks: from regression to solving multi-scale PDEs with physics-informed neural networks.Computer Methods in Applied Mechanics and Engineering, 384:113938, 2021.</p>
+<p>[77] S. Wang, X. Yu, and P. Perdikaris. When and why PINNs fail to train: a neural tangent kernel perspective. Journal of Computational Physics, 449:110768, 2022.</p>
+<p>[78] Y. Zang, G. Bao, X. Ye, and H. Zhou. Weak adversarial networks for high-dimensional partial differential equations.Journal of Computational Physics, 411:109409, 2020.</p>
+<p>[79] J. Zhang.Backward stochastic differential equations. Springer, 2017.</p>
+<p>[80] W. Zhang, T. Li, and C. Schütte. Solving eigenvalue PDEs of metastable diffusion processes using artificial neural networks.arXiv preprint arXiv:2110.14523, 2021.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjac.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

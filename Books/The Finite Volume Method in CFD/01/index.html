@@ -8,19 +8,19 @@
       
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.8">
     
     
       
-        <title>Johnson-Lindenstrauss Lemma - Nanxi Gu</title>
+        <title>描述流体运动的方法 - Nanxi Gu</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.815d1a91.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.815d1a91.min.css">
         
       
       
@@ -37,9 +37,9 @@
       
     
     
-      <link rel="stylesheet" href="../../paper.css">
+      <link rel="stylesheet" href="../../../paper.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#johnson-lindenstrauss-lemma" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -82,7 +82,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Nanxi Gu" class="md-header__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
+    <a href="../../.." title="Nanxi Gu" class="md-header__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Johnson-Lindenstrauss Lemma
+              描述流体运动的方法
             
           </span>
         </div>
@@ -190,7 +190,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Nanxi Gu" class="md-nav__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
+    <a href="../../.." title="Nanxi Gu" class="md-nav__button md-logo" aria-label="Nanxi Gu" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -209,7 +209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         首页
       </a>
     </li>
@@ -224,7 +224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Models/" class="md-nav__link">
+      <a href="../../../Models/" class="md-nav__link">
         模型
       </a>
     </li>
@@ -239,7 +239,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Scholars/" class="md-nav__link">
+      <a href="../../../Scholars/" class="md-nav__link">
         学者
       </a>
     </li>
@@ -254,7 +254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Books/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         书籍
       </a>
     </li>
@@ -269,7 +269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Courses/" class="md-nav__link">
+      <a href="../../../Courses/" class="md-nav__link">
         课程
       </a>
     </li>
@@ -284,7 +284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Projects/" class="md-nav__link">
+      <a href="../../../Projects/" class="md-nav__link">
         项目
       </a>
     </li>
@@ -311,6 +311,62 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lagrange" class="md-nav__link">
+    Lagrange 方法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#euler" class="md-nav__link">
+    Euler 方法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    三大基本方程
+  </a>
+  
+    <nav class="md-nav" aria-label="三大基本方程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    质量守恒
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    动量守恒
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    能量守恒
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -324,7 +380,57 @@
                   
 
 
-<h1 id="johnson-lindenstrauss-lemma">Johnson-Lindenstrauss Lemma</h1>
+<h1 id="_1">描述流体运动的方法</h1>
+<p>以连续介质假设为基础, 研究流体质点所具有的宏观物理量满足的物理性质和物理定律的方法有两种: 欧拉方法和拉格朗日方法</p>
+<h2 id="lagrange">Lagrange 方法</h2>
+<p>Lagrange 方法着眼于流体质点, 设法描述每个流体质点自始至终的运动过程, 即位置随时间的变化规律. 由于流体质点时连续分布的, 因此首先要有一个标识质点的方法.</p>
+<p>由于在每一时刻, 每一质点都占有唯一确定的空间位置, 因此取 <span class="arithmatex">\(t=t_0\)</span> 时刻, 以流体质点所占的空间位置坐标 <span class="arithmatex">\((a,b,c)\)</span> 来标识一个流体质点, 直角坐标系中为</p>
+<div class="arithmatex">\[
+\begin{cases}
+    a = x|_{t=y_0}\\
+    b = y|_{t=y_0}\\
+    c = z|_{t=y_0}
+\end{cases}
+\]</div>
+<p>对于某一个特定的流体质点, 其标识时固定不变的, 因此它在空间中的位置将只是时间的函数:</p>
+<div class="arithmatex">\[
+    \vec{r} = \vec{r}(t)
+\]</div>
+<p>当研究所有流体质点在空间运动时, 位置矢量将是位置和时间的函数:</p>
+<div class="arithmatex">\[
+    \vec{r} = \vec{r}(a,b,c,t)
+\]</div>
+<p>某一确定的流体质点在 <span class="arithmatex">\(\Delta t\)</span> 时间间隔内从点 <span class="arithmatex">\(A\)</span> 运动到点 <span class="arithmatex">\(B\)</span>, 则其速度和加速度分别定义为:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    \vec{V}(t)&amp;=\lim_{\Delta t\to0}\frac{\vec{r}(t+\Delta t)-\vec{r}(t)}{\Delta t}=\frac{\text{d}\vec{r}(t)}{\text{d}t}\\
+    \vec{a}(t)&amp;=\frac{\text{d}\vec{V}(t)}{\text{d}t}=\frac{\text{d}^2\vec{r}(t)}{\text{d}t^2}
+\end{aligned}
+\]</div>
+<p>当研究所有流体质点在空间运动时, 其速度和加速度表达式分别为</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    \vec{V}(a,b,c,t)&amp;=\frac{\partial\vec{r}(a,b,c,t)}{\partial t}\\
+    \vec{a}(a,b,c,t)&amp;=\frac{\partial\vec{V}(t)}{\partial t}=\frac{\partial^2\vec{r}(t)}{\partial t^2}
+\end{aligned}
+\]</div>
+<p>Lagrange 方法的 <span class="arithmatex">\((a,b,c)\)</span> 是为了识别流体质点进行的一种编号, 因此 <span class="arithmatex">\(\vec{V}\)</span> 和 <span class="arithmatex">\(\vec{a}\)</span> 都不是随空间变化的场变量, 没有梯度, 散度和旋度的概念.</p>
+<h2 id="euler">Euler 方法</h2>
+<p>Euler 方法着眼于空间点, 设法将各个时刻流过空间中的任一固定点的流体质点的某些物理量表示为该点位置和时间的函数.</p>
+<p>速度表示为</p>
+<div class="arithmatex">\[
+    \vec{V}=\vec{V}(x,y,z,t)
+\]</div>
+<p>场论知识?</p>
+<p>加速度表示为</p>
+<div class="arithmatex">\[
+    \vec{a}=\frac{\text{D}\vec{V}}{\text{D}t}
+\]</div>
+<p>表示速度矢量的物质导数 (全导数, 质点导数)</p>
+<h2 id="_2">三大基本方程</h2>
+<h3 id="_3">质量守恒</h3>
+<h3 id="_4">动量守恒</h3>
+<h3 id="_5">能量守恒</h3>
 
 
 
@@ -362,12 +468,12 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
       
-        <script src="../../javascripts/mathjac.js"></script>
+        <script src="../../../javascripts/mathjac.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
